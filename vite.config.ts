@@ -12,7 +12,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         globals: {
-          react: 'React'
+          react: 'React',
+          "@chakra-ui/react": "@chakra-ui/react",
+          "react-dom": "react-dom" 
         }
       },
       external: [

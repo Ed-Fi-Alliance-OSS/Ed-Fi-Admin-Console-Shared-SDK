@@ -1,5 +1,5 @@
 {
-  "name": "@texas-education-exchange/edx-portal-shared",
+  "name": "@edwire/edx-portal-shared",
   "type": "module",
   "files": [
     "dist"
