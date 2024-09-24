@@ -5,7 +5,8 @@ import { GetMyTenantsResponse, GetUsersListResponse, PostUserProfileExtensionRes
 import { GetMyTenantsResult, GetUserProfileResult, GetUsersListResult, PostTenantIdPreference, PostUserProfileExtensionResult } from "./ProfileService.result"
 
 const fetchUserProfile = async (token: string, apiUrl: string) : GetUserProfileResult => {
-    const url = `${apiUrl}/me`
+    // const url = `${apiUrl}/me`
+    const url = "/data-userprofile.json"
 
     const result = await httpService.get<UserProfile>({
         url,
