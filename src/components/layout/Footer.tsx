@@ -59,8 +59,9 @@ const Footer = () => {
                                     flexDir='column'
                                     marginRight='100px'>
                                         <Img 
-                                            src={`${getAssetsUrl()}/powered-by-the-exchange.svg`}
-                                            alt='Powered by the exchange' />
+                                            src={`${getAssetsUrl()}/acme.jpg`}
+                                            w='70px'
+                                            alt='Powered by Acme Service Center' />
                                 </Flex>
                                 <Image 
                                     position='absolute'

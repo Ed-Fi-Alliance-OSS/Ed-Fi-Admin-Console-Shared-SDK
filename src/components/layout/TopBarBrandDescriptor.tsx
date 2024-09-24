@@ -37,7 +37,7 @@ const TopBarBrandDescriptor = ({ appName, imageUrl }: TopBarBrandDescriptorProps
         <Image 
             h='30px'
             margin='auto 0 auto 70px'
-            src={colorMode === 'light'? `${getAssetsUrl()}/exchange-word.svg` : `${getAssetsUrl()}/exchange-word-white.svg`}
+            src={colorMode === 'light'? `${getAssetsUrl()}/acme.jpg` : `${getAssetsUrl()}/acme.jpg`}
             alt='app logo image' />)
 }
 
