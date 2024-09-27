@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "npx only-allow npm",
     "dist": "rm -rf ./dist && tsc && vite build",
     "preview": "vite preview",
     "lint": "cspell \"src/**\""
@@ -65,10 +65,5 @@
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@texas-education-exchange"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@novu/client@0.24.0": "patches/@novu__client@0.24.0.patch"
-    }
-  }
+  }  
 }
