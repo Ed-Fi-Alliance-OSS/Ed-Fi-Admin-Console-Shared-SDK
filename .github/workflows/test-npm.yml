@@ -5,6 +5,9 @@
 
 name: On Pre-Release
 on:
+  push:
+  pull_request:
+  workflow_dispatch:
   release:
     types:
       - prereleased
@@ -13,12 +16,13 @@ permissions: read-all
 
 env:
   ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
+  ARTIFACTS_USERNAME: ${{ vars.AZURE_ARTIFACTS_USER_NAME }}
   GITHUB_TOKEN: ${{ secrets.PAT_ATTACH_TO_RELEASE }}
   DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
   DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
   REF: ${{ github.ref_name }}
   IMAGE_NAME: ${{ vars.ED_FI_ADMIN_IMAGE_NAME }}
-  NPM_REGISTRY: ${{ vars.NPM_REGISTRY }}
+  NPM_REGISTRY: ${{ vars.NPM_REGISTRY }}  
 
 jobs:
   azure-publish:
@@ -44,7 +48,7 @@ jobs:
         run: npm ci
 
       - name: Transpile to JS
-        run: npm run build --workspaces
+        run: npm run build
 
       - name: Create packages
         # Explicit step is not required for publishing, but it allows us to upload artifacts
@@ -236,3 +240,19 @@ jobs:
       base64-subjects: ${{ needs.azure-publish.outputs.hash-code }}
       provenance-name: admin_console_shared_sdk.intoto.jsonl
       upload-assets: true
+
+  promote-Azure-artifact:
+    name: Promote Azure Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Promote Package
+        shell: pwsh
+        working-directory: eng
+        run: |
+          ./promote-packages.ps1 `
+              -Version ${{ github.ref_name }} `
+              -Username ${{ env.ARTIFACTS_USERNAME }} `
+              -PersonalAccessToken ${{ env.ARTIFACTS_API_KEY}}
