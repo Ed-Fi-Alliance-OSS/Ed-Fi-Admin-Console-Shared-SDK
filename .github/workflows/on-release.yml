@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: Apache-2.0
+# Licensed to the Ed-Fi Alliance under one or more agreements.
+# The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+# See the LICENSE and NOTICES files in the project root for more information.
+
+
+name: On Release
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - released
+
+permissions: read-all
+
+env:
+  ARTIFACTS_API_KEY: ${{ secrets.AZURE_ARTIFACTS_PERSONAL_ACCESS_TOKEN }}
+  ARTIFACTS_USERNAME: ${{ vars.AZURE_ARTIFACTS_USER_NAME }}
+
+jobs:
+  promote-Azure-artifact:
+    name: Promote Azure Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Promote Package
+        shell: pwsh
+        working-directory: eng
+        run: |
+          ./promote-packages.ps1 `
+              -Version ${{ github.ref_name }} `
+              -Username ${{ env.ARTIFACTS_USERNAME }} `
+              -PersonalAccessToken ${{ env.ARTIFACTS_API_KEY}}
