@@ -1,5 +1,5 @@
 {
-  "name": "@edwire/edx-portal-shared",
+  "name": "@edfi/admin-console-shared-sdk",
   "type": "module",
   "files": [
     "dist"
@@ -16,10 +16,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "",
     "dist": "rm -rf ./dist && tsc && vite build",
     "preview": "vite preview",
-    "lint": "cspell \"src/**\""
+    "lint": "cspell \"src/**\"",
+    "postinstall":  "patch-package"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -30,13 +31,17 @@
     "@fontsource/archivo-narrow": "^5.0.18",
     "@fontsource/open-sans": "^4.5.14",
     "@fontsource/poppins": "^4.5.10",
+    "@nestjs/swagger": "^7.4.2",
     "@novu/client": "0.24.0",
     "@novu/notification-center": "0.24.0",
+    "@novu/shared": "0.24.0",
     "@tanstack/react-table": "^8.11.7",
     "axios": "^1.6.6",
     "framer-motion": "^10.18.0",
     "interweave": "^13.1.0",
     "oidc-client-ts": "^2.4.0",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
@@ -65,10 +70,5 @@
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@texas-education-exchange"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@novu/client@0.24.0": "patches/@novu__client@0.24.0.patch"
-    }
   }
 }
