@@ -66,8 +66,8 @@ jobs:
           echo ${{ env.NPM_REGISTRY }}:email=techsupport@ed-fi.org >> $HOME/.npmrc
           echo "; end auth token" >> $HOME/.npmrc
 
-      #- name: Publish
-      #  run: npm publish --tag dev
+      - name: Publish
+        run: npm publish --tag dev
 
       - name: Generate hash codes for npm tarballs
         id: hash-code
