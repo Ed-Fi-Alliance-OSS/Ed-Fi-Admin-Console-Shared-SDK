@@ -69,6 +69,6 @@
     "portal-shared"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@texas-education-exchange"
+    "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
   }
 }
