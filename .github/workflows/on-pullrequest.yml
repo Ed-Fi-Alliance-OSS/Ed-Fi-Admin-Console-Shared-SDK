@@ -20,7 +20,7 @@ env:
   DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
   REF: ${{ github.ref_name }}
   IMAGE_NAME: ${{ vars.ED_FI_ADMIN_IMAGE_NAME }}
-  NPM_REGISTRY: ${{ vars.NPM_REGISTRY }}  
+  NPM_REGISTRY: ${{ vars.ARTIFACTS_PACKAGES_URL }}  
 
 jobs:
   azure-publish:
