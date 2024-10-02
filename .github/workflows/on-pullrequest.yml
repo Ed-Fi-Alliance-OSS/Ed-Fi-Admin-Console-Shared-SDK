@@ -61,8 +61,8 @@ jobs:
           API_KEY=`echo -n "${{ env.ARTIFACTS_API_KEY }}" | base64`
           touch $HOME/.npmrc
           echo "; begin auth token" >> $HOME/.npmrc
-          echo ${{ env.NPM_REGISTRY }}:username=ed-fi-alliance >> $HOME/.npmrc
-          echo ${{ env.NPM_REGISTRY }}:_password=${{ env.ARTIFACTS_USERNAME }} >> $HOME/.npmrc
+          echo ${{ env.NPM_REGISTRY }}:username=${{ env.ARTIFACTS_USERNAME }} >> $HOME/.npmrc
+          echo ${{ env.NPM_REGISTRY }}:_password=$API_KEY >> $HOME/.npmrc
           echo ${{ env.NPM_REGISTRY }}:email=techsupport@ed-fi.org >> $HOME/.npmrc
           echo "; end auth token" >> $HOME/.npmrc
 
