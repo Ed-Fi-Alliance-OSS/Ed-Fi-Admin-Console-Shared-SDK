@@ -12,7 +12,6 @@
       "require": "./dist/index.umd.cjs"
     }
   },
-  "private": true,
   "version": "2.2.5-pre-1",
   "license": "Apache-2.0",
   "publishConfig": {
