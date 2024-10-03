@@ -6,9 +6,6 @@
 name: On Pre-Release
 on:
   pull_request:
-  release:
-    types:
-      - prereleased
 
 permissions: read-all
 
