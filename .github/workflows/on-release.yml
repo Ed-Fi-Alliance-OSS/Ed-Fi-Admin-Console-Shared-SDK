@@ -18,19 +18,18 @@ env:
   ARTIFACTS_USERNAME: ${{ secrets.AZURE_ARTIFACTS_USER_NAME }}
 
 jobs:
-#promote-Azure-artifact:
-  ##  name: Promote Azure Artifact
-  #  runs-on: ubuntu-latest
-  #  needs: provenance-create
-  #  steps:
-  #    - name: Checkout repository
-  #      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-#
- #     - name: Promote Package
- #       shell: pwsh
- #       working-directory: eng
- #       run: |
- #         ./promote-packages.ps1 `
- #             -Version ${{ github.ref_name }} `
- #             -Username ${{ env.ARTIFACTS_USERNAME }} `
- #             -PersonalAccessToken ${{ env.ARTIFACTS_API_KEY}}
+  promote-Azure-artifact:
+    name: Promote Azure Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Promote Package
+        shell: pwsh
+        working-directory: eng
+        run: |
+          ./promote-packages.ps1 `
+              -Version ${{ github.ref_name }} `
+              -Username ${{ env.ARTIFACTS_USERNAME }} `
+              -PersonalAccessToken ${{ env.ARTIFACTS_API_KEY}}

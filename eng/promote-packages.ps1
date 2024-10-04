@@ -20,7 +20,7 @@ param(
 $urlTemplate = "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_apis/packaging/feeds/EdFi/npm/@edfi/{PACKAGE}/versions/{VERSION}?api-version=7.1-preview.1"
 
 Push-Location ../
-$packages = $(npm ls --workspaces --parseable --package-lock-only) -Split [Environment]::NewLine |
+$packages = $(npm ls --parseable --package-lock-only) -Split [Environment]::NewLine |
                     ForEach-Object { $_.replace("\", "/") } | # Standardize for all OS's
                     Where-Object { $_.contains("@edfi/admin-console-shared-sdk") -and -not $_.contains("e2e") } |
                     Select-Object { $_ -split "/" | Select-Object -last 1 }
