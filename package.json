@@ -33,7 +33,7 @@
     "@novu/client": "0.24.0",
     "@novu/notification-center": "0.24.0",
     "@tanstack/react-table": "^8.11.7",
-    "axios": "^1.6.6",
+    "axios": "^1.7.7",
     "framer-motion": "^10.18.0",
     "interweave": "^13.1.0",
     "oidc-client-ts": "^2.4.0",
