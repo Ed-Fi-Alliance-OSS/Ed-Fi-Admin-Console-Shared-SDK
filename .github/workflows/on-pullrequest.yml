@@ -179,6 +179,7 @@ jobs:
   promote-Azure-artifact:
     name: Promote Azure Artifact
     runs-on: ubuntu-latest
+    needs: azure-publish
     steps:
       - name: Checkout repository
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -190,4 +191,4 @@ jobs:
           ./promote-packages.ps1 `
               -Version ${{ github.ref_name }} `
               -Username ${{ env.ARTIFACTS_USERNAME }} `
- s             -PersonalAccessToken ${{ env.ARTIFACTS_API_KEY}}
+              -PersonalAccessToken ${{ env.ARTIFACTS_API_KEY}}
