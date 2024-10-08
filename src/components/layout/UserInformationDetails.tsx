@@ -54,8 +54,8 @@ const UserInformationDetails = ({ userInfo, source }: UserInformationDetailsProp
         <Flex flexDir='column' w='full'>
             <Text
                 fontFamily='Open sans'>
-                    Below you'll find your profile information for The Exchange.
-                    Some of the information below cannot be edited within The Exchange as it is 
+                    Below you'll find your profile information for Acme Service Center.
+                    Some of the information below cannot be edited within Acme Service Center as it is 
                     pulled in from your District or Charter School's HR system.
             </Text>
             <Flex alignItems='center' mt='32px'>

@@ -20,7 +20,7 @@ const NotificationItemLeft = ({ data }: NotificationItemLeftProps) => {
     }
 
     if (data.payload.from) {
-        if (data.payload.from === 'The Exchange') {
+        if (data.payload.from === 'Acme Service Center') {
             return (
                 <Flex w='32px'> 
                     <Img 

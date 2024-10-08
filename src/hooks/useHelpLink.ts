@@ -10,7 +10,7 @@ const useHelpLink = () => {
             const appNameSections = appSubtitle.split(" ").map(slice => slice.toLocaleLowerCase())
             const appName = appNameSections.length > 1? appNameSections.join("_") : appNameSections[0]
 
-            if (appSubtitle === 'The Exchange')
+            if (appSubtitle === 'Acme Service Center')
                 return 'Community'
 
             return appName

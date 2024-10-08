@@ -20,9 +20,9 @@ const TopBarBrand = ({ imageUrl, appName, onClick }: TopBarBrandProps) => {
                 position='absolute'
                 h='full'
                 w='52px'
-                src={`${getAssetsUrl()}/logo-symbol.svg`}
+                src={`${getAssetsUrl()}/acme.jpg`}
                 zIndex='3'
-                alt='Exchange Logo' />
+                alt='EdFi Logo' />
             <Flex position='absolute' bg='white' h='100%' w='200px' style={{ rotate: '-59deg' }} left={appName? '-21%' : '-42%'} />
             {onClick?  
                 <Flex onClick={onClick} display='flex' cursor='pointer' w='auto'>

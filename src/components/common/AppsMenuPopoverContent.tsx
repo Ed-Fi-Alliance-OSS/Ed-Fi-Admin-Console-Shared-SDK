@@ -37,7 +37,7 @@ const AppsMenuPopoverContent = ({ heading, appsList }: AppsMenuPopoverContent) =
                     fontSize='12px'
                     mb='5px'
                     ml='10px'
-                    href={selectBackToTheExchangeLink(edxAppConfig)}>The Exchange</Link>
+                    href={selectBackToTheExchangeLink(edxAppConfig)}>Acme Service Center</Link>
             </Flex>
             <Flex marginTop='15px'>
                 <AppsMenu items={appsList} />

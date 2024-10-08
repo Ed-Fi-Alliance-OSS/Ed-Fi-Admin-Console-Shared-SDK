@@ -4,7 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseImagesUrl": ""
   },
   "include": ["vite.config.ts"]
 }

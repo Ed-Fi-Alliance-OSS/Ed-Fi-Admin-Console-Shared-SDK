@@ -5,10 +5,10 @@ const useImagesLinkUrl = () => {
     const { edxAppConfig } = useContext(TEEAuthDataContext)
 
     const getAssetsUrl = () => {
-        if (edxAppConfig && edxAppConfig.app && edxAppConfig.app.baseImagesUrl)
-            return edxAppConfig.app.baseImagesUrl
+        // if (edxAppConfig && edxAppConfig.app && edxAppConfig.app.baseImagesUrl)
+        //     return edxAppConfig.app.baseImagesUrl
 
-        console.error("baseImagesUrl missing in config. You have to include the app.baseImagesUrl property")
+        // console.error("baseImagesUrl missing in config. You have to include the app.baseImagesUrl property")
 
         return ""
     }

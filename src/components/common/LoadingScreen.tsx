@@ -53,18 +53,17 @@ const LoadingScreen = ({ loading, delay, state }: LoadingWindowProps) => {
                                         alignItems='center'
                                         justifyContent='center'
                                         h='50px'>
-                                            <Img 
-                                                src={`${getAssetsUrl()}/logo-symbol.svg`}
+                                            {/* <Img 
+                                                src={`${getAssetsUrl()}/ed-fi.jfif`}
                                                 h='full'
                                                 w='50px'
-                                                alt="exchange logo symbol" />
+                                                alt="ed fi logo symbol" /> */}
                                             <Img 
-                                                src={ colorMode === 'light'? `${getAssetsUrl()}/exchange-word.svg` : `${getAssetsUrl()}/exchange-word-white.svg`}
-                                                marginTop='10px'
-                                                marginLeft='15px'
+                                                src={ colorMode === 'light'? `${getAssetsUrl()}/acme.jpg` : `${getAssetsUrl()}/exchange-word-white.svg`}
+                                                marginTop='30px'
                                                 h='full'
                                                 w='full'
-                                                alt="The Exchange" />
+                                                alt="Ed-Fi" />
                                     </Flex>
                                     <Spinner 
                                         color={colorMode === 'light'? 'blue.900' : 'white'}

@@ -95,7 +95,7 @@ const NotificationsModal = ({
       end: currentDate,
     });
 
-    const validCodes = ["The Exchange", "The exchange"];
+    const validCodes = ["Acme Service Center", "Acme Service Center"];
     if (
       notification.payload.from &&
       (notification.payload.from === validCodes[0] ||
