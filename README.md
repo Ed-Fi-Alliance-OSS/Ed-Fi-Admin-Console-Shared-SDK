@@ -1,4 +1,4 @@
-# The Exchange "Portal Shared" NPM Package
+# Ed-Fi-Admin-Console-Shared-SDK
 
 # RELEASES
 * Commits to the main branch (only allowed via PR) will produce a release
