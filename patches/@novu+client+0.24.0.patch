@@ -1,7 +1,7 @@
-diff --git a/dist/cjs/api/api.service.d.ts b/dist/cjs/api/api.service.d.ts
+diff --git a/node_modules/@novu/client/dist/cjs/api/api.service.d.ts b/node_modules/@novu/client/dist/cjs/api/api.service.d.ts
 index 0f52539ddb22fc41859837e49557c3dc46c524af..c057fdc395bec78bc605f130dfccf91e7fd4a757 100644
---- a/dist/cjs/api/api.service.d.ts
-+++ b/dist/cjs/api/api.service.d.ts
+--- a/node_modules/@novu/client/dist/cjs/api/api.service.d.ts
++++ b/node_modules/@novu/client/dist/cjs/api/api.service.d.ts
 @@ -18,7 +18,7 @@ export declare class ApiService {
      markAllMessagesAsRead(feedId?: string | string[]): Promise<any>;
      markAllMessagesAsSeen(feedId?: string | string[]): Promise<any>;
@@ -11,10 +11,10 @@ index 0f52539ddb22fc41859837e49557c3dc46c524af..c057fdc395bec78bc605f130dfccf91e
      postUsageLog(name: string, payload: {
          [key: string]: string | boolean | undefined;
      }): Promise<any>;
-diff --git a/dist/cjs/api/api.service.js b/dist/cjs/api/api.service.js
+diff --git a/node_modules/@novu/client/dist/cjs/api/api.service.js b/node_modules/@novu/client/dist/cjs/api/api.service.js
 index 5844b09d5c9fbe4d3ca4371853490192abb58fe1..7af6575aa4f53de6b8df1e6bf8777f853fec5bbb 100644
---- a/dist/cjs/api/api.service.js
-+++ b/dist/cjs/api/api.service.js
+--- a/node_modules/@novu/client/dist/cjs/api/api.service.js
++++ b/node_modules/@novu/client/dist/cjs/api/api.service.js
 @@ -97,12 +97,15 @@ class ApiService {
              return yield this.httpClient.getFullResponse(`/widgets/notifications/feed`, Object.assign({ page, payload: payloadString }, rest));
          });
@@ -32,10 +32,10 @@ index 5844b09d5c9fbe4d3ca4371853490192abb58fe1..7af6575aa4f53de6b8df1e6bf8777f85
              });
          });
      }
-diff --git a/dist/esm/api/api.service.d.ts b/dist/esm/api/api.service.d.ts
+diff --git a/node_modules/@novu/client/dist/esm/api/api.service.d.ts b/node_modules/@novu/client/dist/esm/api/api.service.d.ts
 index 0f52539ddb22fc41859837e49557c3dc46c524af..c057fdc395bec78bc605f130dfccf91e7fd4a757 100644
---- a/dist/esm/api/api.service.d.ts
-+++ b/dist/esm/api/api.service.d.ts
+--- a/node_modules/@novu/client/dist/esm/api/api.service.d.ts
++++ b/node_modules/@novu/client/dist/esm/api/api.service.d.ts
 @@ -18,7 +18,7 @@ export declare class ApiService {
      markAllMessagesAsRead(feedId?: string | string[]): Promise<any>;
      markAllMessagesAsSeen(feedId?: string | string[]): Promise<any>;
@@ -45,10 +45,10 @@ index 0f52539ddb22fc41859837e49557c3dc46c524af..c057fdc395bec78bc605f130dfccf91e
      postUsageLog(name: string, payload: {
          [key: string]: string | boolean | undefined;
      }): Promise<any>;
-diff --git a/dist/esm/api/api.service.js b/dist/esm/api/api.service.js
+diff --git a/node_modules/@novu/client/dist/esm/api/api.service.js b/node_modules/@novu/client/dist/esm/api/api.service.js
 index a073ed7ebaf866b0b6024f3a539b0915ebada2a3..2fcbf66c7891413f05e22ef53118e91060271aeb 100644
---- a/dist/esm/api/api.service.js
-+++ b/dist/esm/api/api.service.js
+--- a/node_modules/@novu/client/dist/esm/api/api.service.js
++++ b/node_modules/@novu/client/dist/esm/api/api.service.js
 @@ -94,12 +94,15 @@ export class ApiService {
              return yield this.httpClient.getFullResponse(`/widgets/notifications/feed`, Object.assign({ page, payload: payloadString }, rest));
          });
