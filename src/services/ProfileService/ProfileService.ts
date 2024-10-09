@@ -6,7 +6,7 @@ import { GetMyTenantsResult, GetUserProfileResult, GetUsersListResult, PostTenan
 
 const fetchUserProfile = async (token: string, apiUrl: string) : GetUserProfileResult => {
     // const url = `${apiUrl}/me`
-    const url = "/data-userprofile.json"
+    const url = "/mockdata/data-userprofile.json"
 
     const result = await httpService.get<UserProfile>({
         url,
