@@ -1,11 +1,15 @@
-import { useContext, useEffect } from "react";
+import { useEffect, useContext } from 'react';
 import { TEEAuthDataContext } from "../context";
 
-const useAnalyticsTagManager = () => {
+const useMatomoTagManagerStrategy = () => {
   const { edxAppConfig } = useContext(TEEAuthDataContext)
 
   useEffect(() => {
-    if (edxAppConfig && edxAppConfig.app && edxAppConfig.app.analytics) {
+    if (edxAppConfig 
+        && edxAppConfig.app 
+        && edxAppConfig.app.webAnalytics
+        && edxAppConfig.app.webAnalytics.matomo
+    ) {
       console.log("Adding Matomo tag manager analytics script for react - edx")
       var _mtm = (<any>window)._mtm = (<any>window)._mtm || []
 
@@ -14,7 +18,7 @@ const useAnalyticsTagManager = () => {
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]
 
       g.async=true
-      g.src=`${edxAppConfig.app.analytics.managerUrl}/js/container_${edxAppConfig.app.analytics.containerId}.js`
+      g.src=`${edxAppConfig.app.webAnalytics.matomo?.managerUrl}/js/container_${edxAppConfig.app.webAnalytics.matomo?.containerId}.js`
 
       if (s.parentNode) {
         console.log('Insert matomo script')
@@ -22,6 +26,6 @@ const useAnalyticsTagManager = () => {
       }
     }
   }, [])
-}   
-  
-export default useAnalyticsTagManager
+};
+
+export default useMatomoTagManagerStrategy;

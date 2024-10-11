@@ -10,7 +10,7 @@ import useLoadingState from "./useLoadingState";
 import useNotificationsBar from "./useNotificationBar";
 import useRouteLayoutSelector from "./useRouteLayoutSelector";
 import useSideMenu from "./useSideMenu";
-import useAnalyticsTagManager from "./useAnalyticsTagManager";
+import useAnalyticsTagManagerStrategy from "./useAnalyticsTagManagerStrategy";
 import useInitialRoute from "./useInitialRoute";
 import useSaveInitialRoute from "./useSaveInitialRoute";
 
@@ -24,7 +24,7 @@ export {
     useSaveInitialRoute,
     useRouteLayoutSelector,
     useSideMenu,
-    useAnalyticsTagManager,
+    useAnalyticsTagManagerStrategy,
     useAuthAutoRefresh,
     useUserAppList,
     useUserProfile,

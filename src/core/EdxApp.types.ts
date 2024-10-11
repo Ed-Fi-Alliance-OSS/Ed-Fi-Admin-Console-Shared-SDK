@@ -4,9 +4,18 @@ interface Api {
     baseUri: string
 }
 
-interface AppAnalytics {
+interface AppAnalyticsMatomo {
     containerId: string
     managerUrl: string
+}
+interface AppAnalyticsGoogle {
+    googleAnalyticsId: string
+}
+interface AppAnalytics {
+    enabled: boolean
+    tool: string
+    matomo?: AppAnalyticsMatomo
+    googleAnalytics?: AppAnalyticsGoogle
 }
   
 interface App {
@@ -17,7 +26,7 @@ interface App {
     baseImagesUrl?: string
     helpLinkUrl?: string
     launcher?: string 
-    analytics?: AppAnalytics
+    webAnalytics?: AppAnalytics
 }
   
 interface Auth {

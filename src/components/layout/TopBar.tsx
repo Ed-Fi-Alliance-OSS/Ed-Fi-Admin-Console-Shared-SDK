@@ -1,5 +1,5 @@
 import { Flex, useColorModeValue } from "@chakra-ui/react"
-import { useAnalyticsTagManager } from "../../hooks"
+import { useAnalyticsTagManagerStrategy } from "../../hooks"
 import modeColors from "../../themes/baseTheme/modeColors"
 
 interface TopBarProps {
@@ -8,7 +8,7 @@ interface TopBarProps {
 }
 
 const TopBar = ({ leftComponent, rightComponent }: TopBarProps) => {    
-    useAnalyticsTagManager()
+    useAnalyticsTagManagerStrategy()
 
     const { colorbluea } = modeColors
     const bg = useColorModeValue(colorbluea.light, colorbluea.dark)
