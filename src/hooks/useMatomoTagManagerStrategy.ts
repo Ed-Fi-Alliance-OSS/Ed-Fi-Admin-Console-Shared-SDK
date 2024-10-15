@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { TEEAuthDataContext } from "../context";
+import { AnalyticsTagManagerTool } from '../enums/enums';
 
 const useMatomoTagManagerStrategy = () => {
   const { edxAppConfig } = useContext(TEEAuthDataContext)
@@ -9,7 +10,7 @@ const useMatomoTagManagerStrategy = () => {
         && edxAppConfig.app 
         && edxAppConfig.app.webAnalytics
         && edxAppConfig.app.webAnalytics.enableWebAnalytics
-        && edxAppConfig.app.webAnalytics.tool.toLowerCase() === 'matomo'.toLowerCase()
+        && edxAppConfig.app.webAnalytics.tool.toLowerCase() === AnalyticsTagManagerTool.Matomo
         && edxAppConfig.app.webAnalytics.matomo    
     ) {
       console.log("Adding Matomo tag manager analytics script for react - edx")

@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { TEEAuthDataContext } from "../context";
+import { AnalyticsTagManagerTool } from '../enums/enums';
 
 const useGoogleAnalyticsTagManagerStrategy = () => {
   const { edxAppConfig } = useContext(TEEAuthDataContext)
@@ -9,7 +10,7 @@ const useGoogleAnalyticsTagManagerStrategy = () => {
             && edxAppConfig.app
             && edxAppConfig.app.webAnalytics
             && edxAppConfig.app.webAnalytics.enableWebAnalytics 
-            && edxAppConfig.app.webAnalytics.tool.toLowerCase() === 'GoogleAnalytics'.toLowerCase()) {
+            && edxAppConfig.app.webAnalytics.tool.toLowerCase() === AnalyticsTagManagerTool.GoogleAnalytics) {
             console.log("Adding Google Analytics script for React");
 
             const script = document.createElement('script');

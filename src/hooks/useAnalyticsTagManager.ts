@@ -1,22 +1,26 @@
 import { useContext, useEffect } from "react";
 import { TEEAuthDataContext } from "../context";
+import { AnalyticsTagManagerTool } from '../enums/enums';
 import useMatomoTagManager from './useMatomoTagManagerStrategy';
 import useGoogleAnalyticsTagManager from './useGoogleAnalyticsTagManagerStrategy';
+
 
 const useAnalyticsTagManager = () => {
    const { edxAppConfig } = useContext(TEEAuthDataContext)
    if(edxAppConfig?.app?.webAnalytics?.enableWebAnalytics){
-        console.log('Analytics tag manager');
-        if (edxAppConfig?.app.webAnalytics?.tool.toLowerCase() === 'Matomo'.toLowerCase()) {
-            useMatomoTagManager();
-        } else if (edxAppConfig?.app.webAnalytics?.tool.toLowerCase() === 'GoogleAnalytics'.toLowerCase()) {
-            useGoogleAnalyticsTagManager();
-        } else {
-            console.error('Unsupported analytics tool '+ edxAppConfig?.app.webAnalytics?.tool.toLowerCase());
+        switch(edxAppConfig?.app.webAnalytics?.tool.toLowerCase()) {
+            case AnalyticsTagManagerTool.Matomo:
+                useMatomoTagManager();
+                break;
+            case AnalyticsTagManagerTool.GoogleAnalytics:
+                useGoogleAnalyticsTagManager();
+                break;
+            default:
+                console.error('Unsupported analytics tool');
         }
     }
     else{
-        console.log('The use of an Analytics tool is disabled: ');
+        console.log('The use of an Analytics tool is disabled');
     }
 };
 
