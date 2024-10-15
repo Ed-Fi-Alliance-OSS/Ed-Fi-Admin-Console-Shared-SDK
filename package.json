@@ -13,7 +13,7 @@
       "require": "./dist/index.umd.cjs"
     }
   },
-  "version": "2.2.6-pre-1",
+  "version": "2.2.6-alpha.0.1",
   "license": "Apache-2.0",
   "publishConfig": {
     "registry": "https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/npm/registry/"
