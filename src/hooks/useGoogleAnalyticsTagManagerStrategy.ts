@@ -8,8 +8,8 @@ const useGoogleAnalyticsTagManagerStrategy = () => {
         if (edxAppConfig 
             && edxAppConfig.app
             && edxAppConfig.app.webAnalytics
-            && edxAppConfig.app.webAnalytics.enabled 
-            && edxAppConfig.app.webAnalytics.tool === 'GoogleAnalytics') {
+            && edxAppConfig.app.webAnalytics.enableWebAnalytics 
+            && edxAppConfig.app.webAnalytics.tool.toLowerCase() === 'GoogleAnalytics'.toLowerCase()) {
             console.log("Adding Google Analytics script for React");
 
             const script = document.createElement('script');

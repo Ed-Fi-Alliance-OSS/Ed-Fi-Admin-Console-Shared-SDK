@@ -8,7 +8,9 @@ const useMatomoTagManagerStrategy = () => {
     if (edxAppConfig 
         && edxAppConfig.app 
         && edxAppConfig.app.webAnalytics
-        && edxAppConfig.app.webAnalytics.matomo
+        && edxAppConfig.app.webAnalytics.enableWebAnalytics
+        && edxAppConfig.app.webAnalytics.tool.toLowerCase() === 'matomo'.toLowerCase()
+        && edxAppConfig.app.webAnalytics.matomo    
     ) {
       console.log("Adding Matomo tag manager analytics script for react - edx")
       var _mtm = (<any>window)._mtm = (<any>window)._mtm || []

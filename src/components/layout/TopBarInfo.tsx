@@ -70,7 +70,10 @@ const TopBarInfo = ({
           />
         </Button>
       )}
-      {edxAppConfig && edxAppConfig.app && edxAppConfig.app.helpLinkUrl && (
+      {edxAppConfig 
+        && edxAppConfig.app 
+        && edxAppConfig.app.enableHelpDeskLink
+        && edxAppConfig.app.helpLinkUrl && (
         <Link
           href={getHelpLink()}
           border="none"

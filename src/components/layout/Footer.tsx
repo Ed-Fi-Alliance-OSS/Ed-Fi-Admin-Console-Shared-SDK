@@ -39,7 +39,9 @@ const Footer = () => {
                                             Terms and Data Privacy
                                     </Text>
                             </Link>
-                            { edxAppConfig && edxAppConfig.app && edxAppConfig.app.helpLinkUrl && <Link 
+                            { edxAppConfig && edxAppConfig.app 
+                                && edxAppConfig.app.enableHelpDeskLink 
+                                && edxAppConfig.app.helpLinkUrl && <Link 
                                 href={getHelpLink()} 
                                 target="_blank"
                                 _notFirst={{ marginLeft: '25px' }}>

@@ -12,7 +12,7 @@ interface AppAnalyticsGoogle {
     googleAnalyticsId: string
 }
 interface AppAnalytics {
-    enabled: boolean
+    enableWebAnalytics: boolean
     tool: string
     matomo?: AppAnalyticsMatomo
     googleAnalytics?: AppAnalyticsGoogle
@@ -24,6 +24,7 @@ interface App {
     basePath: string
     notificationsApplicationId: string 
     baseImagesUrl?: string
+    enableHelpDeskLink?: boolean 
     helpLinkUrl?: string
     launcher?: string 
     webAnalytics?: AppAnalytics
