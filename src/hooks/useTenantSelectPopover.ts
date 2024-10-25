@@ -57,7 +57,6 @@ const useTenantSelectPopover = ({ userProfile, onChangeTenantId }: UseTenantSele
 
         const apiUrl = edxAppConfig.api.baseUri
         const token = auth.user.access_token
-
         const request: GetMyTenantsRequest = {
             pageIndex: requestDetails.pageIndex,
             pageSize: 10,
@@ -65,7 +64,7 @@ const useTenantSelectPopover = ({ userProfile, onChangeTenantId }: UseTenantSele
             orderBy: `organizationName asc`
         }
 
-        const getMyTenantsResult = await getMyTenants(token, apiUrl, request)
+        const getMyTenantsResult = await getMyTenants(token, apiUrl, request, edxAppConfig.api)
 
         if (getMyTenantsResult.type !== "Response")
             return null

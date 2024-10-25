@@ -20,7 +20,9 @@ const useCurrentUser = () => {
                 token,
                 apiUrl,
                 tenantId,
-                userProfile.email)
+                userProfile.email,
+                edxAppConfig?.api
+            )
 
         if (getUserResult.type == 'Error')
             return console.log('error when trying to fetch user by email')

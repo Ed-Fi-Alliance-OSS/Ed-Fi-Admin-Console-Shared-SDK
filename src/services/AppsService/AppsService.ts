@@ -3,12 +3,13 @@ import { ExternalAppData } from "../../core"
 import httpService from "../HttpService/HttpService"
 import { HttpServiceResponse } from "../HttpService/HttpService.response.types"
 import { GetApplicationsListResult } from "./AppsService.result"
+import { Api } from "../../core/EdxApp.types"
 
 interface WrappedExternalAppData {
     data: ExternalAppData[]
 }
 
-const fetchUserApps = async (token: string, tenantId: string, apiUrl: string) : GetApplicationsListResult => {
+const fetchUserApps = async (token: string, tenantId: string, apiUrl: string, apiConfig?: Api) : GetApplicationsListResult => {
     const appsListUrl = `${apiUrl}/tenants`
     const appEndpoint = 'applicationtiles'
 
@@ -17,7 +18,8 @@ const fetchUserApps = async (token: string, tenantId: string, apiUrl: string) : 
     const result = await httpService.get<WrappedExternalAppData>({
         url,
         actionName: 'Get Applications List',
-        access_token: token
+        access_token: token,
+        apiConfig
     })
 
     if (result.type === 'Response') {

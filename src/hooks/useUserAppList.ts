@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useAuth } from 'react-oidc-context'
 import { ExternalAppData, UserProfile } from '../core'
 import { fetchUserApps } from '../services/AppsService/AppsService'
+import { TEEAuthDataContext } from "../context"
 
 interface UseUserAppListProps {
     userProfile: UserProfile | null
@@ -10,13 +11,14 @@ interface UseUserAppListProps {
 
 const useUserAppList = ({ userProfile, apiUrl }: UseUserAppListProps) => {
     const auth = useAuth()
+    const { edxAppConfig } = useContext(TEEAuthDataContext)
     const [ externalApps, setExternalApps ] = useState<ExternalAppData[]>([])
     const [ loadingExternalApps, setLoadingExternalApps ] = useState(false)
     const [ fetchedExternalApps, setFetchedExternalApps ] = useState(false)
 
     const fetchExternalApps = async (token: string, tenantId: string) => {
         setLoadingExternalApps(true)
-        const result = await fetchUserApps(token, tenantId, apiUrl)
+        const result = await fetchUserApps(token, tenantId, apiUrl, edxAppConfig?.api)
 
         setLoadingExternalApps(false)
         setFetchedExternalApps(true)
@@ -54,7 +56,7 @@ const useUserAppList = ({ userProfile, apiUrl }: UseUserAppListProps) => {
             console.log('access pref', accessPref)
             
             if (accessPref)
-                fetchExternalApps(auth.user.access_token, accessPref.value)
+                fetchExternalApps(auth.user.access_token,accessPref.value)
         }
     }, [ auth, userProfile ])
 

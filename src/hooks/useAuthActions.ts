@@ -23,7 +23,13 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
             const newUserProfile = {...userProfile}
             newUserProfile.tenantId = tenantId
 
-            const result = await updateTenantIdPreference(auth.user.access_token, tenantId, edxAppConfig? edxAppConfig.api.baseUri ?? '' : '' )
+            const result = await updateTenantIdPreference
+            (
+                auth.user.access_token,
+                tenantId,
+                (edxAppConfig? edxAppConfig.api.baseUri ?? '' : '' ),
+                edxAppConfig?.api
+            )
 
             if (result) await auth.signinRedirect()
         }

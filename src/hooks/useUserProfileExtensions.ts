@@ -6,9 +6,9 @@ import { PostUserProfileExtensionRequest } from "../services/ProfileService/Prof
 import useUserProfileExtensionsValidation from "./useUserProfileExtensionsValidation"
 
 interface UpdateExtensionParams {
-    token: string 
-    userId: string 
-    apiUrl: string 
+    token: string
+    userId: string
+    apiUrl: string
     code: string 
     data: string 
 }
@@ -136,6 +136,7 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
     }
 
     const updateExtension = async ({ userId, data, code, token, apiUrl }: UpdateExtensionParams) => {
+        const { edxAppConfig } = useContext(TEEAuthDataContext)
         const request: PostUserProfileExtensionRequest = {
             userId,
             code,
@@ -145,7 +146,7 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
 
         console.log('post extension request', request)
 
-        const result = await addUserExtension(token, apiUrl, request)
+        const result = await addUserExtension(token, apiUrl, request, edxAppConfig?.api)
 
         return result
     }
@@ -153,14 +154,16 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
     const onSave = async () => {
         if (auth && auth.user && userProfile && edxAppConfig) {
             const token = auth.user.access_token
-            const apiUrl = edxAppConfig.api.baseUri as string
+            const apiUrl = edxAppConfig.api.baseUri as string            
             const tenantId = userProfile.tenantId
 
             const getUserResult = await getUser(
                 token,
                 apiUrl,
                 tenantId,
-                userProfile.email)
+                userProfile.email,
+                edxAppConfig?.api
+            )
     
             if (getUserResult.type === 'Response') {
                 console.log('get user result', getUserResult.data.data)
@@ -183,11 +186,11 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
     
                         for (let extension of extensions) {
                             await updateExtension({
+                                token,
+                                apiUrl,
                                 userId: userByEmail.userId,
                                 data: extension.data,
-                                code: extension.code,
-                                token,
-                                apiUrl
+                                code: extension.code
                             })
                         }
     
@@ -205,8 +208,7 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
             console.log('fetching user extensions...')
             const token = auth.user.access_token
             const apiUrl = edxAppConfig.api.baseUri as string
-
-            const result = await fetchUserProfile(token, apiUrl)
+            const result = await fetchUserProfile(token, apiUrl, edxAppConfig?.api)
     
             if (result.type === 'Response') {
                 const extensions = result.data.extensions

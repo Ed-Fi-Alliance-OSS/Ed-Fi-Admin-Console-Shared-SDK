@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useAuth } from 'react-oidc-context'
 import { Preference, UserProfile } from '../core'
 import { fetchUserProfile } from '../services'
 import useDecodeToken from './useDecodeToken'
+import { TEEAuthDataContext } from "../context"
 
 interface UseUserProfileProps {
     apiUrl: string
@@ -13,6 +14,7 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
     const [ loadingProfile, setLoadingProfile ] = useState(true)
     const { decodeTokenPayload } = useDecodeToken()
+    const { edxAppConfig } = useContext(TEEAuthDataContext)
 
     const fetchProfile = async () => {
         if (auth.user) {
@@ -20,7 +22,7 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                 const token = auth.user.access_token
 
                 setLoadingProfile(true)
-                const result = await fetchUserProfile(token, apiUrl)
+                const result = await fetchUserProfile(token, apiUrl, edxAppConfig?.api)
                 setLoadingProfile(false)
 
                 if (result.type === 'Response') {

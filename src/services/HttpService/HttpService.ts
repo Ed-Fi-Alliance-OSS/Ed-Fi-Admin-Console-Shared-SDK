@@ -1,19 +1,13 @@
 import axios, { AxiosError } from "axios"
 import { HttpServiceRequestError, HttpServiceResponse } from "./HttpService.response.types"
 import { HttpService, HttpServiceGetRequest, HttpServiceMethod, HttpServicePostRequest, HttpServicePutRequest } from "./HttpService.types"
+import { includeAuthorization } from "../../utils/AuthenticationToken"
 
 axios.interceptors.request.use(function (config) {
     return config
 }, function (error) {
     return Promise.reject(error)
 })
-
-const includeAuthorization = (access_token?: string) => {
-    if (access_token)
-        return { headers: { Authorization: `Bearer ${access_token}` } }
-
-    return undefined
-}
 
 const createDefaultError = (method: HttpServiceMethod, actionName: string) => {
     const actionMessage = `Error for ${method}: ${actionName}`
@@ -39,11 +33,12 @@ const handleAxiosError = (error: AxiosError, requestError: HttpServiceRequestErr
 }
 
 const httpService: HttpService = {
-    async get<TResponse>({ url, access_token, actionName }: HttpServiceGetRequest) {
+    async get<TResponse>({ url, access_token, actionName, apiConfig }: HttpServiceGetRequest) {
         console.log(`Get request ${actionName} to ${url}`)
 
         try {
-            const res = await axios.get(url, includeAuthorization(access_token))
+            const authenticationHeader = await includeAuthorization(access_token, apiConfig);
+            const res = await axios.get(url, authenticationHeader     )
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,
@@ -65,11 +60,12 @@ const httpService: HttpService = {
             }
         }
     },
-    async post<TResponse, TData>({ url, data, access_token, actionName }: HttpServicePostRequest<TData>) {
+    async post<TResponse, TData>({ url, access_token, data, actionName, apiConfig }: HttpServicePostRequest<TData>) {
         console.log(`Post request ${actionName} to ${url}`)
 
         try {
-            const res = await axios.post(url, data, includeAuthorization(access_token))
+            const authenticationHeader = await includeAuthorization(access_token, apiConfig);
+            const res = await axios.post(url, data, authenticationHeader);
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,
@@ -90,11 +86,12 @@ const httpService: HttpService = {
             }
         }
     },
-    async put<TResponse, TData>({ url, data, access_token, actionName }: HttpServicePutRequest<TData>) {
+    async put<TResponse, TData>({ url, access_token, data, actionName, apiConfig }: HttpServicePutRequest<TData>) {
         console.log(`Put request ${actionName} to ${url}`)
 
         try {
-            const res = await axios.put(url, data, includeAuthorization(access_token))
+            const authenticationHeader = await includeAuthorization(access_token, apiConfig);
+            const res = await axios.put(url, data, authenticationHeader);
         
             const response: HttpServiceResponse<TResponse> = {
                 data: res.data,

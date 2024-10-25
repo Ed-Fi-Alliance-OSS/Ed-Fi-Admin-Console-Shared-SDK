@@ -1,7 +1,10 @@
 import { UserProfile } from "./User.types"
 
-interface Api {
+export interface Api {
     baseUri: string
+    apiKey: string
+    apiSecret: string
+    useAdminApiAuthentication: boolean
 }
 
 interface AppAnalyticsMatomo {
