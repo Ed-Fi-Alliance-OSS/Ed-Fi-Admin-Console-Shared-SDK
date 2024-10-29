@@ -5,6 +5,7 @@ export interface Api {
     apiKey: string
     apiSecret: string
     useAdminApiAuthentication: boolean
+    useLocalMockData: boolean
 }
 
 interface AppAnalyticsMatomo {

@@ -60,17 +60,18 @@ export const getToken = async (apiConfig?: Api): Promise<string> => {
   };
   
 export const includeAuthorization = async (access_token?: string, apiConfig?: Api) => {
-  let token = getValidTokenFromStorage(); 
   let authorization_token; 
   
-  if(token){
-    return { headers: { Authorization: `Bearer ${token}` } }
-  }
-  else if(apiConfig && apiConfig.useAdminApiAuthentication){
-    console.log("Get token from admin API");
-    const authorization_token = await getToken(apiConfig);
-    return { headers: { Authorization: `Bearer ${authorization_token}` } }
-    
+  if(apiConfig && apiConfig.useAdminApiAuthentication && !apiConfig.useLocalMockData){
+    let token = getValidTokenFromStorage(); 
+    if(token){
+      return { headers: { Authorization: `Bearer ${token}` } }
+    }
+    else{
+      console.log("Get token from admin API");
+      const authorization_token = await getToken(apiConfig);
+      return { headers: { Authorization: `Bearer ${authorization_token}` } }
+    }
   }
   else if(access_token) {
     console.log("Get token from App access token");
