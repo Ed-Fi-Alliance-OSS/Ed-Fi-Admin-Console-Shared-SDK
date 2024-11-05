@@ -17,7 +17,7 @@ const TopBarLeft = ({ appName, imageUrl, list, onClick }: TopBarLeftProps) => {
   return (
     <>
       <SkipNavLink zIndex={1000}>Skip to content</SkipNavLink>
-      <AppsMenuPopover
+      {/* <AppsMenuPopover
         content={
           <AppsMenuPopoverContent
             heading="APPS"
@@ -27,7 +27,7 @@ const TopBarLeft = ({ appName, imageUrl, list, onClick }: TopBarLeftProps) => {
           />
         }
         footer={<Flex></Flex>}
-      />
+      /> */}
       <TopBarBrand appName={appName} imageUrl={imageUrl} onClick={onClick} />
     </>
   );

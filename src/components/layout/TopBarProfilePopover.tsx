@@ -105,7 +105,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                             w='auto'>
                                 Account Info
                         </Button>
-                        <Link 
+                        {/* <Link 
                             href={getCommunityLink(externalApps)}
                             display='flex'
                             justifyContent='flex-start'
@@ -118,8 +118,8 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                             minW='auto'
                             w='auto'>
                                 Community
-                        </Link>
-                        <Link 
+                        </Link> */}
+                        {/* <Link 
                             href={getHelpLink()}
                             display='flex'
                             justifyContent='flex-start'
@@ -132,7 +132,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                             minW='auto'
                             w='auto'>
                                 Help
-                        </Link>
+                        </Link> */}
                     </Flex>
                     <Flex bg={lineColor} margin='10px 0' h='1px' w='full' />
                     <CommonModal 

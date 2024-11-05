@@ -31,14 +31,14 @@ const TopBarInfo = ({
 
   return (
     <Flex alignItems="center">
-      <NotificationsBtn
+      {/* <NotificationsBtn
         profileData={profileData}
         notificationsSubscriberId={profileData ? profileData.email : ""}
         notificationsAppId={
           edxAppConfig ? edxAppConfig.app.notificationsApplicationId ?? "" : ""
         }
-      />
-      {false && (
+      /> */}
+      {/* {(
         <Button
           aria-label="Show search menu"
           border="none"
@@ -48,13 +48,13 @@ const TopBarInfo = ({
         >
           <SearchIcon aria-description="Search Icon" color={iconsColor} />
         </Button>
-      )}
-      {false && (
+      )} */}
+      {/* {(
         <Flex marginRight="10px">
           <ToggleModeBtn />
         </Flex>
-      )}
-      {false && (
+      )} */}
+      {/* {(
         <Button
           aria-label="Open settings modal"
           onClick={openSettingsModal}
@@ -69,7 +69,7 @@ const TopBarInfo = ({
             onClose={hideSettingsModal}
           />
         </Button>
-      )}
+      )} */}
       {edxAppConfig 
         && edxAppConfig.app 
         && edxAppConfig.app.enableHelpDeskLink
@@ -79,7 +79,7 @@ const TopBarInfo = ({
           border="none"
           padding="0"
           marginRight="10px"
-          target="_blank"
+          // target="_blank"
           referrerPolicy="no-referrer"
           aria-label="Get help"
         >

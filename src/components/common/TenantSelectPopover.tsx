@@ -33,19 +33,19 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
         onLoadMoreItems,
         isSelectedTenantId
     } = useTenantSelectPopover({ userProfile, onChangeTenantId })
-
+    const tenantBtnLabel = 'District/Charter School'
     return (
         <Popover>
             <PopoverTrigger>
                 <Button 
-                    aria-label="District/Charter School"
+                    aria-label={tenantBtnLabel}
                     color='gray.400'
                     ml='10px'
                     size='sm'>
                         <Text
                             fontWeight='bold'
                             color='gray.600'>
-                                District/Charter School: 
+                                Tenant Instance:
                         </Text>
                         <Flex alignItems='center' border='2px' borderColor='gray.300' borderRadius='4px' py='5px' px='10px' ml='10px'>
                             <Text 
@@ -62,7 +62,7 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
                         </Flex>
                 </Button>
             </PopoverTrigger>
-            <PopoverContent aria-label="Tenant Select" bg={bg} w='268px' zIndex='3'>
+            <PopoverContent aria-label={`${tenantBtnLabel} Select`} bg={bg} w='268px' zIndex='3'>
                 <PopoverBody padding='16px 16px'>
                     <Flex flexDir='column' marginTop='0px' w='full'>
                         {topItemsList.map(tenant => 
