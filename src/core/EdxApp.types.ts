@@ -32,6 +32,8 @@ interface App {
     helpLinkUrl?: string
     launcher?: string 
     webAnalytics?: AppAnalytics
+    logo?: string
+    [key: string]: string | boolean | number | unknown | undefined
 }
   
 interface Auth {
@@ -51,6 +53,7 @@ export interface EdxAppConfig {
     api: Api
     app: App
     auth: Auth
+    plugins: string[] | undefined
 }
 
 export interface UserProfileContextData {
