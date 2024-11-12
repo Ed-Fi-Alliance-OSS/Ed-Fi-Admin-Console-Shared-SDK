@@ -6,11 +6,10 @@ import { GetMyTenantsResponse, GetUsersListResponse, PostUserProfileExtensionRes
 import { GetMyTenantsResult, GetUserProfileResult, GetUsersListResult, PostTenantIdPreference, PostUserProfileExtensionResult } from "./ProfileService.result"
 
 const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) : GetUserProfileResult => {
+    
     // const url = `${apiUrl}/me`
-    const url = "/mockdata/data-userprofile.json"
-
     const result = await httpService.get<UserProfile>({
-        url,
+        url: apiUrl,
         actionName: "Get User Profile",
         access_token: token,
         apiConfig
@@ -98,10 +97,5 @@ const getMyTenants = async (token: string, apiUrl: string, request: GetMyTenants
 }
 
 export {
-    fetchUserProfile,
-    getUser,
-    getMyTenants,
-    addUserExtension,
-    updateUserExtension,
-    updateTenantIdPreference
+  addUserExtension, fetchUserProfile, getMyTenants, getUser, updateTenantIdPreference, updateUserExtension
 }
