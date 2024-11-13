@@ -50,8 +50,9 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                     if (!window.location.pathname.includes("unauthorized")) {
                         const origin = window.location.origin
                         const pathnameParts = window.location.pathname.split("/")
-                        const baseApplicationUri = pathnameParts[1]
-                        const destinationUrl = `${origin}/${baseApplicationUri}/unauthorized`
+                        // const baseApplicationUri = pathnameParts[1]
+                        // const destinationUrl = `${origin}/${baseApplicationUri}/unauthorized`
+                        const destinationUrl = `${config.auth.redirectUri.replace('/callback', '')}/unauthorized`
 
                         window.location.replace(destinationUrl)
                     }
