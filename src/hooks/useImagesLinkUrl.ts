@@ -1,15 +1,16 @@
-import { useConfig } from "../context"
+// import { useConfig } from "../context"
 
 const useImagesLinkUrl = () => {
-    const { config }= useConfig()
 
-    const getAssetsUrl = () => {
-        return `${config.app.basePath}/assets`
-    }
+  // const { config }= useConfig()
+  const getAssetsUrl = () => {
+    return `${import.meta.env.BASE_URL || ''}assets`
+  }
 
-    return {
-        getAssetsUrl
-    }
+  return {
+    getAssetsUrl
+  }
+
 }
 
 export default useImagesLinkUrl

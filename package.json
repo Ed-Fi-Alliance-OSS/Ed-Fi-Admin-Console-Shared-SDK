@@ -1,6 +1,6 @@
 {
   "name": "@edfi/admin-console-shared-sdk",
-  "version": "2.2.8-alpha.2",
+  "version": "2.2.8-alpha.3",
   "description": "The Admin Console Shared SDK",
   "type": "module",
   "files": [
@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:watch": "tsc --watch & vite build --watch",
+    "build:watch": "tsc & vite build --watch",
     "preinstall": "",
     "dist": "rm -rf ./dist && tsc && vite build",
     "preview": "vite preview",

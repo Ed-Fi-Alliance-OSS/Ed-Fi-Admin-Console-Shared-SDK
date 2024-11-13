@@ -65,14 +65,14 @@ const Footer = () => {
                                             w='70px'
                                             alt='Powered by Acme Service Center' />
                                 </Flex>
-                                <Image 
+                                {/* <Image 
                                     position='absolute'
                                     top='-86px'
                                     right='-30px'
                                     src={ colorMode === 'light'? `${getAssetsUrl()}/footer-symbol-light.svg` : `${getAssetsUrl()}/footer-symbol-dark.svg` }
                                     h='150px'
                                     w='160px'
-                                    alt="footer exchange symbol" />
+                                    alt="footer exchange symbol" /> */}
                         </Flex>
                 </Flex>
         </footer>

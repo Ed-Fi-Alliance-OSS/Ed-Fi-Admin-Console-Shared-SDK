@@ -53,11 +53,6 @@ const LoadingScreen = ({ loading, delay, state }: LoadingWindowProps) => {
                                         alignItems='center'
                                         justifyContent='center'
                                         h='50px'>
-                                            {/* <Img 
-                                                src={`${getAssetsUrl()}/ed-fi.jfif`}
-                                                h='full'
-                                                w='50px'
-                                                alt="ed fi logo symbol" /> */}
                                             <Img 
                                                 src={ colorMode === 'light'? `${getAssetsUrl()}/acme.jpg` : `${getAssetsUrl()}/exchange-word-white.svg`}
                                                 marginTop='30px'
