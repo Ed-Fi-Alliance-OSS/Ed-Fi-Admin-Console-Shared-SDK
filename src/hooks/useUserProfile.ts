@@ -27,6 +27,8 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                 setLoadingProfile(true)
                 const tempProfileUrl = `${config?.app.basePath}/mockdata/data-userprofile.json`
                 const result = await fetchUserProfile(token, tempProfileUrl, config?.api)
+                console.log('fetchProfile', result)
+                debugger
                 setLoadingProfile(false)
 
                 if (result.type === 'Response') {
@@ -47,15 +49,15 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                     setUserProfile({...result.data, tenantId: tenantPref? tenantPref.value : "" })
                 }
                 else {
-                    if (!window.location.pathname.includes("unauthorized")) {
-                        const origin = window.location.origin
-                        const pathnameParts = window.location.pathname.split("/")
-                        // const baseApplicationUri = pathnameParts[1]
-                        // const destinationUrl = `${origin}/${baseApplicationUri}/unauthorized`
-                        const destinationUrl = `${config.auth.redirectUri.replace('/callback', '')}/unauthorized`
+                    // if (!window.location.pathname.includes("unauthorized")) {
+                    //     const origin = window.location.origin
+                    //     const pathnameParts = window.location.pathname.split("/")
+                    //     // const baseApplicationUri = pathnameParts[1]
+                    //     // const destinationUrl = `${origin}/${baseApplicationUri}/unauthorized`
+                    //     const destinationUrl = `${config.auth.redirectUri.replace('/callback', '')}/unauthorized`
 
-                        window.location.replace(destinationUrl)
-                    }
+                    //     window.location.replace(destinationUrl)
+                    // }
                 }
             }
             catch(ex) {
