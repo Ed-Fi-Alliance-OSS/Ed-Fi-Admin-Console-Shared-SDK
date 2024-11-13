@@ -1,15 +1,23 @@
-// import { useConfig } from "../context"
+import { useConfig } from "../context"
 
 const useImagesLinkUrl = () => {
+try {
 
-  // const { config }= useConfig()
+  const { config }= useConfig()
   const getAssetsUrl = () => {
-    return `${import.meta.env.BASE_URL || ''}assets`
+    return `${config.app.basePath || ''}/assets`
   }
-
+  
   return {
     getAssetsUrl
   }
+} catch (error) {
+  return {
+    getAssetsUrl: () => {
+      return `${import.meta.env.BASE_URL || ''}assets`
+    }
+  }
+}
 
 }
 
