@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from 'react-oidc-context'
+import { useConfig } from "../context"
 import { Preference, UserProfile } from '../core'
 import { fetchUserProfile } from '../services'
 import useDecodeToken from './useDecodeToken'
-import { TEEAuthDataContext, useConfig } from "../context"
 
 interface UseUserProfileProps {
     apiUrl: string
@@ -28,7 +28,6 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                 const tempProfileUrl = `${config?.app.basePath}/mockdata/data-userprofile.json`
                 const result = await fetchUserProfile(token, tempProfileUrl, config?.api)
                 console.log('fetchProfile', result)
-                debugger
                 setLoadingProfile(false)
 
                 if (result.type === 'Response') {
