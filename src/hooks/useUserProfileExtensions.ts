@@ -154,7 +154,7 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
     const onSave = async () => {
         if (auth && auth.user && userProfile && edxAppConfig) {
             const token = auth.user.access_token
-            const apiUrl = edxAppConfig.api.baseUri as string            
+            const apiUrl = edxAppConfig.api.edfiApiBaseUri as string            
             const tenantId = userProfile.tenantId
 
             const getUserResult = await getUser(
@@ -207,7 +207,7 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
         if (auth && auth.user && userProfile && edxAppConfig) {
             console.log('fetching user extensions...')
             const token = auth.user.access_token
-            const apiUrl = edxAppConfig.api.baseUri as string
+            const apiUrl = edxAppConfig.api.edfiApiBaseUri as string
             const result = await fetchUserProfile(token, apiUrl, edxAppConfig?.api)
     
             if (result.type === 'Response') {

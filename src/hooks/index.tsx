@@ -1,4 +1,3 @@
-import useAnalyticsTagManager from "./useAnalyticsTagManager"
 import useAppBookmarks from "./useAppBookmarks"
 import useAuthActions from "./useAuthActions"
 import useAuthAutoRefresh from "./useAuthAutoRefresh"
@@ -16,9 +15,10 @@ import useUserAppList from "./useUserAppList"
 import useUserProfile from "./useUserProfile"
 
 export {
-  useAnalyticsTagManager, useAppBookmarks, useAuthActions, useAuthAutoRefresh, useEdxAppConfig,
+  useAppBookmarks, useAuthActions, useAuthAutoRefresh, useEdxAppConfig,
   useFetchEdxAppConfig,
   useIdleSession, useInitialRoute, useLoadingState,
   useNotificationsBar, useRouteLayoutSelector, useSaveInitialRoute, useSideMenu, useTenantSelectPopover, useUserAppList,
   useUserProfile
 }
+

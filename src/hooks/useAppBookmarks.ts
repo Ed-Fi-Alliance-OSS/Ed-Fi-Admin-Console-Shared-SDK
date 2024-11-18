@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ExternalAppsContext, TEEAuthDataContext, UserProfileContext } from '../context'
 import { ExternalAppData, Preference } from '../core'
 import { addBookmark } from '../services/AppsService/AppsService'
@@ -51,7 +51,7 @@ const useAppBookmarks = (params?: UseAppBookmarksProps) => {
 
             setUserProfile(newUserProfile)
             
-            await addBookmark(auth.user.access_token, updatedBookmarks, edxAppConfig?.api.baseUri as string)
+            await addBookmark(auth.user.access_token, updatedBookmarks, edxAppConfig?.api.edfiApiBaseUri as string)
         }
     }
 

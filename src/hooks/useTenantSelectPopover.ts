@@ -55,7 +55,7 @@ const useTenantSelectPopover = ({ userProfile, onChangeTenantId }: UseTenantSele
         if (!edxAppConfig || !auth || !auth.user)
             return 
 
-        const apiUrl = edxAppConfig.api.baseUri
+        const apiUrl = edxAppConfig.api.edfiApiBaseUri
         const token = auth.user.access_token
         const request: GetMyTenantsRequest = {
             pageIndex: requestDetails.pageIndex,

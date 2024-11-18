@@ -1,9 +1,7 @@
-import { Flex, SkipNavLink } from "@chakra-ui/react";
-import { ExternalAppData } from "../../core";
-import { AppsMenuPopover } from "../common";
-import { AppsMenuMoreOption } from "../common/AppsMenu.types";
-import AppsMenuPopoverContent from "../common/AppsMenuPopoverContent";
-import TopBarBrand from "./TopBarBrand";
+import { SkipNavLink } from "@chakra-ui/react"
+import { ExternalAppData } from "../../core"
+import { AppsMenuMoreOption } from "../common/AppsMenu.types"
+import TopBarBrand from "./TopBarBrand"
 
 interface TopBarLeftProps {
   appName?: string;

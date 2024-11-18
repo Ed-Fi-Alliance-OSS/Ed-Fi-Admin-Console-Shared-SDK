@@ -1,6 +1,6 @@
-import axios from 'axios';
-import jwtDecode from 'jwt-decode';
-import { Api } from '../core/EdxApp.types';
+import axios from 'axios'
+import jwtDecode from 'jwt-decode'
+import { Api } from '../core/EdxApp.types'
 
 interface DecodedToken {
   exp: number;
@@ -34,7 +34,7 @@ export const getToken = async (apiConfig?: Api): Promise<string> => {
     let token = getValidTokenFromStorage();
     try {
       if (!token) {
-        const authenticationUrl = `${apiConfig?.baseUri ?? ''}/connect/token`;
+        const authenticationUrl = `${apiConfig?.edfiApiBaseUri ?? ''}/connect/token`;
         const authResponse = await axios.post<AuthResponse>(authenticationUrl, 
           { 
               client_id: apiConfig?.apiKey,  

@@ -27,7 +27,7 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
             (
                 auth.user.access_token,
                 tenantId,
-                (edxAppConfig? edxAppConfig.api.baseUri ?? '' : '' ),
+                (edxAppConfig? edxAppConfig.api.edfiApiBaseUri ?? '' : '' ),
                 edxAppConfig?.api
             )
 

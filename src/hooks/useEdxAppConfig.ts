@@ -6,7 +6,7 @@ interface UseAppConfigProps {
 
 const useEdxAppConfig = ({ edxAppConfig }: UseAppConfigProps) => {
     const getApiUrl = () => {
-        if (edxAppConfig) return edxAppConfig.api.baseUri
+        if (edxAppConfig) return edxAppConfig.api.edfiApiBaseUri
 
         return ''
     }

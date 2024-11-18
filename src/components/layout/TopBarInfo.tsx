@@ -1,14 +1,11 @@
-import { QuestionIcon, SearchIcon, SettingsIcon } from "@chakra-ui/icons";
-import { Button, Flex, Link, useColorModeValue } from "@chakra-ui/react";
-import { useContext } from "react";
-import { TEEAuthDataContext } from "../../context";
-import { UserProfile } from "../../core";
-import useHelpLink from "../../hooks/useHelpLink";
-import useSettingsModal from "../../hooks/useSettingsModal";
-import NotificationsBtn from "../common/NotificationsBtn";
-import ToggleModeBtn from "../common/ToggleModeBtn";
-import TopBarProfilePopover from "./TopBarProfilePopover";
-import TopBarSettingsModal from "./TopBarSettingsModal";
+import { QuestionIcon } from "@chakra-ui/icons"
+import { Flex, Link, useColorModeValue } from "@chakra-ui/react"
+import { useContext } from "react"
+import { TEEAuthDataContext } from "../../context"
+import { UserProfile } from "../../core"
+import useHelpLink from "../../hooks/useHelpLink"
+import useSettingsModal from "../../hooks/useSettingsModal"
+import TopBarProfilePopover from "./TopBarProfilePopover"
 
 interface TopBarInfoProps {
   profileData: UserProfile | null;
@@ -72,7 +69,6 @@ const TopBarInfo = ({
       )} */}
       {edxAppConfig 
         && edxAppConfig.app 
-        && edxAppConfig.app.enableHelpDeskLink
         && edxAppConfig.app.helpLinkUrl && (
         <Link
           href={getHelpLink()}

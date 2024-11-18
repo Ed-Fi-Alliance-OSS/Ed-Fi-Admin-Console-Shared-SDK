@@ -41,7 +41,6 @@ const Footer = () => {
             </Text>
           </Link>
           {edxAppConfig && edxAppConfig.app
-            && edxAppConfig.app.enableHelpDeskLink
             && edxAppConfig.app.helpLinkUrl && <Link
               href={getHelpLink()}
               target="_blank"
