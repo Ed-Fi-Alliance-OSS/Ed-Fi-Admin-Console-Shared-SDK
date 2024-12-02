@@ -1,4 +1,3 @@
-import { UserProfile } from "../../core"
 import { Api } from "../../core/EdxApp.types"
 import httpService from "../HttpService/HttpService"
 import { GetMyTenantsRequest, PostUserProfileExtensionRequest } from "./ProfileService.requests"
@@ -8,14 +7,32 @@ import { GetMyTenantsResult, GetUserProfileResult, GetUsersListResult, PostTenan
 const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) : GetUserProfileResult => {
     
     // const url = `${apiUrl}/me`
-    const result = await httpService.get<UserProfile>({
-        url: apiUrl,
-        actionName: "Get User Profile",
-        access_token: token,
-        apiConfig
-    })
+    // const result = await httpService.get<UserProfile>({
+    //     url: apiUrl,
+    //     actionName: "Get User Profile",
+    //     access_token: token,
+    //     apiConfig
+    // })
     
-    return result
+    return {
+      type: 'Response',
+      data: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@doe.com',
+        userName: 'johndoe',
+        preferences: [],
+        tenants: [],
+        tenantId: '123456',
+        extensions: [],
+        selectedTenant: {
+          organizationIdentifier: '123456',
+          organizationName: 'Test School',
+          tenantId: '123456',
+        } as any,
+        tenantsTotalCount: 0
+      }
+    }
 }
 
 const getUser = async (token: string, apiUrl: string, tenantId: string, email: string, apiConfig?: Api) : GetUsersListResult => {

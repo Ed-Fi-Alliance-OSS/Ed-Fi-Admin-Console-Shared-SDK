@@ -15,6 +15,8 @@ interface App {
   basePath: string
   logo?: string
   helpLinkUrl?: string
+  multiTenancy?: boolean
+  [key: string]: any
 }
 
 interface Auth {

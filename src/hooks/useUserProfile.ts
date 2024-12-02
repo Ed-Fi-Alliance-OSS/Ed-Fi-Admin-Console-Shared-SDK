@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from 'react-oidc-context'
 import { useConfig } from "../context"
-import { Preference, UserProfile } from '../core'
+import { UserProfile } from '../core'
 import { fetchUserProfile } from '../services'
 import useDecodeToken from './useDecodeToken'
 
@@ -31,21 +31,21 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                 setLoadingProfile(false)
 
                 if (result.type === 'Response') {
-                    const preferences: Preference[] = result.data.preferences
-                    const tenantPref = preferences.find(preference => preference.code === "selectedtenantid")
+                    // const preferences: Preference[] = result.data.preferences
+                    // const tenantPref = preferences.find(preference => preference.code === "selectedtenantid")
 
                     const tokenPayload = decodeTokenPayload(auth.user.access_token)
                     const payloadTenantId = tokenPayload.tenantid
 
-                    console.log('tenantid pref', tenantPref?.value)
-                    console.log('tenantid token', payloadTenantId)
+                    // console.log('tenantid pref', tenantPref?.value)
+                    // console.log('tenantid token', payloadTenantId)
 
-                    if (tenantPref && payloadTenantId != tenantPref.value) {
-                        console.log('Signin redirect', payloadTenantId)
-                        return await auth.signinRedirect()
-                    }
+                    // if (tenantPref && payloadTenantId != tenantPref.value) {
+                    //     console.log('Signin redirect', payloadTenantId)
+                    //     return await auth.signinRedirect()
+                    // }
     
-                    setUserProfile({...result.data, tenantId: tenantPref? tenantPref.value : "" })
+                    setUserProfile({...result.data, tenantId: payloadTenantId})
                 }
                 else {
                     // if (!window.location.pathname.includes("unauthorized")) {
