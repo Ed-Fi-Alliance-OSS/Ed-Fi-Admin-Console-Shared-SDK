@@ -1,5 +1,6 @@
 import { CheckCircleIcon, ChevronDownIcon } from "@chakra-ui/icons"
-import { Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Text, Flex, useColorModeValue, Spinner, Tooltip } from "@chakra-ui/react"
+import { Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, Tooltip, useColorModeValue } from "@chakra-ui/react"
+import { useConfig } from '../../context'
 import { UserProfile } from "../../core"
 import useTenantSelectPopover from "../../hooks/useTenantSelectPopover"
 import TenantSelectPopoverPaginationControls from "./TenantSelectPopoverPaginationControls"
@@ -12,6 +13,7 @@ interface TenantSelectPopoverProps {
 }
 
 const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopoverProps) => {
+    const {config} = useConfig()
     const bg = useColorModeValue('white', 'blue.600')
     const textColor = useColorModeValue('gray.800', 'white')
     const textBg = useColorModeValue('gray.100', 'blue.800')
@@ -34,6 +36,11 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
         isSelectedTenantId
     } = useTenantSelectPopover({ userProfile, onChangeTenantId })
     const tenantBtnLabel = 'District/Charter School'
+
+    if (!config.app.multiTenancy) {
+      return null
+    }
+
     return (
         <Popover>
             <PopoverTrigger>

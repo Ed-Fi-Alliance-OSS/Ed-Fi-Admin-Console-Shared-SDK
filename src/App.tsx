@@ -3,9 +3,11 @@ import {
   ChakraProvider,
   Flex,
   SkipNavContent,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+  Text
+} from "@chakra-ui/react"
+import { HiUsers } from "react-icons/hi"
+import { RiUserSettingsLine } from "react-icons/ri"
+import { TbArrowsLeftRight } from "react-icons/tb"
 import {
   Footer,
   RightSlideInPanel,
@@ -13,30 +15,26 @@ import {
   TopBar,
   TopBarLeft,
   TopBarRight,
-} from "./components";
-import { baseTheme } from "./themes";
-import { AppsMenuMoreOption } from "./components/common/AppsMenu.types";
-import { RiUserSettingsLine } from "react-icons/ri";
-import { HiUsers } from "react-icons/hi";
-import { TbArrowsLeftRight } from "react-icons/tb";
-import SideBar, { SideBarMenuItemData } from "./components/layout/SideBar";
+} from "./components"
+import { AppsMenuMoreOption } from "./components/common/AppsMenu.types"
+import SideBar, { SideBarMenuItemData } from "./components/layout/SideBar"
+import { baseTheme } from "./themes"
 
-import "@fontsource/poppins/400.css";
-import "@fontsource/poppins/600-italic.css";
-import "@fontsource/poppins/600.css";
-import "@fontsource/poppins/700.css";
-import "@fontsource/open-sans/400-italic.css";
-import "@fontsource/open-sans/400.css";
-import "@fontsource/open-sans/600.css";
-import "@fontsource/open-sans/700.css";
-import "@fontsource/open-sans/800.css";
-import "@fontsource/archivo-narrow";
+import "@fontsource/archivo-narrow"
+import "@fontsource/open-sans/400-italic.css"
+import "@fontsource/open-sans/400.css"
+import "@fontsource/open-sans/600.css"
+import "@fontsource/open-sans/700.css"
+import "@fontsource/open-sans/800.css"
+import "@fontsource/poppins/400.css"
+import "@fontsource/poppins/600-italic.css"
+import "@fontsource/poppins/600.css"
+import "@fontsource/poppins/700.css"
 
-import { useState } from "react";
-import { ExternalAppData, UserProfile } from "./core";
-import { useIdleSession } from "./hooks";
-import { CgHome } from "react-icons/cg";
-import { CheckIcon } from "@chakra-ui/icons";
+import { CheckIcon } from "@chakra-ui/icons"
+import { useState } from "react"
+import { CgHome } from "react-icons/cg"
+import { ExternalAppData, UserProfile } from "./core"
 
 function App() {
   const getTenantsList = () => {
@@ -56,24 +54,24 @@ function App() {
       tenantStatus: "",
       subscriptionsMigrated: false,
       tenantType: "",
-    };
-
-    const tenantsArray: any[] = [];
-    tenantsArray.push(tenant);
-
-    for (let i = 1; i <= 12; i++) {
-      const newTenant = { ...tenant };
-      newTenant.organizationName = `Tenant ${i + 1}`;
-      newTenant.tenantId = newTenant.tenantId.replace("1", `${i + 1}`);
-
-      tenantsArray.push({ ...newTenant });
     }
 
-    return tenantsArray;
-  };
+    const tenantsArray: any[] = []
+    tenantsArray.push(tenant)
+
+    for (let i = 1; i <= 12; i++) {
+      const newTenant = { ...tenant }
+      newTenant.organizationName = `Tenant ${i + 1}`
+      newTenant.tenantId = newTenant.tenantId.replace("1", `${i + 1}`)
+
+      tenantsArray.push({ ...newTenant })
+    }
+
+    return tenantsArray
+  }
 
   const profileData: UserProfile = {
-    firstName: "User",
+    firstName: "User asdasd",
     lastName: "Name",
     email: "example@mail.com",
     tenantId: "00000000-0000-0000-0000-000000000001",
@@ -99,7 +97,7 @@ function App() {
       tenantType: "",
     },
     tenantsTotalCount: getTenantsList().length,
-  };
+  }
 
   const appsList: ExternalAppData[] = [
     {
@@ -222,7 +220,7 @@ function App() {
       tooltipText: "",
       version: "",
     },
-  ];
+  ]
 
   const moreOptions: AppsMenuMoreOption[] = [
     { name: "Account Info", url: null },
@@ -231,15 +229,15 @@ function App() {
       url: "https://apps.txedexchange.dev/community/dashboard",
     },
     { name: "Help", url: null },
-  ];
+  ]
 
   const logout = async () => {
-    await Promise.resolve();
-  };
+    await Promise.resolve()
+  }
 
   const login = async () => {
-    await Promise.resolve();
-  };
+    await Promise.resolve()
+  }
 
   const items: SideBarMenuItemData[] = [
     {
@@ -284,14 +282,14 @@ function App() {
       ],
       icon: <CheckIcon />,
     },
-  ];
+  ]
 
-  const onChangeTenantId = async (tenantId: string) => {};
+  const onChangeTenantId = async (tenantId: string) => { }
 
-  const [selectedItemId, setSelectedItemId] = useState("allStudents");
-  const onChangeSelected = (id: string) => setSelectedItemId(id);
+  const [selectedItemId, setSelectedItemId] = useState("allStudents")
+  const onChangeSelected = (id: string) => setSelectedItemId(id)
 
-  const [showRightPanel, setShowRightPanel] = useState(true);
+  const [showRightPanel, setShowRightPanel] = useState(true)
 
   return (
     <Flex flexDir="column" w="full">
@@ -645,7 +643,7 @@ function App() {
         <Footer />
       </ChakraProvider>
     </Flex>
-  );
+  )
 }
 
-export default App;
+export default App
