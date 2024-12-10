@@ -15,6 +15,7 @@ interface App {
   basePath: string
   logo?: string
   helpLinkUrl?: string
+  termsUrl?: string
   multiTenancy?: boolean
   [key: string]: any
 }

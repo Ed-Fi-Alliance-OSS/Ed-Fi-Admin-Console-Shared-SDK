@@ -28,8 +28,9 @@ const Footer = () => {
         overflow='hidden'
         padding='20px 45px'>
         <Flex fontSize='sm'>
-          <Link
-            href="https://txedexchange.net/terms-privacy"
+        {edxAppConfig && edxAppConfig.app
+            && edxAppConfig.app.termsUrl && <Link
+            href={edxAppConfig.app.termsUrl}
             target="_blank"
             _notFirst={{ marginLeft: '25px' }}>
             <Text
@@ -39,7 +40,7 @@ const Footer = () => {
               size='sm'>
               Terms and Data Privacy
             </Text>
-          </Link>
+          </Link>}
           {edxAppConfig && edxAppConfig.app
             && edxAppConfig.app.helpLinkUrl && <Link
               href={getHelpLink()}
