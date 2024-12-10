@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useAuth } from 'react-oidc-context'
 import { useConfig } from "../context"
 import { UserProfile } from '../core'
-import { fetchUserProfile } from '../services'
 import useDecodeToken from './useDecodeToken'
 
 interface UseUserProfileProps {
@@ -25,12 +24,12 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                   return
                 }
                 setLoadingProfile(true)
-                const tempProfileUrl = `${config?.app.basePath}/mockdata/data-userprofile.json`
-                const result = await fetchUserProfile(token, tempProfileUrl, config?.api)
-                console.log('fetchProfile', result)
-                setLoadingProfile(false)
+                // const tempProfileUrl = `${config?.app.basePath}/mockdata/data-userprofile.json`
+                // const result = await fetchUserProfile(token, tempProfileUrl, config?.api)
+                // console.log('fetchProfile', result)
+                // setLoadingProfile(false)
 
-                if (result.type === 'Response') {
+                // if (result.type === 'Response') {
                     // const preferences: Preference[] = result.data.preferences
                     // const tenantPref = preferences.find(preference => preference.code === "selectedtenantid")
 
@@ -38,16 +37,31 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                     const payloadTenantId = tokenPayload.tenantid
 
                     // console.log('tenantid pref', tenantPref?.value)
-                    // console.log('tenantid token', payloadTenantId)
+                    console.log('tenantid token', tokenPayload)
 
                     // if (tenantPref && payloadTenantId != tenantPref.value) {
                     //     console.log('Signin redirect', payloadTenantId)
                     //     return await auth.signinRedirect()
                     // }
     
-                    setUserProfile({...result.data, tenantId: payloadTenantId})
-                }
-                else {
+                    setUserProfile({
+                      firstName: tokenPayload.given_name,
+                      lastName: tokenPayload.family_name,
+                      email: tokenPayload.email,
+                      extensions: [],
+                      preferences: [],
+                      selectedTenant: {
+                        organizationIdentifier: '123456',
+                        organizationName: 'Test School',
+                        tenantId: '123456',
+                      } as any,
+                      tenantId: '',
+                      tenants: [],
+                      tenantsTotalCount: 1,
+                      userName: tokenPayload.email
+                    })
+                // }
+                // else {
                     // if (!window.location.pathname.includes("unauthorized")) {
                     //     const origin = window.location.origin
                     //     const pathnameParts = window.location.pathname.split("/")
@@ -57,7 +71,7 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
 
                     //     window.location.replace(destinationUrl)
                     // }
-                }
+                // }
             }
             catch(ex) {
                 console.error('Unexpected error when fetching userProfile')
