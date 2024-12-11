@@ -41,7 +41,7 @@ const ListPagination = ({
             {pagesArr.map((page, index) => 
                 <Button 
                     aria-label={`Go to page ${index + 1}`}
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontWeight='400'
                     fontSize='xs'
                     color='black'

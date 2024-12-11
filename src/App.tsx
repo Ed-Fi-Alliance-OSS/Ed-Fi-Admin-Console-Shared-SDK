@@ -20,84 +20,14 @@ import { AppsMenuMoreOption } from "./components/common/AppsMenu.types"
 import SideBar, { SideBarMenuItemData } from "./components/layout/SideBar"
 import { baseTheme } from "./themes"
 
-import "@fontsource/archivo-narrow"
-import "@fontsource/open-sans/400-italic.css"
-import "@fontsource/open-sans/400.css"
-import "@fontsource/open-sans/600.css"
-import "@fontsource/open-sans/700.css"
-import "@fontsource/open-sans/800.css"
-import "@fontsource/poppins/400.css"
-import "@fontsource/poppins/600-italic.css"
-import "@fontsource/poppins/600.css"
-import "@fontsource/poppins/700.css"
-
 import { CheckIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 import { CgHome } from "react-icons/cg"
-import { ExternalAppData, UserProfile } from "./core"
+import { ExternalAppData } from "./core"
+import { useUserProfile } from './hooks'
 
 function App() {
-  const getTenantsList = () => {
-    const tenant = {
-      createdBy: "Elvis",
-      createdDateTime: new Date(),
-      tenantId: "00000000-0000-0000-0000-000000000001",
-      lastModifiedBy: "Elvis",
-      isDemo: false,
-      organizationIdentifier: "Global",
-      isIdentityProviders: [],
-      state: "",
-      organizationName: "Current Tenant",
-      subscriptions: [],
-      domains: [],
-      lastModifiedDateTime: new Date(),
-      tenantStatus: "",
-      subscriptionsMigrated: false,
-      tenantType: "",
-    }
-
-    const tenantsArray: any[] = []
-    tenantsArray.push(tenant)
-
-    for (let i = 1; i <= 12; i++) {
-      const newTenant = { ...tenant }
-      newTenant.organizationName = `Tenant ${i + 1}`
-      newTenant.tenantId = newTenant.tenantId.replace("1", `${i + 1}`)
-
-      tenantsArray.push({ ...newTenant })
-    }
-
-    return tenantsArray
-  }
-
-  const profileData: UserProfile = {
-    firstName: "User asdasd",
-    lastName: "Name",
-    email: "example@mail.com",
-    tenantId: "00000000-0000-0000-0000-000000000001",
-    userName: "example@mail.com",
-    preferences: [],
-    extensions: [],
-    tenants: getTenantsList(),
-    selectedTenant: {
-      createdBy: "Elvis",
-      createdDateTime: new Date(),
-      tenantId: "00000000-0000-0000-0000-000000000001",
-      lastModifiedBy: "Elvis",
-      isDemo: false,
-      organizationIdentifier: "Global",
-      isIdentityProviders: [],
-      state: "",
-      organizationName: "Current Tenant",
-      subscriptions: [],
-      domains: [],
-      lastModifiedDateTime: new Date(),
-      tenantStatus: "",
-      subscriptionsMigrated: false,
-      tenantType: "",
-    },
-    tenantsTotalCount: getTenantsList().length,
-  }
+  const {userProfile} = useUserProfile({})
 
   const appsList: ExternalAppData[] = [
     {
@@ -305,7 +235,7 @@ function App() {
           rightComponent={
             <TopBarRight
               isClosingSession={false}
-              profileData={profileData}
+              profileData={userProfile}
               onLogin={login}
               onLogout={logout}
               onChangeTenantId={onChangeTenantId}

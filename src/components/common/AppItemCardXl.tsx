@@ -1,4 +1,4 @@
-import { Flex, Card, Link, useColorModeValue, useColorMode, Heading, Text } from '@chakra-ui/react'
+import { Card, Flex, Heading, Link, Text, useColorMode, useColorModeValue } from '@chakra-ui/react'
 import modeColors from '../../themes/baseTheme/modeColors'
 import AppItemCardIcon from './AppItemCardIcon'
 import AppItemCardOptionsPopover from './AppItemCardOptionsPopover'
@@ -68,7 +68,7 @@ const AppItemCardXl = ({ appId, imageUrl, description, text, actionLink, lightBa
                                         size='sm'>{description}</Heading>
                                     <Text 
                                         color='gray.600'
-                                        fontFamily='Open sans'
+                                        fontFamily='Poppins'
                                         fontWeight='400'
                                         mt='5px'
                                         size='sm'>{text}</Text>

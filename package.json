@@ -1,6 +1,6 @@
 {
   "name": "@edfi/admin-console-shared-sdk",
-  "version": "2.2.10-alpha.7",
+  "version": "2.2.10-alpha.8",
   "description": "The Admin Console Shared SDK",
   "type": "module",
   "files": [
@@ -26,7 +26,7 @@
     "dist": "rm -rf ./dist && tsc && vite build",
     "preview": "vite preview",
     "lint": "cspell \"src/**\"",
-    "postinstall":  "patch-package"
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",
@@ -37,7 +37,6 @@
     "@fontsource/archivo-narrow": "5.0.18",
     "@fontsource/open-sans": "4.5.14",
     "@fontsource/poppins": "4.5.10",
-    "@nestjs/swagger": "7.4.2",
     "@novu/client": "0.24.0",
     "@novu/notification-center": "0.24.0",
     "@novu/shared": "0.24.0",
@@ -54,18 +53,18 @@
     "react-icons": "4.12.0",
     "react-idle-timer": "5.7.2",
     "react-infinite-scroll-component": "6.1.0",
-    "react-oidc-context": "2.3.1"
+    "react-oidc-context": "2.3.1",
+    "react-use": "^17.6.0"
   },
   "devDependencies": {
     "@types/node": "20.14.11",
     "@types/react": "18.3.3",
     "@types/react-datepicker": "4.19.5",
     "@types/react-dom": "18.3.0",
-    "@vitejs/plugin-react-swc": "3.5.0",
-    "cspell": "8.9.0",
-    "typescript": "4.9.5",
-    "vite": "4.5.5",
-    "vite-plugin-dts": "2.3.0"
+    "@vitejs/plugin-react-swc": "3.7.2",
+    "typescript": "5.7.2",
+    "vite": "6.0.3",
+    "vite-plugin-dts": "4.3.0"
   },
   "resolutions": {
     "axios": "1.7.7"

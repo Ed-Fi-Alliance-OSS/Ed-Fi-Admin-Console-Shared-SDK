@@ -1,7 +1,7 @@
-import {Button, Flex, Popover, PopoverTrigger, PopoverBody, PopoverContent, Text} from "@chakra-ui/react"
-import { AnimatePresence, motion } from "framer-motion"
-import { SideBarMenuItemData } from "./SideBar"
-import {useState} from "react";
+import { Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text } from "@chakra-ui/react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { SideBarMenuItemData } from "./SideBar";
 
 interface SideBarMenuItemProps {
     showText: boolean
@@ -60,7 +60,7 @@ const SideBarMenuItem = ({ item, selectedItemId, currentType, showText, backgrou
                                     exit={{ opacity: 0 }}>
                                         <Text
                                             color={ textColor ?? 'white' }
-                                            fontFamily='Open sans'
+                                            fontFamily='Poppins'
                                             fontSize='12px'
                                             fontWeight='700'
                                             textAlign="start"
@@ -80,7 +80,7 @@ const SideBarMenuItem = ({ item, selectedItemId, currentType, showText, backgrou
                     paddingLeft='7px'>
                     <Text
                         color={ backgroundColor ?? "blue.900" }
-                        fontFamily='Open sans'
+                        fontFamily='Poppins'
                         fontSize='12px'
                         fontWeight='700'
                         textAlign="start"

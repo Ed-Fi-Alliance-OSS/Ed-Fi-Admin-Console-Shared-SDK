@@ -37,7 +37,7 @@ const TablePagination = ({
         <Flex justifyContent='center' alignItems='center' w='full'>
             <Flex alignItems='center'>
                 <Text
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontWeight='400'
                     mr='10px'
                     size='xs'>Items per page:</Text>
@@ -59,7 +59,7 @@ const TablePagination = ({
                 </NumberInput>
                 <Flex alignItems='center' ml='25px' w='50px'>
                     <Text
-                        fontFamily='Open sans'
+                        fontFamily='Poppins'
                         fontWeight='400'
                         size='xs'>
                             {currentPage} of{' '} {totalPages}

@@ -41,7 +41,7 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                         h='20px'
                         w='20px'>
                             <Text
-                                fontFamily='Open sans'
+                                fontFamily='Poppins'
                                 fontWeight='400'
                                 size='xs'>
                                     {unseenCount}
@@ -51,7 +51,7 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                 <Button
                     onClick={handleMarkAllRead}
                     color='blue.500'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontWeight='700'
                     size='md'
                     _hover={{ bg: 'white' }}>
@@ -86,7 +86,7 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                         <Button
                             onClick={onActivateUnreadInfiniteScroll}
                             color='blue.500'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontSize='16px'
                             fontWeight='700'
                             mx='auto'>
@@ -115,7 +115,7 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                         <Button
                             onClick={onActivateReadInfiniteScroll}
                             color='blue.500'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontSize='16px'
                             fontWeight='700'
                             mx='auto'>

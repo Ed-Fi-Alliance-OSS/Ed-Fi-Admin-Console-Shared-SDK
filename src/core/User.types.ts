@@ -9,21 +9,11 @@ export interface UserProfileExtension {
 }
 
 export interface Tenant {
-    createdBy: string 
-    createdDateTime: Date 
-    domains: string[]
-    isDemo: boolean 
-    isIdentityProviders: string[]
-    lastModifiedBy: string 
-    lastModifiedDateTime: Date 
-    organizationIdentifier: string 
-    organizationName: string 
-    state: string 
-    subscriptions: any[]
-    subscriptionsMigrated: boolean
-    tenantId: string 
-    tenantStatus: string 
-    tenantType: string
+  tenantId: string
+  document: {
+    name: string
+    edfiApiDiscoveryUrl: string
+  }
 }
 
 interface TenantUserTenantDescription {
@@ -76,16 +66,16 @@ export interface TenantUser {
 }
 
 export interface UserProfile {
-    tenantId: string
-    firstName: string 
+    // tenantId: string
+    firstName: string
     lastName: string
     userName: string 
     email: string
-    preferences: Preference[]
-    extensions: UserProfileExtension[]
-    tenants: Tenant[]
-    selectedTenant: Tenant
-    tenantsTotalCount: number 
+    // preferences: Preference[]
+    // extensions: UserProfileExtension[]
+    // tenants: Tenant[]
+    // selectedTenant: Tenant
+    // tenantsTotalCount: number 
 }
 
 export interface UserData extends UserProfile {

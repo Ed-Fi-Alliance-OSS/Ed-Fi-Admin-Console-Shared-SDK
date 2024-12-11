@@ -7,7 +7,7 @@ const selectStyleConf = defineStyleConfig({
             border: '1px',
             borderColor: 'gray.300',
             borderRadius: "4px",
-            fontFamily: 'Open sans',
+            fontFamily: 'Poppins',
             fontWeight: 400,
             _disabled: {
                 backgroundColor: 'gray.200',
@@ -26,7 +26,7 @@ const selectStyleConf = defineStyleConfig({
                 border: '1px',
                 borderColor: 'gray.300',
                 borderRadius: "4px",
-                fontFamily: 'Open sans',
+                fontFamily: 'Poppins',
                 fontWeight: 400,
                 _disabled: {
                     backgroundColor: 'gray.200',

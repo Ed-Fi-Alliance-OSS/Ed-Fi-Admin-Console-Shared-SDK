@@ -1,4 +1,4 @@
-import { Button, Text } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { SideBarMenuSubItemData } from "./SideBar"
 
 interface SideBarMenuSubItemProps {
@@ -17,7 +17,7 @@ const SideBarMenuSubItem = ({ item, selectedItemId, textColor, activeSubItemColo
             justifyContent='start'
             color={textColor ?? "white"}   
             bg={item.id === selectedItemId? ( activeSubItemColor ?? '#6077c3') : "transparent"}
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontSize='12px'
             fontWeight={selectedItemId === item.id? '700' : '400'}
             minH='28px'

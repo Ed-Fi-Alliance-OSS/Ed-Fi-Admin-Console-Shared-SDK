@@ -8,7 +8,7 @@ interface NotificationItemContentProps {
 const NotificationItemContent = ({ content }: NotificationItemContentProps) => {
     return (
         <Text 
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='400'
             size='md'
             _first={{ '& > a': { color: 'blue.500', fontWeight: '700' } }}>

@@ -21,16 +21,6 @@ const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) 
         lastName: 'Doe',
         email: 'john@doe.com',
         userName: 'johndoe',
-        preferences: [],
-        tenants: [],
-        tenantId: '123456',
-        extensions: [],
-        selectedTenant: {
-          organizationIdentifier: '123456',
-          organizationName: 'Test School',
-          tenantId: '123456',
-        } as any,
-        tenantsTotalCount: 0
       }
     }
 }

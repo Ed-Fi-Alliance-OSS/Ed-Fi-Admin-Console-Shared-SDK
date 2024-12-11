@@ -69,7 +69,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               bg='blue.500'
               h='64px'
               w='64px'>
-              {profileData ? profileData.firstName[0].toUpperCase() : 'GS'}
+              {profileData ? profileData?.firstName?.[0]?.toUpperCase() ?? '' : 'GS'}
             </Flex>
             <Flex direction='column' justifyContent='center' marginLeft='10px' h='64px'>
               <Text
@@ -77,7 +77,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                 fontWeight='bold'>{profileData ? `${profileData.firstName} ${profileData.lastName}` : 'Guest'}</Text>
               <Text
                 fontSize='xs'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 color={emailColor}>{profileData ? profileData.email : 'guest@mail.com'}</Text>
             </Flex>
           </Flex>
@@ -98,7 +98,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               justifyContent='flex-start'
               color='black'
               textAlign='start'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               fontWeight='400'
               fontSize='xs'
               marginTop='5px'
@@ -112,7 +112,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                             justifyContent='flex-start'
                             color='black'
                             textAlign='start'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='400'
                             fontSize='xs'
                             marginTop='5px'
@@ -126,7 +126,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                             justifyContent='flex-start'
                             color='black'
                             textAlign='start'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='400'
                             fontSize='xs'
                             marginTop='5px'
@@ -169,7 +169,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               onClick={onOpen}
               border='none'
               display='flex'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               justifyContent='flex-start'
               fontSize='xs'
               h='auto'
@@ -183,7 +183,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               onClick={onLogIn}
               border='none'
               fontSize='xs'
-              fontFamily='Open sans'
+              fontFamily='Poppins'
               display='flex'
               justifyContent='flex-start'
               h='auto'

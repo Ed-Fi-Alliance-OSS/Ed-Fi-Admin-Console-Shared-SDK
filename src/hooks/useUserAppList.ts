@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import { useAuth } from 'react-oidc-context'
+import { TEEAuthDataContext } from "../context"
 import { ExternalAppData, UserProfile } from '../core'
 import { fetchUserApps } from '../services/AppsService/AppsService'
-import { TEEAuthDataContext } from "../context"
 
 interface UseUserAppListProps {
     userProfile: UserProfile | null
@@ -51,12 +51,12 @@ const useUserAppList = ({ userProfile, apiUrl }: UseUserAppListProps) => {
     useEffect(() => {
         if (auth.user && userProfile) {
             console.log('use effect appList auth.user and userprofile received')
-            const accessPref = userProfile.preferences.find(pref => pref.code === 'selectedtenantid')
+            const accessPref = undefined
 
             console.log('access pref', accessPref)
             
             if (accessPref)
-                fetchExternalApps(auth.user.access_token,accessPref.value)
+                fetchExternalApps(auth.user.access_token, accessPref)
         }
     }, [ auth, userProfile ])
 

@@ -21,7 +21,7 @@ const UserInformationForm = ({ userInfo, onChange }: UserInformationFormProps) =
     return (
         <Flex flexDir='column'>
             <Text
-                fontFamily='Open sans'>
+                fontFamily='Poppins'>
                     Edit your Exchange Profile Information below.
             </Text>
             <Flex flexDir='column' mt='32px' w='full'>

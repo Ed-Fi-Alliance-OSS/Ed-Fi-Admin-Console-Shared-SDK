@@ -21,7 +21,7 @@ const radioStylesConf = defineStyleConfig({
         },
         label: {
             color: "gray.800",
-            fontFamily: 'Open sans',
+            fontFamily: 'Poppins',
         }
     },
     variants: {
@@ -45,7 +45,7 @@ const radioStylesConf = defineStyleConfig({
         },
         label: {
             color: "gray.800",
-            fontFamily: 'Open sans',
+            fontFamily: 'Poppins',
         }
        }
     }

@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { TEEAuthDataContext, UserProfileContext } from "../context"
 import { FormErrors } from "../core/Forms.types"
-import { addUserExtension, fetchUserProfile, getUser } from "../services/ProfileService/ProfileService"
+import { addUserExtension, getUser } from "../services/ProfileService/ProfileService"
 import { PostUserProfileExtensionRequest } from "../services/ProfileService/ProfileService.requests"
 import useUserProfileExtensionsValidation from "./useUserProfileExtensionsValidation"
 
@@ -204,35 +204,7 @@ const useUserProfileExtensions = ({ reload }: UseUserProfileExtensionsParams) =>
     }
 
     const getExtensions = async () => {
-        if (auth && auth.user && userProfile && edxAppConfig) {
-            console.log('fetching user extensions...')
-            const token = auth.user.access_token
-            const apiUrl = edxAppConfig.api.edfiApiBaseUri as string
-            const result = await fetchUserProfile(token, apiUrl, edxAppConfig?.api)
-    
-            if (result.type === 'Response') {
-                const extensions = result.data.extensions
-
-                console.log('user extensions', extensions)
-    
-                const additionalTitleData = extensions.find(extension => extension.code === 'jobTitle')
-                const bioData = extensions.find(extension => extension.code === 'miniBio')
-                const tagsData = extensions.find(extension => extension.code === 'tags')
-    
-                if (additionalTitleData)
-                    setAdditionalTitle(additionalTitleData.data)
-    
-                if (bioData)
-                    setBio(bioData.data)
-
-                if (tagsData) {
-                    setTags({
-                        value: "",
-                        tagsList: tagsData.data.split(",")
-                    })
-                }
-            }
-        }
+        
     }
 
     const isValidData = () => {

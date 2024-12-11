@@ -8,7 +8,7 @@ interface CustomFormLabelProps {
 const CustomFormLabel = ({ htmlFor, text }: CustomFormLabelProps) => {
     return (
         <FormLabel 
-            fontFamily='Open sans'
+            fontFamily='Poppins'
             fontWeight='700'
             fontSize='14px'
             lineHeight='20px'

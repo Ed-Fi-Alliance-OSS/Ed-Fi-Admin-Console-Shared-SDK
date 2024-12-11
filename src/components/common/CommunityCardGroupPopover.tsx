@@ -1,15 +1,15 @@
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverHeader,
-    PopoverBody,
     Button,
-    Text,
     Flex,
     Heading,
+    Popover,
+    PopoverBody,
+    PopoverContent,
+    PopoverHeader,
+    PopoverTrigger,
+    Text,
     useColorModeValue
-  } from '@chakra-ui/react'
+} from '@chakra-ui/react'
 import { HiThumbUp } from 'react-icons/hi'
 import { MdModeComment } from 'react-icons/md'
 
@@ -23,7 +23,7 @@ const CommunityCardGroupPopover = () => {
                     aria-label="Show Group"
                     display='flex' 
                     fontWeight='light'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     justifyContent='flex-end'
                     alignItems='flex-end'
                     padding='0px'
@@ -37,7 +37,7 @@ const CommunityCardGroupPopover = () => {
                             padding='5px 5px 5px 5px'>
                                 <MdModeComment />
                                 <Text 
-                                    fontFamily='Open sans'
+                                    fontFamily='Poppins'
                                     size='xs'
                                     marginLeft='3px'>
                                         Group
@@ -52,7 +52,7 @@ const CommunityCardGroupPopover = () => {
                         <Heading fontSize='lg' marginLeft='10px'>Administrator Dashboards</Heading>
                     </Flex>
                     <Flex 
-                        fontFamily='Open sans' 
+                        fontFamily='Poppins' 
                         fontSize='xs'
                         fontStyle='italic'
                         marginLeft='30px'>
@@ -68,7 +68,7 @@ const CommunityCardGroupPopover = () => {
                             <Text fontSize='sm' marginTop='2px' marginLeft='5px'>58</Text>
                         </Flex>
                         <Text 
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='light'
                             marginLeft='10px'>Introduction to your Administrator Dashboards</Text>
                     </Flex>
@@ -78,7 +78,7 @@ const CommunityCardGroupPopover = () => {
                             <Text fontSize='sm' marginTop='2px' marginLeft='5px'>27</Text>
                         </Flex>
                         <Text 
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='light'
                             marginLeft='10px'>How to use your Administrator Dashboard in classroom</Text>
                     </Flex>
@@ -88,7 +88,7 @@ const CommunityCardGroupPopover = () => {
                             <Text fontSize='sm' marginTop='2px' marginLeft='5px'>14</Text>
                         </Flex>
                         <Text 
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='light'
                             marginLeft='10px'>Question: Where can I get help with customizing the settings in my...</Text>
                     </Flex>

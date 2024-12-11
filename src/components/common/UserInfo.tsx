@@ -79,7 +79,7 @@ const UserInfo = ({ userEmail, userFirstName, userLastName, size, showName, show
                 </Text>}
                 {showEmail !== false && <Text
                     color='#455763'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontWeight='400'
                     fontSize='12px'>{userEmail}</Text>}
             </Flex>}

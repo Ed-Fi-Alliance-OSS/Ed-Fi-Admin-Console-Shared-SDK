@@ -53,7 +53,7 @@ const UserInformationDetails = ({ userInfo, source }: UserInformationDetailsProp
     return (
         <Flex flexDir='column' w='full'>
             <Text
-                fontFamily='Open sans'>
+                fontFamily='Poppins'>
                     Below you'll find your profile information for Acme Service Center.
                     Some of the information below cannot be edited within Acme Service Center as it is 
                     pulled in from your District or Charter School's HR system.
@@ -71,42 +71,42 @@ const UserInformationDetails = ({ userInfo, source }: UserInformationDetailsProp
                     aria-label="info-icon" />
             </Flex>
             <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
                 mt='16px'>
                     Email
             </Text>
             <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 size='sm'>{userInfo.email}</Text>
 
             <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
                 mt='16px'>
                     Title
             </Text>
             <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 size='sm'>{`${userInfo.jobTitle} ${userInfo.jobDepartment}`}</Text>
 
             <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
                 mt='16px'>
                     Organization
             </Text>
             <Text
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 size='sm'>{userInfo.organization}</Text>
             <Flex mt='12px'>
                 { showChangePasswordLink() && <Link
                     color='blue.500'
                     fontSize='14px'
-                    fontFamily='open sans'
+                    fontFamily='Poppins'
                     fontWeight='700'
                     href={generateChangePasswordUrl()}>
                         Looking to change your password? Click here to receive an email with a reset password link.

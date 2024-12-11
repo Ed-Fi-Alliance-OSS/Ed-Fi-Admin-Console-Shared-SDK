@@ -34,7 +34,7 @@ const NotificationBar = ({ content, show, onClose }: NotificationBarProps) => {
                             { typeof(content) === 'string'? 
                                 <Text 
                                     color={textColor}
-                                    fontFamily='Open sans'>{content}</Text> : content }
+                                    fontFamily='Poppins'>{content}</Text> : content }
                     </Flex>
                     <CloseButton 
                         aria-label="Close notification bar"

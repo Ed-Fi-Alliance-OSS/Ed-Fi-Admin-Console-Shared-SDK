@@ -1,11 +1,11 @@
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverBody,
     Button,
     Flex,
-  } from '@chakra-ui/react'
+    Popover,
+    PopoverBody,
+    PopoverContent,
+    PopoverTrigger,
+} from '@chakra-ui/react'
 import { HiDotsVertical } from "react-icons/hi"
 
 interface NotificationItemPopoverProps {
@@ -35,7 +35,7 @@ const NotificationItemPopover = ({ messageId, wasRead, onMarkAsRead, onRemove }:
                         {!wasRead && <Button    
                             aria-label="Mark notification as read"
                             color='gray.700'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='400'
                             onClick={() => onMarkAsRead(messageId)}
                             _hover={{ bg: "#e9ecf7" }}
@@ -45,7 +45,7 @@ const NotificationItemPopover = ({ messageId, wasRead, onMarkAsRead, onRemove }:
                         { wasRead && <Button    
                             aria-label='Remove notification'
                             color='gray.700'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             fontWeight='400'
                             onClick={() => onRemove(messageId)}
                             _hover={{ bg: "#e9ecf7" }}

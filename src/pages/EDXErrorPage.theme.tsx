@@ -40,7 +40,7 @@ export const EDXErrorPageTheme: any = defineStyleConfig({
       padding: "0 1rem",
       color: "#000",
       textAlign: "center",
-      fontFamily: "Open Sans",
+      fontFamily: "Poppins",
       fontSize: "1rem",
       fontWeight: "400",
     },

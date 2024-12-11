@@ -5,10 +5,10 @@ import { UserProfile } from '../core'
 import useDecodeToken from './useDecodeToken'
 
 interface UseUserProfileProps {
-    apiUrl: string
+
 }
 
-const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
+const useUserProfile = ({  }: UseUserProfileProps) => {
     const auth = useAuth()
     const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
     const [ loadingProfile, setLoadingProfile ] = useState(true)
@@ -45,20 +45,10 @@ const useUserProfile = ({ apiUrl }: UseUserProfileProps) => {
                     // }
     
                     setUserProfile({
-                      firstName: tokenPayload.given_name,
-                      lastName: tokenPayload.family_name,
-                      email: tokenPayload.email,
-                      extensions: [],
-                      preferences: [],
-                      selectedTenant: {
-                        organizationIdentifier: '123456',
-                        organizationName: 'Test School',
-                        tenantId: '123456',
-                      } as any,
-                      tenantId: '',
-                      tenants: [],
-                      tenantsTotalCount: 1,
-                      userName: tokenPayload.email
+                      firstName: tokenPayload?.given_name ?? '',
+                      lastName: tokenPayload?.family_name ?? '',
+                      email: tokenPayload?.email ?? '',
+                      userName: tokenPayload?.email ?? ''
                     })
                 // }
                 // else {

@@ -1,17 +1,10 @@
 import { ExternalLinkIcon, QuestionIcon } from "@chakra-ui/icons"
-import { Button, Flex, Heading, Link, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, useColorModeValue } from "@chakra-ui/react"
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Button, Flex, Heading, Link, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, useColorModeValue } from "@chakra-ui/react"
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { HiBookmark, HiThumbUp } from "react-icons/hi"
+import { HiBookmark } from "react-icons/hi"
 import { IoMdBookmarks } from "react-icons/io"
 import { MdBugReport, MdModeComment } from "react-icons/md"
 import modeColors from "../../themes/baseTheme/modeColors"
-import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-  } from '@chakra-ui/react'
 
 interface AppsItemCardOptionsPopoverProps {
     appId: string
@@ -52,7 +45,7 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                     <Flex flexDir='column' justifyContent='space-between' w='full'>
                         <Flex justifyContent='space-between' w='full'>
                             <Heading
-                                fontFamily='Open sans'
+                                fontFamily='Poppins'
                                 fontWeight='700'
                                 size='sm'>{description}</Heading>
                             <Button 
@@ -60,7 +53,7 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                                 aria-label="toggle application bookmark"
                                 onClick={() => onBookmark(appId)}
                                 color={bookmarked? bookmarkColor : notBookmarkColor}
-                                fontFamily='Open sans'
+                                fontFamily='Poppins'
                                 fontWeight='thin'
                                 justifyContent='center'
                                 alignItems='center'
@@ -71,20 +64,20 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                         </Flex>
                         <Text
                             color='gray.600'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             size='sm'>
                                 {description}
                         </Text>
                         <Link 
                             color='blue.500'
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             size='sm'
                             href={descriptionUrl}>See Full Description</Link>
                         <Flex justifyContent='space-between' mt='16px' w='full'>
                             <Link display='flex' href={websiteUrl} alignItems='center'>
                                 <ExternalLinkIcon fontSize='15px' />
                                 <Text
-                                    fontFamily='Open sans'
+                                    fontFamily='Poppins'
                                     ml='5px'>
                                         Website
                                 </Text>
@@ -97,7 +90,7 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                                 maxW='auto'>
                                     <QuestionIcon fontSize='15px' />
                                     <Text
-                                        fontFamily='Open sans'
+                                        fontFamily='Poppins'
                                         ml='5px'>
                                             Help
                                     </Text>
@@ -111,7 +104,7 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                                 maxW='auto'>
                                     <MdBugReport fontSize={20} />
                                     <Text
-                                        fontFamily='Open sans'
+                                        fontFamily='Poppins'
                                         ml='5px'>
                                             Report a Bug
                                     </Text>
@@ -160,10 +153,10 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                                     <Flex flexDir='column'>
                                         <Text   
                                             color={textColor}
-                                            fontFamily='Open sans'
+                                            fontFamily='Poppins'
                                             fontSize='12.5px'>Intro to App Title</Text>
                                         <Flex 
-                                            fontFamily='Open sans' 
+                                            fontFamily='Poppins' 
                                             fontSize='xs'>
                                                 <Text color={grayText} size='xs' fontWeight='bold'>129 Likes</Text>
                                         </Flex>
@@ -171,10 +164,10 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                                     <Flex flexDir='column' marginTop='10px'>
                                         <Text   
                                             color={textColor}
-                                            fontFamily='Open sans'
+                                            fontFamily='Poppins'
                                             fontSize='12.5px'>Advanced Techniques for Facilitating App...</Text>
                                         <Flex 
-                                            fontFamily='Open sans' 
+                                            fontFamily='Poppins' 
                                             fontSize='xs'>
                                                 <Text color={grayText} size='xs' fontWeight='bold'>45 Likes</Text>
                                         </Flex>
@@ -182,10 +175,10 @@ const AppItemCardOptionsPopover = ({ appId, websiteUrl, descriptionUrl, actionLi
                                     <Flex flexDir='column' marginTop='10px'>
                                         <Text   
                                             color={textColor}
-                                        fontFamily='Open sans'
+                                        fontFamily='Poppins'
                                         fontSize='12.5px'>How I use the app title to do a certain task...</Text>
                                         <Flex 
-                                            fontFamily='Open sans' 
+                                            fontFamily='Poppins' 
                                             fontSize='xs'>
                                                 <Text color={grayText} size='xs' fontWeight='bold'>100 Likes</Text>
                                         </Flex>

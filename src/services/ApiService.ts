@@ -5,20 +5,20 @@ import { HttpServiceRequestError, HttpServiceResponse } from './HttpService/Http
 import { HttpServiceGetRequest, HttpServiceMethod, HttpServicePostRequest, HttpServicePutRequest } from './HttpService/HttpService.types'
 
 
-export const useApiService = () => {
+export const useApiService = (_baseURL: string | undefined) => {
   const {user} = useAuth()
   const { config } = useConfig()
+  const baseURL = _baseURL ?? config.api.edfiAdminApiBaseUri
 
   function addTenantHeader(headers: Record<string, string>): Record<string, string> {
     if(!config.app.multiTenancy) {
       return headers
     }
     
-    // TODO: replace this with the actual tenant header, from the preferences of the user
-    const tenantId = '1'
+    const tenantId = sessionStorage.getItem('selectedTenant')
     return {
       ...headers,
-      'Tenant': tenantId
+      'Tenant': tenantId || ''
     }
   }
 
@@ -46,7 +46,7 @@ export const useApiService = () => {
   }
 
   const axiosInstance = axiosClass.create({
-    // baseURL: config.api.edfiAdminApiBaseUri,
+    baseURL,
     headers: addTenantHeader({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
