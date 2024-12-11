@@ -234,6 +234,7 @@ function App() {
           }
           rightComponent={
             <TopBarRight
+              tenants={[]}
               isClosingSession={false}
               profileData={userProfile}
               onLogin={login}

@@ -38,16 +38,7 @@ const UserInformationDetails = ({ userInfo, source }: UserInformationDetailsProp
     }
 
     const generateChangePasswordUrl = () => {
-        if (!userProfile || !edxAppConfig) 
-            return ""
-
-        const tenantId = userProfile.tenantId
-        const userName = encodeURIComponent(userProfile.userName)
-        const forgotPasswordUrl = edxAppConfig.auth.authority
-
-        const url = `${forgotPasswordUrl}/Account/ForgotPassword?userName=${userName}&returnUrl=/?acr_values=tenant:${tenantId}`
-
-        return url
+        return ''
     }
 
     return (

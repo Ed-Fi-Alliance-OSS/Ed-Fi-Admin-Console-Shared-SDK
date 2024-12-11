@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { ExternalAppsContext, TEEAuthDataContext, UserProfileContext } from '../context'
 import { ExternalAppData, Preference } from '../core'
-import { addBookmark } from '../services/AppsService/AppsService'
 
 interface UseAppBookmarksProps {
 
@@ -31,28 +30,7 @@ const useAppBookmarks = (params?: UseAppBookmarksProps) => {
     }
 
     const onAddBookmark = async (appId: string) => {
-        if (userProfile && auth && auth.user) {
-            const bookmarkPrefObj = getBookmarkAppsPreferences(userProfile.preferences)
-            const updatedBookmarks = updateBookmarks(bookmarkPrefObj, appId)
-            
-            const newUserProfile = {...userProfile}
-            const bookPrefIndex = newUserProfile.preferences.findIndex(preference => preference.code === bookmarkPreferenceCode)
 
-            const jsonString = JSON.stringify(updatedBookmarks)
-
-            if (newUserProfile.preferences[bookPrefIndex])
-                newUserProfile.preferences[bookPrefIndex].value = jsonString
-            else {
-                newUserProfile.preferences.push({
-                    code: bookmarkPreferenceCode,
-                    value: jsonString
-                })
-            }
-
-            setUserProfile(newUserProfile)
-            
-            await addBookmark(auth.user.access_token, updatedBookmarks, edxAppConfig?.api.edfiApiBaseUri as string)
-        }
     }
 
     const selectBookmarked = (externalApps: ExternalAppData[], bookmarkedApps: any) => {
@@ -89,19 +67,19 @@ const useAppBookmarks = (params?: UseAppBookmarksProps) => {
     }     
 
     useEffect(() => {
-        if (userProfile && auth && auth.user) {
-            const bookmarkPreferences = getBookmarkAppsPreferences(userProfile.preferences)
+        // if (userProfile && auth && auth.user) {
+        //     const bookmarkPreferences = getBookmarkAppsPreferences(userProfile.preferences)
 
-            if (bookmarkPreferences) {
-                selectBookmarked(externalApps, bookmarkPreferences)
-                const appList = selectAppList(externalApps, bookmarkPreferences)
+        //     if (bookmarkPreferences) {
+        //         selectBookmarked(externalApps, bookmarkPreferences)
+        //         const appList = selectAppList(externalApps, bookmarkPreferences)
 
-                setAppsList(appList)
-                return 
-            }
+        //         setAppsList(appList)
+        //         return 
+        //     }
 
-            setAppsList(externalApps)
-        }
+        //     setAppsList(externalApps)
+        // }
     }, [ auth, userProfile, externalApps ])
 
     return {

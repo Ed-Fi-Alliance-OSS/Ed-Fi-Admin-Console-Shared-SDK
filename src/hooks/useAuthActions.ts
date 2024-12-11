@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { TEEAuthDataContext, UserProfileContext } from "../context"
-import { updateTenantIdPreference } from "../services"
 
 interface UseTeeAuthDataProps {
     
@@ -19,20 +18,20 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
     }
 
     const handleChangeTenantId = async (tenantId: string) => {
-        if (userProfile && auth && auth.user) {
-            const newUserProfile = {...userProfile}
-            newUserProfile.tenantId = tenantId
+        // if (userProfile && auth && auth.user) {
+        //     const newUserProfile = {...userProfile}
+        //     newUserProfile.tenantId = tenantId
 
-            const result = await updateTenantIdPreference
-            (
-                auth.user.access_token,
-                tenantId,
-                (edxAppConfig? edxAppConfig.api.edfiApiBaseUri ?? '' : '' ),
-                edxAppConfig?.api
-            )
+        //     const result = await updateTenantIdPreference
+        //     (
+        //         auth.user.access_token,
+        //         tenantId,
+        //         (edxAppConfig? edxAppConfig.api.edfiApiBaseUri ?? '' : '' ),
+        //         edxAppConfig?.api
+        //     )
 
-            if (result) await auth.signinRedirect()
-        }
+        //     if (result) await auth.signinRedirect()
+        // }
     }
 
     return {

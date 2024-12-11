@@ -5,7 +5,7 @@ interface TenantSelectPopoverSearchListProps {
     filteredList: Tenant[]
     isChangingTenant: boolean 
     tenantIdToUpdate: string 
-    handleChangeTenantId: (tenantId: string) => void
+    handleChangeTenantId: (tenantId: Tenant) => void
 }
 
 const TenantSelectPopoverSearchList = ({ filteredList, tenantIdToUpdate, isChangingTenant, handleChangeTenantId }: TenantSelectPopoverSearchListProps) => {
@@ -23,7 +23,7 @@ const TenantSelectPopoverSearchList = ({ filteredList, tenantIdToUpdate, isChang
                     w='full'
                     _hover={{ backgroundColor: 'gray.100' }}
                     key={tenant.tenantId}
-                    onClick={() => handleChangeTenantId(tenant.tenantId)}>
+                    onClick={() => handleChangeTenantId(tenant)}>
                         <Tooltip 
                             hasArrow 
                             label={<Flex color='white' flexDir='column' w='full'>
