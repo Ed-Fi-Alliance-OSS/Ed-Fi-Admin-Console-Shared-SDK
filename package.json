@@ -1,6 +1,6 @@
 {
   "name": "@edfi/admin-console-shared-sdk",
-  "version": "2.2.10-alpha.8",
+  "version": "2.2.10-alpha.9",
   "description": "The Admin Console Shared SDK",
   "type": "module",
   "files": [

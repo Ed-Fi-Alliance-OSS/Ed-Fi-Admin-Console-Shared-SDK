@@ -30,6 +30,13 @@ const useTenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: UseT
   })
   const [foundNoResults, setFoundNoResults] = useState(false)
   const { config } = useConfig()
+  useEffect(() => {
+    if(!tenants) return
+    if(!selectedTenant && Array.isArray(tenants) && tenants.length > 0) {
+      setSelectedTenant(tenants[0].document.name)
+      window.location.reload()
+    }
+  }, [tenants, selectedTenant])
   const handleChangeTenantId = (tenant: Tenant) => {
     setSelectedTenant(tenant.document.name)
     setIsChangingTenant(true)
