@@ -4,7 +4,7 @@ import { Tenant } from '../../core'
 interface TenantSelectPopoverSearchListProps {
     filteredList: Tenant[]
     isChangingTenant: boolean 
-    tenantIdToUpdate: string 
+    tenantIdToUpdate: number 
     handleChangeTenantId: (tenantId: Tenant) => void
 }
 

@@ -13,7 +13,7 @@ interface UseTenantSelectPopoverProps {
 }
 
 const useTenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: UseTenantSelectPopoverProps) => {
-  const [tenantIdToUpdate, setTenantIdToUpdate] = useState<string>('')
+  const [tenantIdToUpdate, setTenantIdToUpdate] = useState<number>(-1)
   const [isChangingTenant, setIsChangingTenant] = useState(false)
   const [selectedTenant, setSelectedTenant] = useSessionStorage<string>('selectedTenant', '', true)
   const [searchText, setSearchText] = useState("")
@@ -65,79 +65,6 @@ const useTenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: UseT
     if (tenants.length > 10)
       setShowSearchBar(false)
   }
-
-  // const onLoadMoreItems = async () => {
-  //     if (paginationData.totalCount <= filteredList.length)
-  //         return 
-
-  //     const nextPageIndex = paginationData.pageIndex + 1
-
-  //     const newPaginationData = {...paginationData}
-  //     newPaginationData.isLoading = true
-
-  //     setPaginationData(newPaginationData)
-
-  //     const response = await fetchMyTenants({ 
-  //         pageIndex: nextPageIndex,
-  //         text: debouncedValue as string
-  //     })
-
-  //     newPaginationData.pageIndex = nextPageIndex
-  //     newPaginationData.isLoading = false
-
-  //     setPaginationData(newPaginationData)
-
-  //     if (!response)
-  //         return 
-
-  //     const newFilteredList = filteredList.map(item => ({...item}))
-  //     for (let i = 0; i < response.data.length; i++) {
-  //         const tenant = response.data[i]
-
-  //         newFilteredList.push({
-  //             tenantId: tenant.tenantId,
-  //             organizationIdentifier: tenant.organizationIdentifier,
-  //             organizationName: tenant.organizationName
-  //         })
-  //     }
-
-  //     setFilteredList(newFilteredList)
-  // }
-
-  // const onExecuteSearch = async () => {
-  //     const newPaginationData = {...paginationData}
-  //     newPaginationData.pageIndex = 0
-  //     newPaginationData.isLoading = true
-
-  //     setPaginationData(newPaginationData)
-
-  //     const response = await fetchMyTenants({ 
-  //         pageIndex: 0,
-  //         text: debouncedValue as string
-  //     })
-
-  //     newPaginationData.isLoading = false
-  //     if (response) {
-  //         newPaginationData.totalCount = response.count
-  //         if (response.count === 0)
-  //             setFoundNoResults(true)
-  //         else 
-  //             setFoundNoResults(false)
-  //         setFilteredList(response.data)
-  //     }
-
-  //     setPaginationData(newPaginationData)
-  // }
-
-  // useEffect(() => {
-  //     if (debouncedValue.toString().length > 0) {
-  //         onExecuteSearch()
-  //     }
-  //     else {
-  //         setFilteredList([])
-  //         setFoundNoResults(false)
-  //     }
-  // }, [ debouncedValue ])
 
   useEffect(() => {
     selectTopItemsList()
