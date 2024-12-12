@@ -1,3 +1,5 @@
+export type { Tenant } from './Tenant.type'
+
 export interface Preference {
     code: string 
     value: string
@@ -6,14 +8,6 @@ export interface Preference {
 export interface UserProfileExtension {
     code: string 
     data: string
-}
-
-export interface Tenant {
-  tenantId: string
-  document: {
-    name: string
-    edfiApiDiscoveryUrl: string
-  }
 }
 
 interface TenantUserTenantDescription {

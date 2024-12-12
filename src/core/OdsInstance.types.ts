@@ -1,11 +1,6 @@
 export interface ODSInstance {
-  // odsInstanceId: string | number
-  // document: {
-  //   name: string
-  //   instanceType?: string
-  // }
   instanceType: string
-  id: string
+  id: number
   name: string
   // Only for Updating Instance
   connectionString?: string
