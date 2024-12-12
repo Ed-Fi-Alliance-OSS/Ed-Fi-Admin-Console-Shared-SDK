@@ -1,6 +1,6 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import { useSessionStorage } from 'react-use'
-import { TEEAuthDataContext, useConfig } from "../context"
+import { useConfig } from "../context"
 import { Tenant, UserProfile } from "../core"
 import useDebounce from "./useDebounce"
 import { TenantSelectPopoverPaginationData } from "./useTenantSelectPopover.types"
@@ -13,7 +13,6 @@ interface UseTenantSelectPopoverProps {
 }
 
 const useTenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: UseTenantSelectPopoverProps) => {
-  const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
   const [tenantIdToUpdate, setTenantIdToUpdate] = useState<string>('')
   const [isChangingTenant, setIsChangingTenant] = useState(false)
   const [selectedTenant, setSelectedTenant] = useSessionStorage<string>('selectedTenant', '', true)
@@ -30,22 +29,7 @@ const useTenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: UseT
   })
   const [foundNoResults, setFoundNoResults] = useState(false)
   const { config } = useConfig()
-  useEffect(() => {
-    if(!tenants) return
-    if(Array.isArray(tenants) && tenants.length > 0) {
-      // if no tenant is selected, select the first tenant
-      if(!selectedTenant) {
-        setSelectedTenant(tenants[0].document.name)
-        window.location.reload()
-      }
-      const _t = tenants.find(t => t.document.name === selectedTenant)
-      // if the selected tenant is not in the list of tenants, select the first tenant
-      if(!_t) {
-        setSelectedTenant(tenants[0].document.name)
-        window.location.reload()
-      }
-    }
-  }, [tenants, selectedTenant])
+
   const handleChangeTenantId = (tenant: Tenant) => {
     setSelectedTenant(tenant.document.name)
     setIsChangingTenant(true)
