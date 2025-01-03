@@ -64,6 +64,9 @@ jobs:
         with:
           languages: javascript
 
+      - name: Build project
+        run: npm install && npm run build
+
       - name: Perform CodeQL Analysis
         if: success()
         uses: github/codeql-action/analyze@cf7e9f23492505046de9a37830c3711dd0f25bb3 # codeql-bundle-v2.16.2
