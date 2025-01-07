@@ -17,7 +17,8 @@ on:
       - ".github/**"
   workflow_dispatch:
 
-permissions: write
+permissions:
+  security-events: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
