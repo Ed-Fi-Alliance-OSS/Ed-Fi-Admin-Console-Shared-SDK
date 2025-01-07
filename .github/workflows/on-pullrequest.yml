@@ -33,22 +33,6 @@ jobs:
     name: Scan Actions
     uses: ed-fi-alliance-oss/ed-fi-actions/.github/workflows/repository-scanner.yml@main
 
-  analyze-dependencies:
-    # This Action will fail if run on anything other than a pull request
-    if: github.event_name == 'pull_request'
-    name: Analyze Code Dependencies
-    # Not mandatory, but better for this to go after the upgrade since it can change the code.
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-
-      - name: Dependency Review ("Dependabot on PR")
-        uses: actions/dependency-review-action@c090f4e553673e6e505ea70d6a95362ee12adb94 # v3.0.3
-
   analyze-code:
     name: Analyze Code
     runs-on: ubuntu-latest
