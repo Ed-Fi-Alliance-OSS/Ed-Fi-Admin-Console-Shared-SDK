@@ -1,4 +1,4 @@
-import { Heading, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Text, useColorModeValue } from '@chakra-ui/react'
+import { Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useColorModeValue } from '@chakra-ui/react'
 
 interface LogoutModalProps {
     show: boolean 
@@ -27,7 +27,7 @@ const CommonModal = ({ show, closeOnOverlayClick, canClose, header, content, foo
                         <Heading size='md'>
                             {header}
                         </Heading>
-                        <Text fontFamily='Open sans' marginTop='15px'>
+                        <Text fontFamily='Poppins' marginTop='15px'>
                             {content}
                         </Text>
                     </ModalBody>

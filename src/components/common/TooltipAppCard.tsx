@@ -1,19 +1,19 @@
-import { useRef } from 'react'
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverBody,
-    useColorModeValue,
     Flex,
-    Link,
     Heading,
+    Link,
+    Popover,
+    PopoverBody,
+    PopoverContent,
+    PopoverTrigger,
     Text,
-  } from '@chakra-ui/react'
+    useColorModeValue,
+} from '@chakra-ui/react'
+import { useRef } from 'react'
 import AppItemCard from './AppItemCard'
 import CommunityCard from './CommunityCard'
-import CommunityCardGroupPopover from './CommunityCardGroupPopover'
 import CommunityCardCoursesPopover from './CommunityCardCoursesPopover'
+import CommunityCardGroupPopover from './CommunityCardGroupPopover'
 
 interface AppCardProps {
     appId: string
@@ -53,13 +53,13 @@ const TooltipAppCard = ({ appCardProps, cardType }: TooltipAppCardProps) => {
                         <Heading fontSize='md'>{appCardProps.description}</Heading>
                         <Link 
                             fontSize='xs' 
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             color={linkColor}
                             href={appCardProps.actionLink}>Go to app</Link>
                     </Flex>
                     <Flex bg='gray.300' h='0.5px' w='full' marginTop='10px' />
                     <Flex flexDir='column' marginTop='10px'>
-                        <Text fontSize='sm' fontFamily='Open sans'>
+                        <Text fontSize='sm' fontFamily='Poppins'>
                             This is the {appCardProps.description}
                         </Text>
                         <Flex marginTop='15px' w='full'>

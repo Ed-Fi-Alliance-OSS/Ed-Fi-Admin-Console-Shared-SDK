@@ -8,22 +8,22 @@ const textStylesConf = defineStyleConfig({
   sizes: {
     lg: {
       fontSize: "18px",
-      fontFamily: 'Open sans',
+      fontFamily: 'Poppins',
       lineHeight: '26px',
     },
     md: {
       fontSize: "16px",
-      fontFamily: 'Open sans',
+      fontFamily: 'Poppins',
       lineHeight: '22px',
     },
     sm: {
       fontSize: "14px",
-      fontFamily: 'Open sans',
+      fontFamily: 'Poppins',
       lineHeight: '20px',
     },
     xs: {
       fontSize: "12px",
-      fontFamily: 'Open sans',
+      fontFamily: 'Poppins',
       lineHeight: '16px',
     }
   },

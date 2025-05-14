@@ -1,14 +1,14 @@
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverBody,
     Button,
-    Text,
     Flex,
     Heading,
+    Popover,
+    PopoverBody,
+    PopoverContent,
+    PopoverTrigger,
+    Text,
     useColorModeValue
-  } from '@chakra-ui/react'
+} from '@chakra-ui/react'
 import { IoMdBookmarks } from 'react-icons/io'
 
 const CommunityCardCoursesPopover = () => {
@@ -22,14 +22,14 @@ const CommunityCardCoursesPopover = () => {
                     display='flex' 
                     alignItems='center'
                     fontWeight='light'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     padding='5px 5px 0px 5px'
                     size='sm'
                     minW='auto'
                     w='auto'> 
                         <IoMdBookmarks fontSize='20px' />
                         <Text   
-                            fontFamily='Open sans'
+                            fontFamily='Poppins'
                             size='xs'
                             marginLeft='3px'>
                                 Courses
@@ -43,7 +43,7 @@ const CommunityCardCoursesPopover = () => {
                         <Heading fontSize='lg' marginLeft='10px'>Intro to Administrator...</Heading>
                     </Flex>
                     <Flex 
-                        fontFamily='Open sans' 
+                        fontFamily='Poppins' 
                         fontSize='xs'
                         fontStyle='italic'
                         marginLeft='30px'>
@@ -63,7 +63,7 @@ const CommunityCardCoursesPopover = () => {
                         <Heading fontSize='lg' marginLeft='10px'>Advanced Techniques for...</Heading>
                     </Flex>
                     <Flex 
-                        fontFamily='Open sans' 
+                        fontFamily='Poppins' 
                         fontSize='xs'
                         fontStyle='italic'
                         marginLeft='30px'>
@@ -83,7 +83,7 @@ const CommunityCardCoursesPopover = () => {
                         <Heading fontSize='lg' marginLeft='10px'>How I use the...</Heading>
                     </Flex>
                     <Flex 
-                        fontFamily='Open sans' 
+                        fontFamily='Poppins' 
                         fontSize='xs'
                         fontStyle='italic'
                         marginLeft='30px'>

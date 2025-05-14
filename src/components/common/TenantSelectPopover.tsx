@@ -1,6 +1,7 @@
 import { CheckCircleIcon, ChevronDownIcon } from "@chakra-ui/icons"
-import { Popover, PopoverTrigger, Button, PopoverContent, PopoverBody, Text, Flex, useColorModeValue, Spinner, Tooltip } from "@chakra-ui/react"
-import { UserProfile } from "../../core"
+import { Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, Tooltip, useColorModeValue } from "@chakra-ui/react"
+import { useConfig } from '../../context'
+import { Tenant, UserProfile } from "../../core"
 import useTenantSelectPopover from "../../hooks/useTenantSelectPopover"
 import TenantSelectPopoverPaginationControls from "./TenantSelectPopoverPaginationControls"
 import TenantSelectPopoverSearchBar from "./TenantSelectPopoverSearchBar"
@@ -8,10 +9,12 @@ import TenantSelectPopoverSearchList from "./TenantSelectPopoverSearchList"
 
 interface TenantSelectPopoverProps {
     userProfile: UserProfile | null
+    tenants: Tenant[]
     onChangeTenantId: (tenantId: string) => void
 }
 
-const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopoverProps) => {
+const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantSelectPopoverProps) => {
+    const {config} = useConfig()
     const bg = useColorModeValue('white', 'blue.600')
     const textColor = useColorModeValue('gray.800', 'white')
     const textBg = useColorModeValue('gray.100', 'blue.800')
@@ -30,10 +33,23 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
         handleChangeTenantId,
         findCurrentTenant,
         onSearch,
-        onLoadMoreItems,
-        isSelectedTenantId
-    } = useTenantSelectPopover({ userProfile, onChangeTenantId })
+        // onLoadMoreItems,
+        isSelectedTenantId,
+        selectedTenant
+    } = useTenantSelectPopover({ tenants, userProfile, onChangeTenantId })
     const tenantBtnLabel = 'District/Charter School'
+
+    function getSelectedTenant() {
+        if (!selectedTenant) {
+            return
+        }
+        return tenants.find(tenant => tenant.document.name === selectedTenant)
+    }
+
+    if (!config.app.multiTenancy) {
+      return null
+    }
+
     return (
         <Popover>
             <PopoverTrigger>
@@ -51,7 +67,7 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
                             <Text 
                                 size='xs'
                                 color={tenantTextColor}
-                                fontFamily='Open sans'
+                                fontFamily='Poppins'
                                 fontWeight='light'>
                                     {findCurrentTenant()}
                             </Text>
@@ -67,9 +83,9 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
                     <Flex flexDir='column' marginTop='0px' w='full'>
                         {topItemsList.map(tenant => 
                             <Button
-                                aria-label={`Select ${tenant.organizationName} tenant`}
+                                aria-label={`Select ${tenant.document.name} tenant`}
                                 display='flex'
-                                color={isSelectedTenantId(tenant.tenantId, userProfile?.tenantId)? selectedColor : textColor}
+                                color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor}
                                 justifyContent='space-between'
                                 isDisabled={isChangingTenant}
                                 size='sm'
@@ -77,21 +93,21 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
                                 w='full'
                                 _hover={{ backgroundColor: textBg }}
                                 key={tenant.tenantId}
-                                onClick={() => handleChangeTenantId(tenant.tenantId)}>
+                                onClick={() => handleChangeTenantId(tenant)}>
                                     <Tooltip 
                                         hasArrow 
                                         label={<Flex color='white' flexDir='column' w='full'>
-                                            <Text color='white' fontFamily='Open sans'>Tenant ID: {tenant.tenantId}</Text>
-                                            <Text color='white' fontFamily='Open sans'>Org ID: {tenant.organizationIdentifier}</Text>
+                                            <Text color='white' fontFamily='Poppins'>Tenant ID: {tenant.tenantId}</Text>
+                                            <Text color='white' fontFamily='Poppins'>Org ID: {tenant.document.name || tenant.tenantId}</Text>
                                         </Flex>} 
                                         bg='black' 
                                         fontSize='12px' 
                                         color="white">
-                                            <Text color={isSelectedTenantId(tenant.tenantId, userProfile?.tenantId)? selectedColor : textColor }>
-                                                {tenant.organizationName.length < 23? tenant.organizationName : tenant.organizationName.slice(0, 24) + '...'}
+                                            <Text color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor }>
+                                                {tenant.document.name || tenant.tenantId}
                                             </Text>
                                     </Tooltip>
-                                    { isSelectedTenantId(tenant.tenantId, userProfile?.tenantId) && 
+                                    { isSelectedTenantId(tenant, getSelectedTenant()) && 
                                         <CheckCircleIcon 
                                             color={selectedColor}
                                             fontSize='14px' /> }
@@ -113,7 +129,7 @@ const TenantSelectPopover = ({ userProfile, onChangeTenantId }: TenantSelectPopo
                             <TenantSelectPopoverPaginationControls
                                 shownItems={filteredList.length}
                                 totalItems={paginationData.totalCount}
-                                onLoadMoreItems={onLoadMoreItems} />
+                                onLoadMoreItems={() => {}} />
                         </> }
                         { foundNoResults && <Text 
                             color='gray.800' 

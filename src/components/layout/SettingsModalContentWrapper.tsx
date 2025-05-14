@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Link, Select, SelectField, Text } from "@chakra-ui/react"
+import { Button, Flex, FormControl, FormLabel, Heading, Input, Link, Select, Text } from "@chakra-ui/react"
 import { NotificationBar } from "../common"
 
 interface SettingsModalContentWrapperProps {
@@ -46,7 +46,7 @@ const SettingsModalContentWrapper = ({ children, onCancel, onSave }: SettingsMod
                     {children}
                 </Flex>
                 <Flex flexDir='column' mt='15px' w='full'>
-                    <Text fontFamily='Open sans' mt='15px'>
+                    <Text fontFamily='Poppins' mt='15px'>
                         {/* cSpell:disable */}
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt consequuntur, id laudantium aperiam voluptatibus non molestiae a officia provident quas mollitia ut cum, dolore ipsum.
                         {/* cSpell:enable */}
@@ -62,13 +62,13 @@ const SettingsModalContentWrapper = ({ children, onCancel, onSave }: SettingsMod
                             Optional Subheader
                    </Text>
                    <FormControl>
-                        <FormLabel fontFamily='Open sans' fontWeight='bold' mt='15px'>
+                        <FormLabel fontFamily='Poppins' fontWeight='bold' mt='15px'>
                             Settings Text Field
                         </FormLabel>
                         <Input size='xs' placeholder="Placeholder" />
                    </FormControl>
                    <FormControl>
-                        <FormLabel fontFamily='Open sans' fontWeight='bold' mt='15px'>
+                        <FormLabel fontFamily='Poppins' fontWeight='bold' mt='15px'>
                             Settings Dropdown
                         </FormLabel>
                         <Select size='xs'>

@@ -14,6 +14,7 @@ const createEdxAppConfig = (config: EdxAppConfig) => {
     loadUserInfo: config.auth.loadUserInfo,
     automaticSilentRenew: config.auth.automaticSilentRenew,
     onSigninCallback: (_user: User | void): void => {
+      console.log("🚗 onSigninCallback")
       window.history.replaceState({}, document.title, window.location.pathname)
     }
   }

@@ -18,7 +18,7 @@ const CompleteFormErrorMessage = () => {
                         fontWeight='600'
                         size='md'>ERROR</Text>
                     <Text
-                        fontFamily='Open sans'
+                        fontFamily='Poppins'
                         fontWeight='400'
                         size='md'
                         lineHeight='22px'>

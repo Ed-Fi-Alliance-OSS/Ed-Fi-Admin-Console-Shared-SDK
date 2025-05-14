@@ -1,10 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react"
 import { IMessage } from "@novu/notification-center"
-import NotificationItemPopover from "./NotificationItemPopover"
 import getTimeAgo from "../../helpers/getTimeAgo"
-import NotificationItemLeft from "./NotificationItemLeft"
 import NotificationItemContent from "./NotificationItemContent"
+import NotificationItemLeft from "./NotificationItemLeft"
 import NotificationItemLogo from "./NotificationItemLogo"
+import NotificationItemPopover from "./NotificationItemPopover"
 
 interface NotificationItemProps {
     data: IMessage
@@ -26,7 +26,7 @@ const NotificationItem = ({ data, onRemoveNotification, onMarkAsRead }: Notifica
                         <Flex mt='auto' w='full'>
                             <NotificationItemLogo data={data} />
                             <Text 
-                                fontFamily='Open sans' 
+                                fontFamily='Poppins' 
                                 color='gray.500' 
                                 ml='10px'
                                 size='xs'>{getTimeAgo(Date.parse(data.createdAt)).replace("minutes", "min")}</Text>

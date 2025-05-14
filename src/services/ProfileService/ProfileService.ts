@@ -1,4 +1,3 @@
-import { UserProfile } from "../../core"
 import { Api } from "../../core/EdxApp.types"
 import httpService from "../HttpService/HttpService"
 import { GetMyTenantsRequest, PostUserProfileExtensionRequest } from "./ProfileService.requests"
@@ -6,21 +5,28 @@ import { GetMyTenantsResponse, GetUsersListResponse, PostUserProfileExtensionRes
 import { GetMyTenantsResult, GetUserProfileResult, GetUsersListResult, PostTenantIdPreference, PostUserProfileExtensionResult } from "./ProfileService.result"
 
 const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) : GetUserProfileResult => {
-    // const url = `${apiUrl}/me`
-    const url = "/mockdata/data-userprofile.json"
-
-    const result = await httpService.get<UserProfile>({
-        url,
-        actionName: "Get User Profile",
-        access_token: token,
-        apiConfig
-    })
     
-    return result
+    // const url = `${apiUrl}/me`
+    // const result = await httpService.get<UserProfile>({
+    //     url: apiUrl,
+    //     actionName: "Get User Profile",
+    //     access_token: token,
+    //     apiConfig
+    // })
+    
+    return {
+      type: 'Response',
+      data: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@doe.com',
+        userName: 'johndoe',
+      }
+    }
 }
 
 const getUser = async (token: string, apiUrl: string, tenantId: string, email: string, apiConfig?: Api) : GetUsersListResult => {
-    const baseUrl = `${apiConfig?.baseUri ?? ''}/tenants/${tenantId}/users`
+    const baseUrl = `${apiConfig?.edfiApiBaseUri ?? ''}/tenants/${tenantId}/users`
 
     let filter = ""
     if (email.includes("+")) {
@@ -43,7 +49,7 @@ const getUser = async (token: string, apiUrl: string, tenantId: string, email: s
 }
 
 const addUserExtension = async (token: string, apiUrl: string, request: PostUserProfileExtensionRequest, apiConfig?: Api) : PostUserProfileExtensionResult => {
-    const url = `${apiConfig?.baseUri ?? ''}/me/extensions`
+    const url = `${apiConfig?.edfiApiBaseUri ?? ''}/me/extensions`
 
     const result = await httpService.post<PostUserProfileExtensionResponse, PostUserProfileExtensionRequest>({
         url,
@@ -61,7 +67,7 @@ const updateUserExtension = async (token: string, apiUrl: string, request: PostU
 }
 
 const updateTenantIdPreference = async (token: string, tenantId: string, apiUrl: string, apiConfig?: Api): PostTenantIdPreference => {
-    const url = `${apiConfig?.baseUri ?? ''}/me/preferences`
+    const url = `${apiConfig?.edfiApiBaseUri ?? ''}/me/preferences`
     const data = { code: 'selectedtenantid', value: tenantId }
 
     const result = await httpService.post<any, any>({
@@ -76,7 +82,7 @@ const updateTenantIdPreference = async (token: string, tenantId: string, apiUrl:
 }
 
 const getMyTenants = async (token: string, apiUrl: string, request: GetMyTenantsRequest, apiConfig?: Api): GetMyTenantsResult => {
-    const baseUrl = `${apiConfig?.baseUri ?? ''}/me/tenants`
+    const baseUrl = `${apiConfig?.edfiApiBaseUri ?? ''}/me/tenants`
 
     let queryParams = `pageIndex=${request.pageIndex}&pageSize=${request.pageSize}`
 
@@ -98,10 +104,5 @@ const getMyTenants = async (token: string, apiUrl: string, request: GetMyTenants
 }
 
 export {
-    fetchUserProfile,
-    getUser,
-    getMyTenants,
-    addUserExtension,
-    updateUserExtension,
-    updateTenantIdPreference
+  addUserExtension, fetchUserProfile, getMyTenants, getUser, updateTenantIdPreference, updateUserExtension
 }

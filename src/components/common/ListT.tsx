@@ -38,12 +38,12 @@ const ListT = ({ items, width, minWidth, maxWidth, onSelectItem }: ListTProps) =
                             justifyContent='center'
                             marginLeft='10px'>
                                 <Heading
-                                    fontFamily='Open sans'
+                                    fontFamily='Poppins'
                                     fontWeight='700'
                                     size='xs'>{item.title}</Heading>
                                 <Text
                                     fontWeight='400'
-                                    fontFamily='Open sans'
+                                    fontFamily='Poppins'
                                     size='xs'>
                                         {item.description}
                                 </Text>

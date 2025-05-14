@@ -15,7 +15,7 @@ const NotificationsEmptyMessage = ({ notificationsType }: NotificationsEmptyMess
             </Flex>
             <Text
                 color='gray.700'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'
                 mt='12px'
                 size='sm'>

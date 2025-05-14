@@ -5,7 +5,7 @@ const numberInputStylesConf = defineStyleConfig({
         field: {
             color: "gray.800",
             borderRadius: "4px",
-            fontFamily: 'Open sans',
+            fontFamily: 'Poppins',
             fontWeight: 400,
             _disabled: {
                 backgroundColor: 'gray.200',
@@ -24,7 +24,7 @@ const numberInputStylesConf = defineStyleConfig({
                 border: '1px',
                 borderColor: 'gray.300',
                 borderRadius: "4px",
-                fontFamily: 'Open sans',
+                fontFamily: 'Poppins',
                 fontWeight: 400,
                 _disabled: {
                     backgroundColor: 'gray.200',

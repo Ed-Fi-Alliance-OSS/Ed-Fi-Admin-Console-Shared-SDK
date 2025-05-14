@@ -30,16 +30,6 @@ const UserProfileModal = ({ show, userProfileData, mode, onClose }: UserProfileM
     const imageUrl = ''
 
     const extractUserData = (userProfile: UserProfile | null) => {
-        if (userProfile) {
-            const currentTenant = userProfile.tenants.find(tenant => tenant.tenantId === userProfile.tenantId)
-
-            return {
-                email: userProfile.email,
-                firstName: userProfile.firstName,
-                lastName: userProfile.lastName,
-                organization: currentTenant? currentTenant.organizationName : ""
-            }
-        }
 
         return {
             email: "",

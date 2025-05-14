@@ -38,7 +38,7 @@ const SimpleList = ({ items, width, minWidth, maxWidth, onSelectItem }: SimpleLi
                                     {item.selected && <CheckIcon fontSize='10px' />}
                             </Flex>
                             <Text
-                                fontFamily='Open sans'
+                                fontFamily='Poppins'
                                 fontWeight='700'
                                 size='md'
                                 ml='10px'>{item.name}</Text>

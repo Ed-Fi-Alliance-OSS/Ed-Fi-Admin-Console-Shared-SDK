@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useColorModeValue, Text } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useColorModeValue } from '@chakra-ui/react'
 
 interface InformationModalProps {
     type: 'alert' | 'confirmation' | 'information'
@@ -47,7 +47,7 @@ const CustomModal = ({ type, header, content, footer, isOpen, onClose }: Informa
                         w=''>
                             { typeof(content) === 'string'? 
                                 <Text 
-                                    fontFamily='Open sans'>{ content }</Text> : content } 
+                                    fontFamily='Poppins'>{ content }</Text> : content } 
                     </ModalBody>
                     <ModalFooter paddingBottom='35px'>
                         { footer }

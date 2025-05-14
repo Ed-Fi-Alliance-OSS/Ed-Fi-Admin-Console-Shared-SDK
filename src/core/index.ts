@@ -1,18 +1,12 @@
-import { ExternalAppData } from './Apps.types'
-import { Preference, Tenant, UserData, UserProfile } from './User.types'
-import { EdxAppConfig } from './EdxApp.types'
 import { User } from 'oidc-client-ts'
 import { Route } from './AppRoutes.types'
+import { ExternalAppData } from './Apps.types'
 import { LoadingState } from './AppStates.types'
+import { EdxAppConfig } from './EdxApp.types'
+import { ODSInstance } from './OdsInstance.types'
+import { Preference, Tenant, UserData, UserProfile } from './User.types'
 
 export type {
-    EdxAppConfig,
-    User,
-    ExternalAppData,
-    Preference,
-    Tenant,
-    UserProfile,
-    UserData,
-    Route,
-    LoadingState,
+  EdxAppConfig, ExternalAppData, LoadingState,
+  ODSInstance, Preference, Route, Tenant, User, UserData, UserProfile
 }

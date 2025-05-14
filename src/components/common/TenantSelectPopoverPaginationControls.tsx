@@ -1,4 +1,4 @@
-import { Flex, Text, Button } from "@chakra-ui/react"
+import { Button, Flex, Text } from "@chakra-ui/react"
 
 interface TenantSelectPopoverPaginationControlsProps {
     shownItems: number 
@@ -12,14 +12,14 @@ const TenantSelectPopoverPaginationControls = ({ shownItems, totalItems, onLoadM
             <Text 
                 color='blue.500'
                 fontSize='xs'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='400'>
                     Showing {shownItems} of {totalItems}
             </Text>
             { shownItems < totalItems && <Button
                 onClick={onLoadMoreItems}
                 color='blue.500'
-                fontFamily='Open sans'
+                fontFamily='Poppins'
                 fontWeight='700'
                 padding='0'
                 minWidth='auto'>

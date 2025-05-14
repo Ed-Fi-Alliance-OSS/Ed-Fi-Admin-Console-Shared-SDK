@@ -5,7 +5,7 @@ const textAreaStylesConf = defineStyleConfig({
         border: '1px solid',
         borderColor: 'gray.300',
         borderRadius: '4px',
-        fontFamily: 'Open sans',
+        fontFamily: 'Poppins',
         fontWeight: 400,
         _disabled: {
             backgroundColor: 'gray.200',
@@ -21,7 +21,7 @@ const textAreaStylesConf = defineStyleConfig({
             border: '1px solid',
             borderColor: 'gray.300',
             borderRadius: '4px',
-            fontFamily: 'Open sans',
+            fontFamily: 'Poppins',
             fontWeight: 400,
             _disabled: {
                 backgroundColor: 'gray.200',

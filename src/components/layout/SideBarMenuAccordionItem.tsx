@@ -1,21 +1,21 @@
 import {
     Accordion,
-    AccordionItem,
     AccordionButton,
+    AccordionIcon,
+    AccordionItem,
     AccordionPanel,
     Flex,
-    Text,
     Popover,
-    PopoverTrigger,
     PopoverBody,
     PopoverContent,
-    AccordionIcon
+    PopoverTrigger,
+    Text
 } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from "react"
 import useSideBarAccordionItem from '../../hooks/useSideBarAccordionItem'
 import { SideBarMenuItemData } from './SideBar'
 import SideBarMenuSubItemList from './SideBarMenuSubItemList'
-import {useState} from "react";
 
 interface SideBarMenuAccordionItemProps {
     item: SideBarMenuItemData
@@ -86,7 +86,7 @@ const SideBarMenuAccordionItem = ({ item, isOpen, showText, selectedItemId, sele
                                                     color={ textColor ?? 'white' }
                                                     textAlign="start"
                                                     lineHeight='1.2'
-                                                    fontFamily='Open sans'
+                                                    fontFamily='Poppins'
                                                     fontSize='12px'
                                                     fontWeight='700'
                                                     marginLeft='10px'>{ item.text } </Text>
@@ -108,7 +108,7 @@ const SideBarMenuAccordionItem = ({ item, isOpen, showText, selectedItemId, sele
                                 color={ backgroundColor ?? "blue.900" }
                                 textAlign="start"
                                 lineHeight='1.2'
-                                fontFamily='Open sans'
+                                fontFamily='Poppins'
                                 fontSize='12px'
                                 fontWeight='700'>
                                     { item.text }

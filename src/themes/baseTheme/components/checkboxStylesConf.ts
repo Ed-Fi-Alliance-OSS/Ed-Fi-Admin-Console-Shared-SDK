@@ -6,7 +6,7 @@ const checkboxStylesConf = defineStyleConfig({
             color: "gray.800",
             border: '1px',
             borderColor: 'gray.300',
-            fontFamily: 'Open sans',
+            fontFamily: 'Poppins',
             fontWeight: 400,
             _disabled: {
                 backgroundColor: 'gray.200',

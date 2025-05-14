@@ -19,7 +19,6 @@ const useHelpLink = () => {
 
     const getHelpLink = () => {
         if (edxAppConfig 
-            && edxAppConfig.app.enableHelpDeskLink
             && edxAppConfig.app.helpLinkUrl)
             return `${edxAppConfig.app.helpLinkUrl}#${getAppName()}`
 

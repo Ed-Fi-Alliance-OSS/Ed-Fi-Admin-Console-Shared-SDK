@@ -47,7 +47,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
             { errors && Object.keys(errors).length > 0 && <CompleteFormErrorMessage /> }
             {false && <Flex flexDir='column' mt='16px' w='full'>
                 <Text 
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontWeight='700'>
                         Profile Image
                 </Text>
@@ -56,7 +56,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                         color='white'
                         bg='blue.500'
                         justifyContent='center'
-                        fontFamily='Open sans'
+                        fontFamily='Poppins'
                         fontSize='20px'
                         fontWeight='700'
                         alignItems='center'
@@ -74,7 +74,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                 </Flex>
                 <Text
                     color='gray.500'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
                     size='xs'>
@@ -93,7 +93,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     placeholder="additional title" />
                 <Text
                     color='gray.500'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
                     size='xs'>
@@ -112,7 +112,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     placeholder="your bio" />
                 <Text
                     color='gray.500'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
                     size='xs'>
@@ -143,7 +143,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                 </Flex>
                 <Text
                     color='gray.500'
-                    fontFamily='Open sans'
+                    fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
                     size='xs'>

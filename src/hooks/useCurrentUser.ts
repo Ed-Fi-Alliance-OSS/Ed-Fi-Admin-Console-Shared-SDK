@@ -13,13 +13,12 @@ const useCurrentUser = () => {
             return 
 
         const token = auth.user.access_token
-            const apiUrl = edxAppConfig.api.baseUri as string
-            const tenantId = userProfile.tenantId
-    
+            const apiUrl = edxAppConfig.api.edfiApiBaseUri as string
+
             const getUserResult = await getUser(
                 token,
                 apiUrl,
-                tenantId,
+                '1',
                 userProfile.email,
                 edxAppConfig?.api
             )
