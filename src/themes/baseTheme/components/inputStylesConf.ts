@@ -1,4 +1,4 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig } from "@chakra-ui/styled-system";
 
 const inputStylesConf = defineStyleConfig({
     baseStyle: {
@@ -36,11 +36,11 @@ const inputStylesConf = defineStyleConfig({
                     },
                     opacity: 0.4,
                 }
-            }   
+            }
         }
     },
     defaultProps: {
-        
+
     }
 }) as any
 

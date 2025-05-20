@@ -1,4 +1,5 @@
-import { ColorMode, Flex, Image } from "@chakra-ui/react"
+import { Flex, Image } from "@chakra-ui/react"
+import { ColorMode } from "@chakra-ui/system"
 
 interface AppsMenuItemExtendedIconProps {
     colorMode: ColorMode  

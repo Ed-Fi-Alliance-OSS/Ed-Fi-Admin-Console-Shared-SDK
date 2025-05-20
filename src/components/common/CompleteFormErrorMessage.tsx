@@ -1,4 +1,4 @@
-import { InfoIcon } from "@chakra-ui/icons"
+import { AiOutlineInfoCircle } from "react-icons/ai"
 import { Flex, Text } from "@chakra-ui/react"
 
 const CompleteFormErrorMessage = () => {
@@ -11,16 +11,16 @@ const CompleteFormErrorMessage = () => {
             mb='16px'
             h='88px'
             w='full'>
-                <InfoIcon fontSize='16px' />
+                <AiOutlineInfoCircle fontSize='16px' />
                 <Flex flexDir='column' ml='15px' w='80%'>
-                    <Text 
+                    <Text
                         fontFamily='Poppins'
                         fontWeight='600'
-                        size='md'>ERROR</Text>
+                        fontSize='md'>ERROR</Text>
                     <Text
                         fontFamily='Poppins'
                         fontWeight='400'
-                        size='md'
+                        fontSize='md'
                         lineHeight='22px'>
                             Please correct the errors below and resubmit the form.
                     </Text>

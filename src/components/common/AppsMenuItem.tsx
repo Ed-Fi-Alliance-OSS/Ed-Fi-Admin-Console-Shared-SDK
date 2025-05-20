@@ -1,4 +1,5 @@
-import { Box, Text, GridItem, Link, useColorMode } from "@chakra-ui/react"
+import { Box, Text, GridItem, Link } from "@chakra-ui/react"
+import { useColorMode } from "@chakra-ui/system"
 import { ExternalAppData } from "../../core"
 import AppsMenuItemIcon from "./AppsMenuItemIcon"
 
@@ -25,14 +26,14 @@ const AppsMenuItem = ({ data }: AppsMenuItemProps) => {
                 target={data.openInNewWindow? "_blank" : "_self"}
                 referrerPolicy="no-referrer"
                 textDecoration='none'>
-                     {data.lightIconUrl? 
+                     {data.lightIconUrl?
                         <AppsMenuItemIcon colorMode={colorMode} data={data} /> :
-                        <Box 
-                            borderRadius='md' 
-                            bg='blue.500' 
-                            h='50px' 
+                        <Box
+                            borderRadius='md'
+                            bg='blue.500'
+                            h='50px'
                             w='50px' />}
-                    <Text 
+                    <Text
                         display='inline-block'
                         overflow='hidden'
                         fontWeight='600'

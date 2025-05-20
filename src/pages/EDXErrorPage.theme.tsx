@@ -1,75 +1,68 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig } from "@chakra-ui/styled-system";
 
-export const EDXErrorPageTheme: any = defineStyleConfig({
-  baseStyle: {
-    bgColor: "gray.50",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100vw",
-    minWidth: "100vw",
-    height: "100vh",
-    minHeight: "100vh",
-
-    ".content-container": {
-      flexDirection: "column",
-      maxWidth: "37.5rem",
-      gap: "1rem",
-      padding: "1rem 0",
+export const EDXErrorPageTheme = {
+  base: {
+    bgColor: { value: '{colors.gray.50.value}' },
+    display: { value: 'flex' },
+    flexDirection: { value: 'column' },
+    justifyContent: { value: 'center' },
+    alignItems: { value: 'center' },
+    width: { value: '100vw' },
+    minWidth: { value: '100vw' },
+    height: { value: '100vh' },
+    minHeight: { value: '100vh' },
+    contentContainer: {
+      flexDirection: { value: 'column' },
+      maxWidth: { value: '37.5rem' },
+      gap: { value: '1rem' },
+      padding: { value: '1rem 0' },
     },
-
-    ".error-code-container": {
-      color: "#000",
-      textAlign: "center",
-      fontFamily: "Poppins",
-      fontSize: "1.5rem",
-      fontWeight: "600",
-      textTransform: "uppercase",
+    errorCodeContainer: {
+      color: { value: '{colors.black.value}' },
+      textAlign: { value: 'center' },
+      fontFamily: { value: 'Poppins' },
+      fontSize: { value: '1.5rem' },
+      fontWeight: { value: '600' },
+      textTransform: { value: 'uppercase' },
     },
-
-    ".error-title-container": {
-      color: "#000",
-      textAlign: "center",
-      fontFamily: "Poppins",
-      fontSize: "2rem",
-      fontWeight: "700",
+    errorTitleContainer: {
+      color: { value: '{colors.black.value}' },
+      textAlign: { value: 'center' },
+      fontFamily: { value: 'Poppins' },
+      fontSize: { value: '2rem' },
+      fontWeight: { value: '700' },
     },
-
-    ".error-description": {
-      padding: "0 1rem",
-      color: "#000",
-      textAlign: "center",
-      fontFamily: "Poppins",
-      fontSize: "1rem",
-      fontWeight: "400",
+    errorDescription: {
+      padding: { value: '0 1rem' },
+      color: { value: '{colors.black.value}' },
+      textAlign: { value: 'center' },
+      fontFamily: { value: 'Poppins' },
+      fontSize: { value: '1rem' },
+      fontWeight: { value: '400' },
     },
-
-    ".buttons-container": {
-      gap: "1rem",
-      alignItems: "center",
-      justifyContent: "center",
-      marginTop: "1rem",
+    buttonsContainer: {
+      gap: { value: '1rem' },
+      alignItems: { value: 'center' },
+      justifyContent: { value: 'center' },
+      marginTop: { value: '1rem' },
     },
-
-    ".primary-button": {
-      fontSize: "0.75rem",
-      fontWeight: "600",
-      lineHeight: "1.5rem",
-      textTransform: "uppercase",
-      height: "2rem",
-      borderRadius: "0.25rem",
-      padding: "0 0.5rem",
+    primaryButton: {
+      fontSize: { value: '0.75rem' },
+      fontWeight: { value: '600' },
+      lineHeight: { value: '1.5rem' },
+      textTransform: { value: 'uppercase' },
+      height: { value: '2rem' },
+      borderRadius: { value: '0.25rem' },
+      padding: { value: '0 0.5rem' },
     },
-
-    ".secondary-button": {
-      fontSize: "0.75rem",
-      fontWeight: "600",
-      lineHeight: "1.5rem",
-      textTransform: "uppercase",
-      height: "2rem",
-      borderRadius: "0.25rem",
-      padding: "0 0.5rem",
+    secondaryButton: {
+      fontSize: { value: '0.75rem' },
+      fontWeight: { value: '600' },
+      lineHeight: { value: '1.5rem' },
+      textTransform: { value: 'uppercase' },
+      height: { value: '2rem' },
+      borderRadius: { value: '0.25rem' },
+      padding: { value: '0 0.5rem' },
     },
   },
-});
+};

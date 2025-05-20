@@ -1,8 +1,9 @@
-import { Flex, Image, Link, Text, useColorMode } from "@chakra-ui/react"
+import { Flex, Image, Link, Text } from "@chakra-ui/react"
+import { useColorMode } from "@chakra-ui/system"
 
 interface AppItemCardSmProps {
     imageUrl: string | null
-    lightBackgroundUrl?: string 
+    lightBackgroundUrl?: string
     darkImageUrl?: string
     darkBackgroundUrl?: string
     overlayColor: string
@@ -17,7 +18,7 @@ const def = '102px'
 
 const AppTile = ({ tileSize, imageUrl, lightBackgroundUrl, overlayColor, darkBackgroundUrl, darkImageUrl, description, actionLink }: AppItemCardSmProps) => {
     const { colorMode } = useColorMode()
-    
+
     const selectSize = () => {
         return !tileSize || tileSize === 'default'? def : small
     }
@@ -25,7 +26,7 @@ const AppTile = ({ tileSize, imageUrl, lightBackgroundUrl, overlayColor, darkBac
     return (
         <Link href={actionLink} display='flex' w={selectSize()}>
             <Flex flexDir='column' h='full' w='full'>
-                {imageUrl? 
+                {imageUrl?
                     <Flex
                         backgroundImage={colorMode === 'light'? lightBackgroundUrl : darkBackgroundUrl}
                         backgroundPosition='center'
@@ -36,23 +37,23 @@ const AppTile = ({ tileSize, imageUrl, lightBackgroundUrl, overlayColor, darkBac
                         alignItems='center'
                         justifyContent='center'
                         transition='all 1s ease-in-out'
-                        _hover={{ 
+                        _hover={{
                             backgroundSize: '200%',
-                            "#innerOverlay": {
-                                opacity: 0.3
+                            _before: {
+                              opacity: 0.3,
                             }
                         }}
                         h={selectSize()}
                         w={selectSize()}
                         zIndex='2'>
                             <>
-                                <Flex 
+                                <Flex
                                     borderRadius='8px'
-                                    alignItems='center' 
+                                    alignItems='center'
                                     justifyContent='center'
-                                    h='full' 
+                                    h='full'
                                     w='full'>
-                                        <Flex 
+                                        <Flex
                                             borderRadius='8px'
                                             backgroundColor={overlayColor}
                                             opacity='0.8'
@@ -60,20 +61,20 @@ const AppTile = ({ tileSize, imageUrl, lightBackgroundUrl, overlayColor, darkBac
                                             h='full'
                                             w='full'>
                                         </Flex>
-                                        <Image 
+                                        <Image
                                             position='absolute'
-                                            h='50%' 
+                                            h='50%'
                                             src={colorMode === 'light'? imageUrl : darkImageUrl}
                                             alt='app image' />
                                 </Flex>
                             </>
-                    </Flex> : 
-                    <Flex 
-                        bg='blue.500' 
+                    </Flex> :
+                    <Flex
+                        bg='blue.500'
                         borderRadius='8px'
                         h={selectSize()}
                         w={selectSize()} />}
-                <Text 
+                <Text
                     mt={selectSize() === '102px'? '16px' : '8px'}
                     fontSize={selectSize() ===  '102px'? '12px' : '10px'}
                     fontWeight='600'>{description}</Text>

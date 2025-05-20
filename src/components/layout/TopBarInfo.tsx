@@ -1,5 +1,6 @@
-import { QuestionIcon } from "@chakra-ui/icons"
-import { Flex, Link, useColorModeValue } from "@chakra-ui/react"
+import { FaQuestionCircle as QuestionIcon } from "react-icons/fa"
+import { Flex, Link } from "@chakra-ui/react"
+import { useColorMode } from "@chakra-ui/system"
 import { useContext } from "react"
 import { TEEAuthDataContext } from "../../context"
 import { UserProfile } from "../../core"
@@ -21,7 +22,8 @@ const TopBarInfo = ({
   onLogOut,
 }: TopBarInfoProps) => {
   const { getHelpLink } = useHelpLink();
-  const iconsColor = useColorModeValue("blue.900", "white");
+  const { colorMode } = useColorMode();
+  const iconsColor = colorMode === "light" ? "blue.900" : "white";
   const { showSettingsModal, hideSettingsModal, openSettingsModal } =
     useSettingsModal();
   const { edxAppConfig } = useContext(TEEAuthDataContext);
@@ -67,8 +69,8 @@ const TopBarInfo = ({
           />
         </Button>
       )} */}
-      {edxAppConfig 
-        && edxAppConfig.app 
+      {edxAppConfig
+        && edxAppConfig.app
         && edxAppConfig.app.helpLinkUrl && (
         <Link
           href={getHelpLink()}
@@ -81,9 +83,9 @@ const TopBarInfo = ({
         >
           <QuestionIcon
             color={iconsColor}
-            aria-description="Get Help Icon"
             aria-hidden="true"
             focusable="false"
+            aria-label="Get Help Icon"
           />
         </Link>
       )}

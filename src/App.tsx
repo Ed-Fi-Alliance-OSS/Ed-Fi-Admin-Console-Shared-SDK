@@ -20,7 +20,7 @@ import { AppsMenuMoreOption } from "./components/common/AppsMenu.types"
 import SideBar, { SideBarMenuItemData } from "./components/layout/SideBar"
 import { baseTheme } from "./themes"
 
-import { CheckIcon } from "@chakra-ui/icons"
+import { FaCheck as CheckIcon } from "react-icons/fa"
 import { useState } from "react"
 import { CgHome } from "react-icons/cg"
 import { ExternalAppData } from "./core"
@@ -259,6 +259,40 @@ function App() {
             <SkipNavContent />
             <Text mt="10px">
               {/* cSpell:disable */}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
+              in pariatur aliquam laborum dolorum atque vero commodi mollitia
+              maiores officia omnis ex praesentium, incidunt corrupti impedit
+              autem animi earum. Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
+              doloribus ab ducimus omnis iure quisquam reprehenderit sed
+              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
+              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deserunt distinctio similique ratione exercitationem enim, tempore
+              eos quas sunt et excepturi officia quia pariatur doloribus in,
+              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
+              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
+              repudiandae officiis. Officia modi iste sequi neque vero, beatae
+              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
+              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
+              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
+              facere earum magnam. Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
+              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
+              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
+              dolor sit amet consectetur adipisicing elit. Quidem voluptas
+              impedit cum maxime velit excepturi sit autem adipisci cumque
+              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
+              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
+              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
+              voluptas vitae consequatur facere optio explicabo commodi quo!
+              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
+              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
+              magnam sunt possimus nesciunt cum cupiditate rem odio quas
+              corporis et voluptate, facilis suscipit ipsam accusantium
+              consectetur.
+            </Text>
+            <Text mt="10px">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
               in pariatur aliquam laborum dolorum atque vero commodi mollitia
               maiores officia omnis ex praesentium, incidunt corrupti impedit

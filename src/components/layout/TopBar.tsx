@@ -1,4 +1,5 @@
-import { Flex, useColorModeValue } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
+import { useColorModeValue } from "@chakra-ui/system"
 import modeColors from "../../themes/baseTheme/modeColors"
 
 interface TopBarProps {
@@ -6,14 +7,14 @@ interface TopBarProps {
     rightComponent: JSX.Element
 }
 
-const TopBar = ({ leftComponent, rightComponent }: TopBarProps) => {    
+const TopBar = ({ leftComponent, rightComponent }: TopBarProps) => {
 
     const { colorbluea } = modeColors
     const bg = useColorModeValue(colorbluea.light, colorbluea.dark)
     const borderColor = useColorModeValue('#d9e1e5', colorbluea.dark)
 
     return (
-        <Flex 
+        <Flex
             bg={bg}
             alignItems='center'
             justifyContent='space-between'
@@ -23,9 +24,9 @@ const TopBar = ({ leftComponent, rightComponent }: TopBarProps) => {
             h='48px'
             w="100%"
             zIndex='3'>
-                <Flex 
+                <Flex
                     bg='white'
-                    h='full' 
+                    h='full'
                     alignItems='center'
                     justifyContent='center'
                     paddingLeft='10px'>
@@ -38,4 +39,4 @@ const TopBar = ({ leftComponent, rightComponent }: TopBarProps) => {
     )
 }
 
-export default TopBar  
+export default TopBar

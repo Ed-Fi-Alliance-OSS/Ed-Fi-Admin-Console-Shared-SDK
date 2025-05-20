@@ -1,14 +1,14 @@
-import { Flex, FormControl, Text } from "@chakra-ui/react"
-import { ChangeEvent } from "react"
+import { Flex, Text, Field } from "@chakra-ui/react"
 import CustomFormLabel from "../common/CustomFormLabel"
 import CustomInput from "../common/CustomInput"
+import { ChangeEvent } from "react"
 
 interface EdxUserInfo {
-    email: string 
-    firstName: string 
-    lastName: string 
-    organization: string 
-    jobDepartment: string 
+    email: string
+    firstName: string
+    lastName: string
+    organization: string
+    jobDepartment: string
     jobTitle: string
 }
 
@@ -29,19 +29,19 @@ const UserInformationForm = ({ userInfo, onChange }: UserInformationFormProps) =
                     fontFamily='Poppins'
                     fontWeight='700'
                     fontSize='20px'>User Information</Text>
-                <FormControl mt='16px'>
-                    <CustomFormLabel 
+                <Field.Root mt='16px'>
+                    <CustomFormLabel
                         htmlFor="email"
                         text='Email' />
                     <Flex>
-                        <CustomInput 
+                        <CustomInput
                             id="email"
                             value={userInfo.email}
                             onChange={onChange}
                             placeholder="your email" />
-                        <Flex 
-                            border='1px' 
-                            borderColor='green.300' 
+                        <Flex
+                            border='1px'
+                            borderColor='green.300'
                             display='flex'
                             justifyContent='center'
                             alignItems='center'
@@ -53,57 +53,57 @@ const UserInformationForm = ({ userInfo, onChange }: UserInformationFormProps) =
                                 Verified
                         </Flex>
                     </Flex>
-                </FormControl>
-                <FormControl mt='16px'>
-                    <CustomFormLabel 
+                </Field.Root>
+                <Field.Root mt='16px'>
+                    <CustomFormLabel
                         htmlFor="firstName"
                         text='First Name' />
-                    <CustomInput 
+                    <CustomInput
                         id="firstName"
                         value={userInfo.firstName}
                         onChange={onChange}
                         placeholder="your email" />
-                </FormControl>
-                <FormControl mt='16px'>
-                    <CustomFormLabel 
+                </Field.Root>
+                <Field.Root mt='16px'>
+                    <CustomFormLabel
                         htmlFor="lastName"
                         text='Last Name' />
-                    <CustomInput 
+                    <CustomInput
                         id="lastName"
                         value={userInfo.lastName}
                         onChange={onChange}
                         placeholder="your email" />
-                </FormControl>
-                <FormControl mt='16px'>
-                    <CustomFormLabel 
+                </Field.Root>
+                <Field.Root mt='16px'>
+                    <CustomFormLabel
                         htmlFor="organization"
                         text='Organization' />
-                    <CustomInput 
+                    <CustomInput
                         id="organization"
                         value={userInfo.organization}
                         onChange={onChange}
                         placeholder="your email" />
-                </FormControl>
-                <FormControl mt='16px'>
-                    <CustomFormLabel 
+                </Field.Root>
+                <Field.Root mt='16px'>
+                    <CustomFormLabel
                         htmlFor="jobDepartment"
                         text='Job Department' />
-                    <CustomInput 
+                    <CustomInput
                         id="jobDepartment"
                         value={userInfo.jobDepartment}
                         onChange={onChange}
                         placeholder="your job department" />
-                </FormControl>
-                <FormControl mt='16px'>
-                    <CustomFormLabel 
+                </Field.Root>
+                <Field.Root mt='16px'>
+                    <CustomFormLabel
                         htmlFor="jobTitle"
                         text='Job Title' />
-                    <CustomInput 
+                    <CustomInput
                         id="jobTitle"
                         value={userInfo.jobTitle}
                         onChange={onChange}
                         placeholder="your job title" />
-                </FormControl>
+                </Field.Root>
             </Flex>
         </Flex>
     )

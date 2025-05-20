@@ -1,4 +1,4 @@
-import { Flex, Img, Text } from '@chakra-ui/react'
+import { Flex, Image, Text } from '@chakra-ui/react'
 import { IMessage } from '@novu/notification-center'
 import useImagesLinkUrl from '../../hooks/useImagesLinkUrl'
 
@@ -8,7 +8,7 @@ interface NotificationItemLeftProps {
 
 const NotificationItemLeft = ({ data }: NotificationItemLeftProps) => {
     const { getAssetsUrl } = useImagesLinkUrl()
-    
+
     const getCreatedByInitials = (data: IMessage) => {
         if (data.payload.createdByUser) {
             const createdByUser: any = data.payload.createdByUser
@@ -22,8 +22,8 @@ const NotificationItemLeft = ({ data }: NotificationItemLeftProps) => {
     if (data.payload.from) {
         if (data.payload.from === 'Acme Service Center') {
             return (
-                <Flex w='32px'> 
-                    <Img 
+                <Flex w='32px'>
+                    <Image
                         position='absolute'
                         src={data.seen? `${getAssetsUrl()}/exchange-read-symbol.png` : `${getAssetsUrl()}/exchange-unread-symbol.png`}
                         top='0'
@@ -34,12 +34,12 @@ const NotificationItemLeft = ({ data }: NotificationItemLeftProps) => {
                 </Flex>
             )
         }
-        
+
         return (
-            <Flex w='32px' /> 
+            <Flex w='32px' />
         )
     }
-    
+
     return (
         <Flex
             alignItems='center'
@@ -48,7 +48,7 @@ const NotificationItemLeft = ({ data }: NotificationItemLeftProps) => {
             borderRadius='full'
             h='32px'
             w='32px'>
-                <Text 
+                <Text
                     color='white'
                     fontFamily='Poppins'
                     fontWeight='600'

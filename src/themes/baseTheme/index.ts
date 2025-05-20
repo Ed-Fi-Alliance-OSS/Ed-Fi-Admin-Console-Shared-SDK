@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { createSystem, defaultConfig, mergeConfigs } from "@chakra-ui/react";
 import config from "./config";
 import styles from "./styles";
 import colors from "./colors";
@@ -13,26 +13,33 @@ import radioStylesConf from "./components/radioStylesConf";
 import selectStyleConf from "./components/selectStylesConf";
 import switchStylesConf from "./components/switchStylesConf";
 import textAreaStylesConf from "./components/textAreaStylesConf";
+import fieldStylesConf from "./components/fieldStylesConf";
 import { EDXErrorPageTheme } from "../../pages/EDXErrorPage.theme";
 
-const lightTheme = extendTheme({
-    fonts,
-    config,
-    colors,
-    styles,
-    components: {
-        Button: buttonStylesConf,
-        Text: textStylesConf,
-        Heading: headingStylesConf,
-        Input: inputStylesConf,
-        Checkbox: checkboxStylesConf,
-        NumberInput: numberInputStylesConf,
-        Radio: radioStylesConf,
-        Select: selectStyleConf,
-        Switch: switchStylesConf,
-        Textarea: textAreaStylesConf,
-        EDXErrorPageTheme,
-    },
-})
+const mergedConfig = mergeConfigs(defaultConfig, config);
 
-export default lightTheme
+const baseTheme = createSystem(mergedConfig, {
+  theme: {
+    tokens: {
+      colors: colors,
+      fonts: fonts,
+
+    },
+    recipes: {
+      Button: buttonStylesConf,
+      Text: textStylesConf as any,
+      Heading: headingStylesConf,
+      Input: inputStylesConf,
+      Checkbox: checkboxStylesConf,
+      NumberInput: numberInputStylesConf,
+      Radio: radioStylesConf,
+      Select: selectStyleConf,
+      Switch: switchStylesConf,
+      Textarea: textAreaStylesConf,
+      Field: fieldStylesConf,
+      EDXErrorPage: EDXErrorPageTheme as any,
+    },
+  },
+});
+
+export default baseTheme;

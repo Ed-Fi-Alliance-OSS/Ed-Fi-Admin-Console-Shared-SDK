@@ -1,10 +1,11 @@
-import { Button, Flex, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Text } from "@chakra-ui/react"
+import { Button, Flex, NumberInput, Text } from "@chakra-ui/react"
+import CustomNumberInput from "./CustomNumberInput"
 
-interface TablePaginationProps {    
+interface TablePaginationProps {
     pageSize: number
     currentPage: number
     totalPages: number
-    minPageSize: number, 
+    minPageSize: number,
     maxPageSize: number
     canNextPage: () => boolean
     canPreviousPage: () => boolean
@@ -17,10 +18,10 @@ interface TablePaginationProps {
     onChangePageSize: (valueString: string | null | undefined) => void
 }
 
-const TablePagination = ({ 
-    canPreviousPage, 
-    canNextPage, 
-    currentPage, 
+const TablePagination = ({
+    canPreviousPage,
+    canNextPage,
+    currentPage,
     totalPages,
     onIncrementPageSize,
     onDecrementPageSize,
@@ -30,7 +31,7 @@ const TablePagination = ({
     pageSize,
     minPageSize,
     maxPageSize,
-    goToInitialPage, 
+    goToInitialPage,
     goToLastPage }: TablePaginationProps) => {
 
     return (
@@ -40,28 +41,21 @@ const TablePagination = ({
                     fontFamily='Poppins'
                     fontWeight='400'
                     mr='10px'
-                    size='xs'>Items per page:</Text>
-                <NumberInput 
+                    fontSize='xs'>Items per page:</Text>
+                <CustomNumberInput
+                    id="table-pagination-page-size"
                     value={pageSize}
-                    defaultValue={pageSize} 
-                    clampValueOnBlur={false}
-                    onChange={(s, n) => onChangePageSize(s)}
-                    aria-label="Page Index"
-                    min={minPageSize} 
+                    defaultValue={pageSize}
+                    min={minPageSize}
                     max={maxPageSize}
-                    size='xs'
-                    w='64px'>
-                        <NumberInputField />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper data-testid="increment-page-size-btn" onClick={() => onIncrementPageSize()} />
-                            <NumberDecrementStepper data-testid="decrement-page-size-btn" onClick={() => onDecrementPageSize()} />
-                        </NumberInputStepper>
-                </NumberInput>
+                    onChange={(valueString: string | null | undefined) => onChangePageSize(valueString)}
+                    disabled={false}
+                />
                 <Flex alignItems='center' ml='25px' w='50px'>
                     <Text
                         fontFamily='Poppins'
                         fontWeight='400'
-                        size='xs'>
+                        fontSize='xs'>
                             {currentPage} of{' '} {totalPages}
                     </Text>
                 </Flex>
@@ -72,7 +66,7 @@ const TablePagination = ({
                         minW='30px'
                         data-testid="goto-initial-page-btn"
                         onClick={goToInitialPage}
-                        isDisabled={!canPreviousPage()}>
+                        disabled={!canPreviousPage()}>
                         {'<<'}
                     </Button>
                     <Button
@@ -82,7 +76,7 @@ const TablePagination = ({
                         minW='30px'
                         ml='5px'
                         onClick={goToPreviousPage}
-                        isDisabled={!canPreviousPage()}>
+                        disabled={!canPreviousPage()}>
                         {'<'}
                     </Button>
                     <Button
@@ -92,7 +86,7 @@ const TablePagination = ({
                         ml='5px'
                         data-testid="goto-next-page-btn"
                         onClick={goToNextPage}
-                        isDisabled={!canNextPage()}>
+                        disabled={!canNextPage()}>
                         {'>'}
                     </Button>
                     <Button
@@ -102,7 +96,7 @@ const TablePagination = ({
                         ml='5px'
                         data-testid="goto-last-page-btn"
                         onClick={goToLastPage}
-                        isDisabled={!canNextPage()}>
+                        disabled={!canNextPage()}>
                         {'>>'}
                     </Button>
                 </Flex>

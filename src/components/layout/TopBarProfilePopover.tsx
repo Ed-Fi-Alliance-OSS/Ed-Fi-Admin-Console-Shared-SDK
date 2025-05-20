@@ -1,4 +1,12 @@
-import { Button, Flex, Popover, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverTrigger, Text, useColorModeValue, useDisclosure } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  Text,
+  Link,
+  useDisclosure,
+  Box
+} from '@chakra-ui/react'
+import { useColorModeValue, useColorMode } from '@chakra-ui/system'
 import { useContext } from 'react'
 import { BsPersonCircle } from 'react-icons/bs'
 import { ExternalAppsContext, useConfig } from '../../context'
@@ -18,14 +26,15 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
   const { externalApps } = useContext(ExternalAppsContext)
   const { getHelpLink } = useHelpLink()
   const { colorblued } = modeColors
+  const { colorMode } = useColorMode()
   const bg = useColorModeValue(colorblued.light, colorblued.dark)
   const profileIconColor = useColorModeValue('blue.900', 'white')
   const emailColor = useColorModeValue('gray.500', 'white')
   const logoutColor = useColorModeValue('red.700', 'white')
   const loginColor = useColorModeValue('blue.900', 'white')
   const lineColor = useColorModeValue('gray.200', 'blue.900')
-  // const { showEdxModal, hideEdxModal, openEdxModal } = useEdxModal()
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { open: isOpen, onClose, onOpen: onPopoverOpen } = useDisclosure()
+  const { open, onClose: onModalClose, onOpen } = useDisclosure()
   const {config} = useConfig()
 
   const getCommunityLink = (appsList: ExternalAppData[]) => {
@@ -38,26 +47,35 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
   }
 
   return (
-    <Popover>
-      <PopoverTrigger>
-        <Button
-          aria-label="Open profile menu"
-          border='none'
-          color={profileIconColor}
-          padding='0'
-          variant='icon'>
-          <BsPersonCircle fontSize='20px' aria-description="Profile Icon" aria-hidden="true" focusable="false" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent
-        aria-label="Profile Popover"
-        bg={bg}
-        w='268px'
-        minW='268px'
-        padding='16px'
-        right='10px'>
-        <PopoverCloseButton />
-        <PopoverBody color='white' padding='0px'>
+    <Box position="relative">
+      <Button
+        aria-label="Open profile menu"
+        border='none'
+        color={profileIconColor}
+        padding='0'
+        variant='ghost'
+        onClick={onPopoverOpen}>
+        <BsPersonCircle fontSize='20px' aria-hidden="true" focusable="false" />
+      </Button>
+
+      {isOpen && (
+        <Box
+          position="absolute"
+          right="0"
+          zIndex="10"
+          bg={bg}
+          w='268px'
+          minW='268px'
+          padding='16px'
+          shadow="md"
+          borderRadius="md">
+          <Button
+            position="absolute"
+            right="8px"
+            top="8px"
+            size="xs"
+            variant="ghost"
+            onClick={onClose}>✕</Button>
           <Flex direction='row' height='70px' w='full'>
             <Flex
               justifyContent='center'
@@ -81,17 +99,10 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                 color={emailColor}>{profileData ? profileData.email : 'guest@mail.com'}</Text>
             </Flex>
           </Flex>
-        </PopoverBody>
-        <PopoverFooter borderTop='none' color='black' padding='0'>
-          <Flex bg={lineColor} marginBottom='10px' h='1px' w='full' />
+
+          <Flex bg={lineColor} marginTop='10px' marginBottom='10px' h='1px' w='full' />
           <Flex flexDir='column' w='full'>
-            {/* <UserProfileModal 
-                            userProfileData={profileData}
-                            mode="simple"
-                            show={showEdxModal}
-                            onClose={hideEdxModal} /> */}
-            <Button
-              as='a'
+            <Link
               href={`${config.auth.authority}account?redirect_uri=${window.location.origin}${config.app.basePath}`}
               target='_blank'
               display='flex'
@@ -105,64 +116,39 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               minW='auto'
               w='auto'>
               Account Info
-            </Button>
-            {/* <Link 
-                            href={getCommunityLink(externalApps)}
-                            display='flex'
-                            justifyContent='flex-start'
-                            color='black'
-                            textAlign='start'
-                            fontFamily='Poppins'
-                            fontWeight='400'
-                            fontSize='xs'
-                            marginTop='5px'
-                            minW='auto'
-                            w='auto'>
-                                Community
-                        </Link> */}
-            {/* <Link 
-                            href={getHelpLink()}
-                            display='flex'
-                            justifyContent='flex-start'
-                            color='black'
-                            textAlign='start'
-                            fontFamily='Poppins'
-                            fontWeight='400'
-                            fontSize='xs'
-                            marginTop='5px'
-                            minW='auto'
-                            w='auto'>
-                                Help
-                        </Link> */}
+            </Link>
           </Flex>
+
           <Flex bg={lineColor} margin='10px 0' h='1px' w='full' />
           <CommonModal
-            show={isOpen}
+            show={open}
             canClose={!isClosingSession}
             header='Log Out'
             content='Are you sure you want to log out?'
             footer={<>
               <Button
                 aria-label="Cancel"
-                onClick={onClose}
-                isDisabled={isClosingSession}
-                variant='primaryGray300'
+                onClick={onModalClose}
+                disabled={isClosingSession}
+                variant="solid"
+                colorPalette="gray"
                 size='md'>
                 Cancel
               </Button>
               <Button
                 aria-label="Log out"
                 onClick={onLogOut}
-                isDisabled={isClosingSession}
-                isLoading={isClosingSession}
-                variant='primaryBlue600'
+                disabled={isClosingSession}
+                loading={isClosingSession}
+                variant="solid"
+                colorPalette="blue"
                 _hover={{ background: 'blue.800' }}
                 marginLeft='15px'
                 size='md'>
                 Log Out
               </Button>
             </>}
-            onClose={onClose} />
+            onClose={onModalClose} />
           {profileData ?
             <Button
               aria-label="Log out"
@@ -193,9 +179,9 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               _hover={{ background: 'none', textDecor: 'underline' }}>
               {'Sign in'}
             </Button>}
-        </PopoverFooter>
-      </PopoverContent>
-    </Popover>
+        </Box>
+      )}
+    </Box>
   )
 }
 

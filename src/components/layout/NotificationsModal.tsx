@@ -7,13 +7,7 @@ import {
 import NotificationsModalContent from "./NotificationsModalContent";
 import getDaysDifference from "../../helpers/getDaysDifference";
 import EdxModalContentWrapper from "./EdxModalContentWrapper";
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-} from "@chakra-ui/react";
+import { Dialog, Box } from "@chakra-ui/react";
 
 interface NotificationsModalProps {
   show: boolean;
@@ -155,52 +149,54 @@ const NotificationsModal = ({
   }, [unreadNotifications, unseenNotifications, readNotifications]);
 
   return (
-    <Modal isOpen={show} onClose={onClose} motionPreset="slideInRight">
-      <ModalOverlay />
-      <ModalContent
-        borderRadius="0"
-        top="0rem"
-        mt="0"
-        h="100vh"
-        marginLeft="auto"
-        maxW="629px"
-        w="629px"
-      >
-        <ModalCloseButton />
-        <ModalBody
-          bg="#eff4f6"
-          padding="111px 67px 463px 42px"
-          left="0"
+    <Dialog.Root open={show} onOpenChange={onClose}>
+      <Dialog.Backdrop />
+      <Dialog.Content>
+        <Dialog.CloseTrigger />
+        <Box
+          borderRadius="0"
+          top="0rem"
+          mt="0"
+          h="100vh"
+          marginLeft="auto"
+          maxW="629px"
           w="629px"
-          maxW="629x"
         >
-          <EdxModalContentWrapper
-            heading="Notifications"
-            hideControls={true}
-            isSavingChanges={false}
-            onSave={() => null}
-            onCancel={onClose}
+          <Dialog.Body
+            bg="#eff4f6"
+            padding="111px 67px 463px 42px"
+            left="0"
+            w="629px"
+            maxW="629x"
           >
-            <NotificationsModalContent
-              unReadNotifications={unreadNotifications}
-              readNotifications={readNotifications}
-              unseenCount={unreadNotifications ? unreadNotifications.length : 0}
-              isLoading={isLoading}
-              isFetching={isFetching}
-              unreadInfiniteScroll={unreadInfiniteScroll}
-              readInfiniteScroll={readInfiniteScroll}
-              scrollHasNextPage={hasNextPage}
-              onActivateUnreadInfiniteScroll={onActivateUnreadInfiniteScroll}
-              onActivateReadInfiniteScroll={onActivateReadInfiniteScroll}
-              onMarkNotificationAsRead={markNotificationAsRead}
-              onMarkAllAsRead={onMarkAllAsRead}
-              onRemoveNotification={onRemoveNotification}
-              onScrollFetch={fetchNextPage}
-            />
-          </EdxModalContentWrapper>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+            <EdxModalContentWrapper
+              heading="Notifications"
+              hideControls={true}
+              isSavingChanges={false}
+              onSave={() => null}
+              onCancel={onClose}
+            >
+              <NotificationsModalContent
+                unReadNotifications={unreadNotifications}
+                readNotifications={readNotifications}
+                unseenCount={unreadNotifications ? unreadNotifications.length : 0}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                unreadInfiniteScroll={unreadInfiniteScroll}
+                readInfiniteScroll={readInfiniteScroll}
+                scrollHasNextPage={hasNextPage}
+                onActivateUnreadInfiniteScroll={onActivateUnreadInfiniteScroll}
+                onActivateReadInfiniteScroll={onActivateReadInfiniteScroll}
+                onMarkNotificationAsRead={markNotificationAsRead}
+                onMarkAllAsRead={onMarkAllAsRead}
+                onRemoveNotification={onRemoveNotification}
+                onScrollFetch={fetchNextPage}
+              />
+            </EdxModalContentWrapper>
+          </Dialog.Body>
+        </Box>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 };
 

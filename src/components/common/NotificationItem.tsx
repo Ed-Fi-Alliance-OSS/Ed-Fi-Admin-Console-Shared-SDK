@@ -16,7 +16,7 @@ const NotificationItem = ({ data, onRemoveNotification, onMarkAsRead }: Notifica
     return (
         <Flex
             bg={data.seen? 'gray.50' : 'red.50'}
-            h='115px' 
+            h='115px'
             w='full'>
                 <Flex bg={data.seen? 'gray.50' : 'orange.400'} h='full' w='5px' />
                 <Flex position='relative' py='12px' px='10px' w='full'>
@@ -25,15 +25,15 @@ const NotificationItem = ({ data, onRemoveNotification, onMarkAsRead }: Notifica
                        <NotificationItemContent content={data.payload.content as string} />
                         <Flex mt='auto' w='full'>
                             <NotificationItemLogo data={data} />
-                            <Text 
-                                fontFamily='Poppins' 
-                                color='gray.500' 
+                            <Text
+                                fontFamily='Poppins'
+                                color='gray.500'
                                 ml='10px'
-                                size='xs'>{getTimeAgo(Date.parse(data.createdAt)).replace("minutes", "min")}</Text>
+                                fontSize='xs'>{getTimeAgo(Date.parse(data.createdAt)).replace("minutes", "min")}</Text>
                         </Flex>
                     </Flex>
                     <Flex alignItems='center' justifyContent='center' ml='auto' w='50px'>
-                        <NotificationItemPopover 
+                        <NotificationItemPopover
                             messageId={data._id}
                             wasRead={data.read}
                             onMarkAsRead={onMarkAsRead}

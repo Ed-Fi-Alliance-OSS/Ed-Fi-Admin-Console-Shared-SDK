@@ -1,5 +1,6 @@
-import { CheckCircleIcon, ChevronDownIcon } from "@chakra-ui/icons"
-import { Button, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, Tooltip, useColorModeValue } from "@chakra-ui/react"
+import { FaCheckCircle, FaChevronDown } from "react-icons/fa"
+import { Button, Flex, Popover, Spinner, Text, Tooltip, Box } from "@chakra-ui/react"
+import { useColorModeValue } from "@chakra-ui/system"
 import { useConfig } from '../../context'
 import { Tenant, UserProfile } from "../../core"
 import useTenantSelectPopover from "../../hooks/useTenantSelectPopover"
@@ -51,9 +52,9 @@ const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantS
     }
 
     return (
-        <Popover>
-            <PopoverTrigger>
-                <Button 
+        <Popover.Root>
+            <Popover.Trigger>
+                <Button
                     aria-label={tenantBtnLabel}
                     color='gray.400'
                     ml='10px'
@@ -64,83 +65,93 @@ const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantS
                                 Tenant Instance:
                         </Text>
                         <Flex alignItems='center' border='2px' borderColor='gray.300' borderRadius='4px' py='5px' px='10px' ml='10px'>
-                            <Text 
-                                size='xs'
+                            <Text
+                                fontSize='xs'
                                 color={tenantTextColor}
                                 fontFamily='Poppins'
                                 fontWeight='light'>
                                     {findCurrentTenant()}
                             </Text>
-                            <ChevronDownIcon
-                                fontSize='20px' 
-                                marginLeft='10px' 
+                            <FaChevronDown
+                                fontSize='20px'
+                                style={{ marginLeft: '10px' }}
                                 aria-hidden="true" focusable="false" />
                         </Flex>
                 </Button>
-            </PopoverTrigger>
-            <PopoverContent aria-label={`${tenantBtnLabel} Select`} bg={bg} w='268px' zIndex='3'>
-                <PopoverBody padding='16px 16px'>
-                    <Flex flexDir='column' marginTop='0px' w='full'>
-                        {topItemsList.map(tenant => 
-                            <Button
-                                aria-label={`Select ${tenant.document.name} tenant`}
-                                display='flex'
-                                color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor}
-                                justifyContent='space-between'
-                                isDisabled={isChangingTenant}
-                                size='sm'
-                                padding='0 10px'
-                                w='full'
-                                _hover={{ backgroundColor: textBg }}
-                                key={tenant.tenantId}
-                                onClick={() => handleChangeTenantId(tenant)}>
-                                    <Tooltip 
-                                        hasArrow 
-                                        label={<Flex color='white' flexDir='column' w='full'>
-                                            <Text color='white' fontFamily='Poppins'>Tenant ID: {tenant.tenantId}</Text>
-                                            <Text color='white' fontFamily='Poppins'>Org ID: {tenant.document.name || tenant.tenantId}</Text>
-                                        </Flex>} 
-                                        bg='black' 
-                                        fontSize='12px' 
-                                        color="white">
-                                            <Text color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor }>
-                                                {tenant.document.name || tenant.tenantId}
-                                            </Text>
-                                    </Tooltip>
-                                    { isSelectedTenantId(tenant, getSelectedTenant()) && 
-                                        <CheckCircleIcon 
+            </Popover.Trigger>
+            <Popover.Content>
+                <Box bg={bg} w='268px' zIndex='3' aria-label={`${tenantBtnLabel} Select`}>
+                    <Popover.Body padding='16px 16px'>
+                        <Flex flexDir='column' marginTop='0px' w='full'>
+                            {topItemsList.map(tenant => (
+                                <Button
+                                    aria-label={`Select ${tenant.document.name} tenant`}
+                                    display='flex'
+                                    color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor}
+                                    justifyContent='space-between'
+                                    disabled={isChangingTenant}
+                                    size='sm'
+                                    padding='0 10px'
+                                    w='full'
+                                    _hover={{ backgroundColor: textBg }}
+                                    key={tenant.tenantId}
+                                    onClick={() => handleChangeTenantId(tenant)}>
+                                    <Tooltip.Root>
+                                        <Tooltip.Trigger>
+                                            <span>
+                                                <Text color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor }>
+                                                    {tenant.document.name || tenant.tenantId}
+                                                </Text>
+                                            </span>
+                                        </Tooltip.Trigger>
+                                        <Tooltip.Content>
+                                            <Box bg='black' fontSize='12px' color="white" p={2} borderRadius='md'>
+                                                <Text color='white' fontFamily='Poppins'>Tenant ID: {tenant.tenantId}</Text>
+                                                <Text color='white' fontFamily='Poppins'>Org ID: {tenant.document.name || tenant.tenantId}</Text>
+                                            </Box>
+                                        </Tooltip.Content>
+                                    </Tooltip.Root>
+                                    { isSelectedTenantId(tenant, getSelectedTenant()) &&
+                                        <FaCheckCircle
                                             color={selectedColor}
                                             fontSize='14px' /> }
                                     { tenant.tenantId === tenantIdToUpdate && <Spinner size='sm' /> }
-                            </Button>
-                        )}
-                    </Flex>
-                    { showSearchBar && <>
-                        <Flex h='2px' bg='gray.300' my='16px' />
-                        <TenantSelectPopoverSearchBar
-                            searchText={searchText}
-                            onSearch={onSearch} />
-                        { filteredList.length > 0 && <>
-                            <TenantSelectPopoverSearchList
-                                filteredList={filteredList}
-                                tenantIdToUpdate={tenantIdToUpdate}
-                                isChangingTenant={isChangingTenant}
-                                handleChangeTenantId={handleChangeTenantId} />
-                            <TenantSelectPopoverPaginationControls
-                                shownItems={filteredList.length}
-                                totalItems={paginationData.totalCount}
-                                onLoadMoreItems={() => {}} />
-                        </> }
-                        { foundNoResults && <Text 
-                            color='gray.800' 
-                            fontSize='12px'
-                            mt='12px'>
-                                Found 0 results
-                            </Text> }
-                    </> }
-                </PopoverBody>
-            </PopoverContent>
-        </Popover>
+                                </Button>
+                            ))}
+                        </Flex>
+                        { showSearchBar && (
+                            <>
+                                <Flex h='2px' bg='gray.300' my='16px' />
+                                <TenantSelectPopoverSearchBar
+                                    searchText={searchText}
+                                    onSearch={onSearch} />
+                                { filteredList.length > 0 && (
+                                    <>
+                                        <TenantSelectPopoverSearchList
+                                            filteredList={filteredList}
+                                            tenantIdToUpdate={tenantIdToUpdate}
+                                            isChangingTenant={isChangingTenant}
+                                            handleChangeTenantId={handleChangeTenantId} />
+                                        <TenantSelectPopoverPaginationControls
+                                            shownItems={filteredList.length}
+                                            totalItems={paginationData.totalCount}
+                                            onLoadMoreItems={() => {}} />
+                                    </>
+                                ) }
+                                { foundNoResults && (
+                                    <Text
+                                        color='gray.800'
+                                        fontSize='12px'
+                                        mt='12px'>
+                                        Found 0 results
+                                    </Text>
+                                ) }
+                            </>
+                        ) }
+                    </Popover.Body>
+                </Box>
+            </Popover.Content>
+        </Popover.Root>
     )
 }
 

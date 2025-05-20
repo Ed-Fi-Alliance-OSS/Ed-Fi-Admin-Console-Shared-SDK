@@ -1,25 +1,25 @@
 import { Flex, Text } from "@chakra-ui/react"
 
 interface CustomErrorFieldProps {
-    errorMessage: string 
+    errorMessage: string
 }
 
 const CustomErrorField = ({ errorMessage }: CustomErrorFieldProps) => {
     return (
-        <Flex 
+        <Flex
             alignItems='center'
             bg='red.100'
             borderRadius='4px'
-            mt='10px'
-            mb='5px'
+            marginTop='10px'
+            marginBottom='5px'
             padding='4px 8px'
-            h='20px' 
-            w='auto'>
+            height='20px'
+            width='auto'>
                 <Text
                     color='red.700'
                     fontFamily='Archivo Narrow'
                     fontWeight='400'
-                    size='sm'
+                    fontSize='sm'
                     lineHeight='16px'>
                         {errorMessage}
                 </Text>

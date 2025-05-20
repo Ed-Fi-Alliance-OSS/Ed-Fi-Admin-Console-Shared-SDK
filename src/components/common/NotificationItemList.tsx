@@ -1,10 +1,10 @@
-import { Box, Flex, List, ListItem } from "@chakra-ui/react"
+import { Box, Flex, List } from "@chakra-ui/react"
 import { IMessage } from "@novu/notification-center"
 import NotificationItem from "./NotificationItem"
 
 interface NotificationItemListProps {
     notificationsList: IMessage[]
-    infiniteScroll: boolean 
+    infiniteScroll: boolean
     mode: 'read' | 'unread'
     onMarkNotificationAsRead: (messageId: string) => void
     onRemoveNotification: (messageId: string) => void
@@ -33,23 +33,23 @@ const NotificationItemList = ({ notificationsList, infiniteScroll, mode, onMarkN
     }
 
     return (
-        <List>
-            {notificationsList.map((notification) => 
-                <ListItem 
+        <List.Root>
+            {notificationsList.map((notification) =>
+                <List.Item
                     key={notification._id}
                     _notFirst={{ mt: '10px' }}>
-                        <NotificationItem 
+                        <NotificationItem
                             data={notification}
                             onMarkAsRead={onMarkNotificationAsRead}
                             onRemoveNotification={onRemoveNotification} />
-                </ListItem>).slice(0, selectAmountOfItemsToShow())}
-            {shouldShowGradientNotification() && 
-            <ListItem 
+                </List.Item>).slice(0, selectAmountOfItemsToShow())}
+            {shouldShowGradientNotification() &&
+            <List.Item
                 key={getGradientNotification()._id}
                 _notFirst={{ mt: '10px' }}>
-                    <Flex 
+                    <Flex
                         className="gradient"
-                        h='115px' 
+                        h='115px'
                         w='full'
                         position='relative'
                         zIndex='2'>
@@ -64,8 +64,8 @@ const NotificationItemList = ({ notificationsList, infiniteScroll, mode, onMarkN
                                 h='115px'
                                 w='100%' />
                     </Flex>
-            </ListItem>}
-        </List>
+            </List.Item>}
+        </List.Root>
     )
 }
 

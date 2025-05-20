@@ -1,38 +1,31 @@
-import { Container, chakra, shouldForwardProp } from '@chakra-ui/react';
-import { motion, isValidMotionProp } from 'framer-motion';
+import { Container, Box } from '@chakra-ui/react';
+import { keyframes } from "@emotion/react";
 
-const ChakraBox = chakra(motion.div, {
-  /**
-   * Allow motion props and non-Chakra props to be forwarded.
-   */
-  shouldForwardProp: (prop) => isValidMotionProp(prop) || shouldForwardProp(prop),
-});
 
 export default function App() {
+  const dizzyAnimation = keyframes`
+  0% { transform: scale(1) rotate(0deg); border-radius: 20%; }
+  25% { transform: scale(2) rotate(0deg); border-radius: 20%; }
+  50% { transform: scale(2) rotate(270deg); border-radius: 50%; }
+  75% { transform: scale(1) rotate(270deg); border-radius: 50%; }
+  100% { transform: scale(1) rotate(0deg); border-radius: 20%; }
+`;
+
   return (
     <Container h="100vh" display="flex" alignItems="center" justifyContent="center">
-      <ChakraBox
-        animate={{
-          scale: [1, 2, 2, 1, 1],
-          rotate: [0, 0, 270, 270, 0],
-          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-        }}
-        // @ts-ignore no problem in operation, although type error appears.
-        transition={{
-          duration: 3,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "loop",
-        }}
+      <Box
+        animation={`${dizzyAnimation} 3s ease-in-out infinite alternate`}
         padding="2"
         bgGradient="linear(to-l, #7928CA, #FF0080)"
         display="flex"
         justifyContent="center"
         alignItems="center"
         width="100px"
-        height="100px">
-          I'm Dizzy!
-      </ChakraBox>
+        height="100px"
+        borderRadius="20%"
+      >
+        I'm Dizzy!
+      </Box>
     </Container>
   )
 }

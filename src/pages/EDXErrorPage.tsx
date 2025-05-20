@@ -1,4 +1,5 @@
-import { Box, Button, Flex, Img, Text, useStyleConfig } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { useStyleConfig } from "@chakra-ui/system";
 
 export type ErrorStatus = "403" | "404" | "500" | "503";
 
@@ -57,9 +58,9 @@ const EDXErrorPage = ({
 
   const { title, description, additionalDescription } =
     errorStatusMessages[errorStatus];
-
+   // {...styles}
   return (
-    <Flex __css={styles} h={height} minH={minHeight} w={width} minW={minWidth}>
+    <Flex   h={height} minH={minHeight} w={width} minW={minWidth}>
       <Flex className="content-container">
         <Box className="error-code-container">
           <Text>ERROR {errorStatus}</Text>
@@ -83,10 +84,10 @@ const EDXErrorPage = ({
           {secondaryButtonLabel && secondaryButtonBackUrl && (
             <Button
               as="a"
-              href={secondaryButtonBackUrl}
+              ref={secondaryButtonBackUrl}
               size="md"
               className="secondary-button"
-              variant={"secondaryBlue600"}
+              variant="outline" // Updated to fit V3 styling
             >
               {secondaryButtonLabel}
             </Button>
@@ -94,10 +95,10 @@ const EDXErrorPage = ({
 
           <Button
             as="a"
-            href={primaryButtonBackUrl}
+            ref={primaryButtonBackUrl}
             size="md"
             className="primary-button"
-            variant={"primaryBlue600"}
+            variant={"solid"} // Changed from primaryBlue600
           >
             {primaryButtonLabel}
           </Button>

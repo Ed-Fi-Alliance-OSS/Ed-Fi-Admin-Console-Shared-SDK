@@ -10,23 +10,24 @@ interface SessionExpiredModalProps {
 
 const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: SessionExpiredModalProps) => {
     return (
-        <CommonModal 
-            show={show}       
+        <CommonModal
+            show={show}
             onClose={onClose}
             canClose={false}
             closeOnOverlayClick={false}
             header='Inactive Session'
-            content='To continue your session, please click on "Continue Session"' 
+            content='To continue your session, please click on "Continue Session"'
             footer={<>
-                <Button 
+                <Button
                     aria-label="Continue session"
                     onClick={onClose}
-                    isDisabled={isClosingSession}
+                    disabled={isClosingSession}
                     size='md'
-                    variant="primaryGray300">
+                    variant="solid"
+                    colorPalette="primaryGray300">
                         Continue Session
                 </Button>
-                <Button 
+                <Button
                     aria-label="Log out"
                     onClick={onLogout}
                     isLoading={isClosingSession}

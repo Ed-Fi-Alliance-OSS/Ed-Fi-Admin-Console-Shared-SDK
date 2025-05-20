@@ -1,9 +1,10 @@
-import { CopyIcon } from "@chakra-ui/icons"
-import { Button, Tooltip } from "@chakra-ui/react"
+import { AiOutlineCopy as CopyIcon } from "react-icons/ai"
+import { Button } from "@chakra-ui/react"
+import { Tooltip } from "@chakra-ui/tooltip"
 import { useState } from "react"
 
 interface CopyTextBtnProps {
-    withoutBorder?: boolean 
+    withoutBorder?: boolean
     value?: string
 }
 
@@ -25,15 +26,15 @@ const CopyTextBtn = ({ value, withoutBorder }: CopyTextBtnProps) => {
     }
 
     return (
-        <Tooltip 
+        <Tooltip
             display='flex'
             justifyContent='center'
             borderRadius='4px'
-            label={tooltipMessage} 
-            hasArrow 
-            bg={tooltipMessage === copyMessage? 'blue.600' : 'green.700'} 
-            placement='top' 
-            closeOnClick={false} 
+            label={tooltipMessage}
+            hasArrow
+            bg={tooltipMessage === copyMessage? 'blue.600' : 'green.700'}
+            placement='top'
+            closeOnClick={false}
             onClose={onClose}
             w='120px'>
                 <Button

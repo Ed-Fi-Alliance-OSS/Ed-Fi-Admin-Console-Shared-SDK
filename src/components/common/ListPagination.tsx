@@ -11,7 +11,7 @@ interface ListPaginationProps {
     canGoToNextPage: () => boolean
 }
 
-const ListPagination = ({ 
+const ListPagination = ({
     currentPage,
     totalPages,
     goToNextPage,
@@ -33,13 +33,13 @@ const ListPagination = ({
                 color='black'
                 fontWeight='400'
                 onClick={goToPreviousPage}
-                isDisabled={!canGoToPreviousPage()}
+                disabled={!canGoToPreviousPage()}
                 minW='30px'
                 maxW='30px'>
                     {"<"}
             </Button>
-            {pagesArr.map((page, index) => 
-                <Button 
+            {pagesArr.map((page, index) =>
+                <Button
                     aria-label={`Go to page ${index + 1}`}
                     fontFamily='Poppins'
                     fontWeight='400'
@@ -56,7 +56,7 @@ const ListPagination = ({
             <Button
                 aria-label='Go to next page'
                 onClick={goToNextPage}
-                isDisabled={!canGoToNextPage()}
+                disabled={!canGoToNextPage()}
                 color='black'
                 minW='30px'
                 maxW='30px'>

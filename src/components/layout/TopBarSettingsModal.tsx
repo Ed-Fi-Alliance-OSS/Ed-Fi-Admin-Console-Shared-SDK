@@ -1,42 +1,49 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay } from "@chakra-ui/react"
+import { Dialog, Box, IconButton } from "@chakra-ui/react"
 import SettingsModalContentWrapper from "./SettingsModalContentWrapper"
 
 interface TopBarSettingsModalProps {
-    show: boolean 
+    show: boolean
     content?: JSX.Element
     onClose: () => void
 }
 
 const TopBarSettingsModal = ({ show, content, onClose }: TopBarSettingsModalProps) => {
     return (
-        <Modal 
-            isOpen={show} 
-            onClose={onClose}
-            motionPreset='slideInRight'>
-                <ModalOverlay />
-                <ModalContent 
-                    borderRadius='0'
-                    top='0rem' 
-                    mt='0'
-                    h='100vh'
-                    marginLeft='auto'
-                    maxW='629px' 
-                    w='629px' >
-                        <ModalCloseButton />
-                        <ModalBody 
-                            bg='#eff4f6'
-                            padding='111px 67px 463px 42px'
-                            left='0'
-                            w='629px' 
-                            maxW='629px'>
+        <Dialog.Root
+            open={show}
+            onOpenChange={(isOpen: boolean) => !isOpen && onClose()}
+            modal={true}>
+                <Dialog.Backdrop />
+                <Dialog.Positioner>
+                    <Dialog.Content>
+                        <Box
+                            borderRadius='0'
+                            top='0rem'
+                            marginTop='0'
+                            height='100vh'
+                            marginLeft='auto'
+                            maxWidth='629px'
+                            width='629px'
+                        >
+                            <Dialog.CloseTrigger />
+                            <Box
+                                bg='#eff4f6'
+                                padding='111px 67px 463px 42px'
+                                position='relative'
+                                left='0'
+                                width='629px'
+                                maxWidth='629px'
+                            >
                                 <SettingsModalContentWrapper
                                     onSave={() => console.log('save settings...')}
                                     onCancel={onClose}>
-                                    { content }
+                                    {content}
                                 </SettingsModalContentWrapper>
-                        </ModalBody>
-                </ModalContent>
-        </Modal>
+                            </Box>
+                        </Box>
+                    </Dialog.Content>
+                </Dialog.Positioner>
+        </Dialog.Root>
     )
 }
 

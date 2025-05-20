@@ -1,14 +1,18 @@
-import { forwardRef, Input } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
+import { forwardRef } from "react";
+import { ForwardedRef } from "react";
 
-const DatePickerInput = forwardRef((props, ref) => (
-    <Input 
-        className="example-custom-input" 
+
+const DatePickerInput = forwardRef((props: any, ref: ForwardedRef<HTMLInputElement>) => (
+    <Input
+        className="example-custom-input"
         onClick={props.onClick}
         onChange={props.onChange}
         ref={ref}
         value={props.value}
-        size='xs'
-        w='full' />
-)) as any;
+        size="xs"
+        w="full"
+    />
+));
 
-export default DatePickerInput
+export default DatePickerInput;

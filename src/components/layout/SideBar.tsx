@@ -1,5 +1,6 @@
-import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
-import { Button, Flex, useColorModeValue } from "@chakra-ui/react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Button, Flex } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/system";
 import { useLayoutEffect, useRef, useState } from "react";
 import SideBarMenu from "./SideBarMenu";
 
@@ -155,9 +156,9 @@ const SideBar = ({
           w="32px"
         >
           {expanded ? (
-            <ArrowBackIcon aria-hidden />
+            <FaArrowLeft aria-hidden />
           ) : (
-            <ArrowForwardIcon aria-hidden />
+            <FaArrowRight aria-hidden />
           )}
         </Button>
       </Flex>

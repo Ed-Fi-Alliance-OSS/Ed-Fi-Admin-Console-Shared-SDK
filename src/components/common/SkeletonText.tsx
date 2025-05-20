@@ -1,4 +1,5 @@
-import { Flex, keyframes, useColorModeValue } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
+import { keyframes, useColorModeValue } from "@chakra-ui/system"
 
 interface SkeletonTextProps {
     height: number
@@ -6,15 +7,10 @@ interface SkeletonTextProps {
 
 const SkeletonText = ({ height }: SkeletonTextProps) => {
     const bg = useColorModeValue("white", "blue.600")
-    const skeletonKeyframe = keyframes`
-         0% {
-            background-color: hsl(200, 20%, 70%);
-        }
-
-        100% {
-            background-color: hsl(200, 20%, 95%);
-        }
-    `
+    const skeletonKeyframe = keyframes({
+        from: { backgroundColor: "hsl(200, 20%, 70%)" },
+        to: { backgroundColor: "hsl(200, 20%, 95%)" }
+    })
 
     const skeletonAnimation = `${skeletonKeyframe} 1s linear infinite alternate`
 
@@ -25,8 +21,9 @@ const SkeletonText = ({ height }: SkeletonTextProps) => {
             marginBottom='6px'
             animation={skeletonAnimation}
             h={`${height}px`}
-            w='full' 
-            _last={{ marginBottom: 0, width: '60%' }}/>
+            w='full'
+            _last={{ marginBottom: 0, width: '60%' }}
+        />
     )
 }
 

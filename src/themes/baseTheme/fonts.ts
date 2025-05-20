@@ -1,6 +1,6 @@
 const fonts = {
-    heading: `'Poppins', Poppins, 'Archivo Narrow', sans-serif`,
-    body: `'Poppins', Poppins, 'Archivo Narrow', sans-serif`,
-}
+  heading: { value: "'Poppins', Poppins, 'Archivo Narrow', sans-serif" },
+  body: { value: "'Poppins', Poppins, 'Archivo Narrow', sans-serif" },
+};
 
-export default fonts
+export default fonts;

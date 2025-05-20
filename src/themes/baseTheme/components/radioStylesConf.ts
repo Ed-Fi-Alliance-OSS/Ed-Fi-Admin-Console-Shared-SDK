@@ -1,4 +1,4 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig } from "@chakra-ui/styled-system";
 
 const radioStylesConf = defineStyleConfig({
     baseStyle: {
@@ -49,6 +49,6 @@ const radioStylesConf = defineStyleConfig({
         }
        }
     }
-}) as any
+}) as any;
 
-export default radioStylesConf
+export default radioStylesConf;

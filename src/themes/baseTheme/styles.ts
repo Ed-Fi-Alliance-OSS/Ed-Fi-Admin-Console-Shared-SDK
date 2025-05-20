@@ -1,13 +1,15 @@
-import { StyleFunctionProps } from "@chakra-ui/react"
-import { mode } from "@chakra-ui/theme-tools"
+import { SystemStyleObject } from "@chakra-ui/react";
 
-const styles = {
-    global: (props: StyleFunctionProps) => ({
-        body: {
-            color: mode("black", "white")(props),
-            bg: mode("gray.50", "blue.800")(props)
-        }
-    })
-}
+// Define styles as token definitions for CreateSystem v3
+const styles: Record<string, SystemStyleObject> = {
+  bodyColor: {
+    color: "{colors.black.value}",
+    _dark: { color: "white" }
+  },
+  bodyBg: {
+    backgroundColor: "{colors.gray.50.value}",
+    _dark: { backgroundColor: "{colors.blue.800.value}" }
+  }
+};
 
-export default styles
+export default styles;

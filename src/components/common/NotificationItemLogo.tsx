@@ -1,4 +1,4 @@
-import { Flex, Img } from "@chakra-ui/react"
+import { Flex, Image } from "@chakra-ui/react"
 import { IMessage } from "@novu/notification-center"
 import useImagesLinkUrl from "../../hooks/useImagesLinkUrl"
 
@@ -21,7 +21,7 @@ const NotificationItemLogo = ({ data }: NotificationItemLogoProps) => {
     const getImageName = (applicationName: string) => {
         if (applicationName === 'The Community')
             return applicationImageNames.community
-        
+
         return applicationImageNames.edx
     }
 
@@ -29,7 +29,7 @@ const NotificationItemLogo = ({ data }: NotificationItemLogoProps) => {
         const applicationImageName = applicationImageNames[data.payload.from as string]
 
         return (
-            <Img 
+            <Image
                 src={`${getAssetsUrl()}/${getImageName(applicationImageName)}`}
                 borderRadius='4px'
                 h='16px'
@@ -39,10 +39,10 @@ const NotificationItemLogo = ({ data }: NotificationItemLogoProps) => {
     }
 
     return (
-        <Flex 
+        <Flex
             bg='blue.600'
             borderRadius='4px'
-            h='16px' 
+            h='16px'
             w='16px' />
     )
 }

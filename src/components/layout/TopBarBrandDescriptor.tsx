@@ -1,4 +1,6 @@
-import { Flex, Image, Link, Text, Tooltip, useColorModeValue } from "@chakra-ui/react"
+import { Flex, Image, Link, Text } from "@chakra-ui/react"
+import { Tooltip } from "@chakra-ui/tooltip"
+import { useColorModeValue } from "@chakra-ui/system"
 import { useConfig } from '../../context'
 
 interface TopBarBrandDescriptorProps {
@@ -16,7 +18,7 @@ const TopBarBrandDescriptor = ({ onClick }: TopBarBrandDescriptorProps) => {
   const margin = 'auto 0 auto 20px'
   const height = '40px'
   function getChildComponent() {
-    
+
 
     if (imageUrl) {
       return (
@@ -32,7 +34,7 @@ const TopBarBrandDescriptor = ({ onClick }: TopBarBrandDescriptorProps) => {
         color={textColor}
         fontFamily='Poppins'
         fontWeight='600'
-        size='sm'
+        fontSize='sm'
         margin={margin}>
         {appName ?? 'Admin Console'}
       </Text>
