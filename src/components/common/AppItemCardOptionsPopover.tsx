@@ -38,11 +38,12 @@ const AppItemCardOptionsPopover = ({
       <Popover.Trigger>
         <IconButton
           aria-label="application card menu"
-          icon={<BsThreeDotsVertical fontSize="20px" />}
           variant="ghost"
           size="sm"
-        />
-      </Popover.Trigger>
+        >
+          <BsThreeDotsVertical fontSize="20px" />
+        </IconButton>
+      </Popover.Trigger>Z
 
       <Popover.Content>
         <Flex aria-label="App Menu" bg={bg} p={0} maxW="290px">
@@ -118,9 +119,9 @@ const AppItemCardOptionsPopover = ({
             <Flex bg="gray.300" h="1.5px" mt="10px" />
 
             <Accordion.Root>
-              <Accordion.Item value="item-1">
-                <Accordion.ItemTrigger display="flex" justify="space-between" px={0}>
-                  <Flex align="center" color="blue.600">
+              <Accordion.Item>
+                <Accordion.ItemTrigger>
+                  <Flex align="center" color="blue.600" display="flex" justify="space-between" px={0}>
                     <MdModeComment />
                     <Text
                       color={textColor}
@@ -133,19 +134,21 @@ const AppItemCardOptionsPopover = ({
                     </Text>
                   </Flex>
                 </Accordion.ItemTrigger>
-                <Accordion.ItemContent p={0} pb={4}>
+                <Accordion.ItemContent >
+                  <Flex p={0} pb={4}>
                   {/* cSpell:disable */}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                   veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                   commodo consequat.
                   {/* cSpell:enable */}
+                  </Flex>
                 </Accordion.ItemContent>
               </Accordion.Item>
 
-              <Accordion.Item value="item-2">
-                <Accordion.ItemTrigger display="flex" justify="space-between" px={0}>
-                  <Flex align="center" color="blue.600">
+              <Accordion.Item>
+                <Accordion.ItemTrigger>
+                  <Flex align="center" color="blue.600" justify="space-between" px={0}>
                     <IoMdBookmarks fontSize="15px" />
                     <Text
                       color={textColor}
@@ -158,8 +161,8 @@ const AppItemCardOptionsPopover = ({
                     </Text>
                   </Flex>
                 </Accordion.ItemTrigger>
-                <Accordion.ItemContent p={0} pb={4}>
-                  <Flex direction="column">
+                <Accordion.ItemContent>
+                  <Flex direction="column"  p={0} pb={4}>
                     <Flex direction="column">
                       <Text
                         color={textColor}

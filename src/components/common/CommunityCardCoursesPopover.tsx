@@ -95,7 +95,8 @@ const CommunityCardCoursesPopover = () => {
               w='full'>
               <Button
                 aria-label="View All Courses"
-                variant='primaryBlue600'
+                variant="solid"
+                colorPalette="blue"
                 paddingLeft='15px'
                 paddingRight='15px'>View All Courses</Button>
             </Flex>

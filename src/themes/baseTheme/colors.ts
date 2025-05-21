@@ -144,16 +144,7 @@ const colors = {
     700: { value: "#8c293b" },
     800: { value: "#631422" },
     900: { value: "#4c1b24" }
-  },
-  bodyColor: {
-    base: { value: "{colors.black.value}" },
-    _dark: { value: "{colors.white.value}" },
-  },
-  bodyBg: {
-    base: { value: "{colors.gray.50.value}" },
-    _dark: { value: "{colors.blue.800.value}" },
-  },
-
+  }
 };
 
 export default colors;

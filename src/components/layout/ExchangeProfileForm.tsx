@@ -68,7 +68,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     </Flex>
                     <Button
                         ml='10px'
-                        variant='secondaryBlue600'
+                        variant="solid" //'secondaryBlue600'
                         w='150px'>
                             Upload Image
                     </Button>
@@ -135,7 +135,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     {exchangeProfile.tags.tagsList.filter(tag => tag !== '').map((tag, index) =>
                         <Tag.Root bg="gray.200" key={index} _notFirst={{ ml: '3px' }}>
                             <Tag.Label>{tag}</Tag.Label>
-                            <Tag.Close
+                            <Tag.CloseTrigger
                                 aria-label={`Remove ${tag} tag`}
                                 onClick={() => onRemoveTag(tag)} />
                         </Tag.Root>

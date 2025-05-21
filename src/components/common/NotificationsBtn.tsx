@@ -106,7 +106,7 @@ const NotificationsBtn = ({
             position="relative"
             padding="0"
             border="none"
-            variant="icon"
+            variant="solid" //"icon"
           >
             {hasNotifications && (
               <Flex

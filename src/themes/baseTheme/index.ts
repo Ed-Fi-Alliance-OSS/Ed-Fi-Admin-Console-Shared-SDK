@@ -1,6 +1,5 @@
-import { createSystem, defaultConfig, mergeConfigs } from "@chakra-ui/react";
-import config from "./config";
-import styles from "./styles";
+import { createSystem, defaultConfig } from "@chakra-ui/react";
+import themeModeConfig from "./config";
 import colors from "./colors";
 import fonts from "./fonts";
 import buttonStylesConf from "./components/buttonStylesConf";
@@ -16,14 +15,37 @@ import textAreaStylesConf from "./components/textAreaStylesConf";
 import fieldStylesConf from "./components/fieldStylesConf";
 import { EDXErrorPageTheme } from "../../pages/EDXErrorPage.theme";
 
-const mergedConfig = mergeConfigs(defaultConfig, config);
+// Merge color mode config with defaultConfig
+const mergedConfig = { ...defaultConfig, ...themeModeConfig };
 
 const baseTheme = createSystem(mergedConfig, {
   theme: {
     tokens: {
       colors: colors,
       fonts: fonts,
-
+    },
+    semanticTokens: {
+      colors: {
+        "chakra-body-text": {
+          default: { value: "{colors.black.value}" },
+          _dark: { value: "{colors.white.value}" }
+        },
+        "chakra-body-bg": {
+          default: { value: "{colors.gray.50.value}" },
+          _dark: { value: "{colors.blue.800.value}" }
+        },
+        // For colorPalette functionality, define blue palette semantic tokens
+        blue: {
+          solid: { value: "{colors.blue.500}" },
+          contrast: { value: "{colors.blue.100}" },
+          fg: { value: "{colors.blue.700}" },
+          muted: { value: "{colors.blue.100}" },
+          subtle: { value: "{colors.blue.200}" },
+          emphasized: { value: "{colors.blue.300}" },
+          focusRing: { value: "{colors.blue.500}" },
+        },
+        // Add other color palettes as needed
+      },
     },
     recipes: {
       Button: buttonStylesConf,

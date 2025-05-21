@@ -1,4 +1,4 @@
-import { RadioGroup } from "@chakra-ui/react"
+import { Box, Flex, HStack, RadioGroup, Text } from "@chakra-ui/react"
 
 interface CustomRadioProps {
     value: any
@@ -11,12 +11,16 @@ interface CustomRadioProps {
 const CustomRadio = ({ isChecked, text, value, name, onChange }: CustomRadioProps) => {
     return (
         <RadioGroup.Root value={isChecked ? value : undefined} name={name} onValueChange={onChange}>
-            <RadioGroup.Item value={value} checked={isChecked}>
-                <RadioGroup.ItemHiddenInput />
-                <RadioGroup.ItemIndicator />
-                <RadioGroup.ItemText>{text}</RadioGroup.ItemText>
-            </RadioGroup.Item>
-        </RadioGroup.Root>
+        <HStack>
+          <RadioGroup.Item>
+            <RadioGroup.ItemControl>
+              <RadioGroup.ItemIndicator />
+            </RadioGroup.ItemControl>
+            <RadioGroup.ItemHiddenInput>{value}</RadioGroup.ItemHiddenInput>
+            <RadioGroup.ItemText>{text}</RadioGroup.ItemText>
+          </RadioGroup.Item>
+        </HStack>
+      </RadioGroup.Root>
     )
 }
 
