@@ -1,9 +1,10 @@
-import { createContext, useEffect } from "react"
-import { AuthContextProps, useAuth } from "react-oidc-context"
-import { EdxAppConfig } from "../core/EdxApp.types"
-import { useUserAppList, useUserProfile } from "../hooks"
-import { ExternalAppsContext } from "./ExternalAppsContext"
-import { UserProfileContext } from "./UserProfileContext"
+import { createContext, useEffect } from "react";
+import { AuthContextProps, useAuth } from "react-oidc-context";
+import { EdxAppConfig } from "../core/EdxApp.types";
+import { useUserAppList, useUserProfile } from "../hooks";
+import { ExternalAppsContext } from "./ExternalAppsContext";
+import { UserProfileContext } from "./UserProfileContext";
+import useAuthActions from "../hooks/useAuthActions"; // Import useAuthActions
 
 interface ITEEAuthDataContext {
   edxAppConfig: EdxAppConfig | null;
@@ -25,6 +26,7 @@ export const TEEAuthDataContextProvider = ({
   edxAppConfig,
 }: TEEAuthContextProviderProps) => {
   const auth = useAuth();
+  const { fetchAccessToken } = useAuthActions(); // Use fetchAccessToken from useAuthActions
   const { userProfile, setUserProfile, loadingProfile } = useUserProfile({
     apiUrl: edxAppConfig.api.edfiApiBaseUri ?? "",
   });
@@ -39,7 +41,12 @@ export const TEEAuthDataContextProvider = ({
 
   useEffect(() => {
     auth.events.addSilentRenewError(async () => {
-      await auth.signinRedirect();
+      try {
+        // Replace auth.signinRedirect with fetchAccessToken
+        await fetchAccessToken();
+      } catch (error) {
+        console.error("Silent renew failed:", error);
+      }
     });
   }, []);
 

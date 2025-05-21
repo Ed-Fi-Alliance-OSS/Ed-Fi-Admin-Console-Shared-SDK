@@ -5,7 +5,7 @@ import { GetMyTenantsResponse, GetUsersListResponse, PostUserProfileExtensionRes
 import { GetMyTenantsResult, GetUserProfileResult, GetUsersListResult, PostTenantIdPreference, PostUserProfileExtensionResult } from "./ProfileService.result"
 
 const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) : GetUserProfileResult => {
-    
+
     // const url = `${apiUrl}/me`
     // const result = await httpService.get<UserProfile>({
     //     url: apiUrl,
@@ -13,7 +13,7 @@ const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) 
     //     access_token: token,
     //     apiConfig
     // })
-    
+
     return {
       type: 'Response',
       data: {
@@ -25,7 +25,7 @@ const fetchUserProfile = async (token: string, apiUrl: string, apiConfig?: Api) 
     }
 }
 
-const getUser = async (token: string, apiUrl: string, tenantId: string, email: string, apiConfig?: Api) : GetUsersListResult => {
+const getTenantUser = async (token: string, apiUrl: string, tenantId: string, email: string, apiConfig?: Api) : GetUsersListResult => {
     const baseUrl = `${apiConfig?.edfiApiBaseUri ?? ''}/tenants/${tenantId}/users`
 
     let filter = ""
@@ -33,7 +33,7 @@ const getUser = async (token: string, apiUrl: string, tenantId: string, email: s
         const valuesArray = email.split("+")
         filter = `pageIndex=0&pageSize=10&filter=email.toLower().contains("${valuesArray[0]}")&&email.toLower().contains("${valuesArray[1]}")&orderBy=firstName asc`
     }
-    else 
+    else
         filter = `pageIndex=0&pageSize=10&filter=email.toLower().contains("${email}".toLower())&orderBy=firstName asc`
 
     const url = `${baseUrl}?${filter}`
@@ -104,5 +104,5 @@ const getMyTenants = async (token: string, apiUrl: string, request: GetMyTenants
 }
 
 export {
-  addUserExtension, fetchUserProfile, getMyTenants, getUser, updateTenantIdPreference, updateUserExtension
+  addUserExtension, fetchUserProfile, getMyTenants, getTenantUser, updateTenantIdPreference, updateUserExtension
 }

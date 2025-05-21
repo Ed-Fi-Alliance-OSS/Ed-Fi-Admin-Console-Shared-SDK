@@ -3,6 +3,7 @@ import { useAuth } from 'react-oidc-context'
 import { useConfig } from "../context"
 import { UserProfile } from '../core'
 import useDecodeToken from './useDecodeToken'
+import useAuthActions from './useAuthActions'
 
 interface UseUserProfileProps {
 
@@ -14,11 +15,13 @@ const useUserProfile = ({  }: UseUserProfileProps) => {
     const [ loadingProfile, setLoadingProfile ] = useState(true)
     const { decodeTokenPayload } = useDecodeToken()
     const { config } = useConfig()
+    const { getUser } = useAuthActions()
+    const user = getUser() // Retrieve the user object from storage
 
     const fetchProfile = async () => {
-        if (auth.user) {
+        if (user) {
             try {
-                const token = auth.user.access_token
+                const token = user.access_token
                 if(!config) {
                   console.error("No Config found")
                   return
@@ -33,7 +36,7 @@ const useUserProfile = ({  }: UseUserProfileProps) => {
                     // const preferences: Preference[] = result.data.preferences
                     // const tenantPref = preferences.find(preference => preference.code === "selectedtenantid")
 
-                    const tokenPayload = decodeTokenPayload(auth.user.access_token)
+                    const tokenPayload = decodeTokenPayload(user.access_token)
                     const payloadTenantId = tokenPayload.tenantid
 
                     // console.log('tenantid pref', tenantPref?.value)
@@ -43,7 +46,7 @@ const useUserProfile = ({  }: UseUserProfileProps) => {
                     //     console.log('Signin redirect', payloadTenantId)
                     //     return await auth.signinRedirect()
                     // }
-    
+
                     setUserProfile({
                       firstName: tokenPayload?.given_name ?? '',
                       lastName: tokenPayload?.family_name ?? '',
@@ -70,7 +73,7 @@ const useUserProfile = ({  }: UseUserProfileProps) => {
     }
 
     useEffect(() => {
-        if (auth.user && !auth.isLoading && auth.isAuthenticated)
+        if (user && !auth.isLoading && auth.isAuthenticated)
             fetchProfile()
     }, [auth])
 

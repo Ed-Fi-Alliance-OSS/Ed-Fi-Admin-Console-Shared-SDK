@@ -3,6 +3,7 @@ import { useAuth } from 'react-oidc-context'
 import { TEEAuthDataContext } from "../context"
 import { ExternalAppData, UserProfile } from '../core'
 import { fetchUserApps } from '../services/AppsService/AppsService'
+import  userAuthActions from '../hooks/useAuthActions'
 
 interface UseUserAppListProps {
     userProfile: UserProfile | null
@@ -15,6 +16,8 @@ const useUserAppList = ({ userProfile, apiUrl }: UseUserAppListProps) => {
     const [ externalApps, setExternalApps ] = useState<ExternalAppData[]>([])
     const [ loadingExternalApps, setLoadingExternalApps ] = useState(false)
     const [ fetchedExternalApps, setFetchedExternalApps ] = useState(false)
+    const { getUser } = userAuthActions()
+    const user = getUser()
 
     const fetchExternalApps = async (token: string, tenantId: string) => {
         setLoadingExternalApps(true)
@@ -27,36 +30,36 @@ const useUserAppList = ({ userProfile, apiUrl }: UseUserAppListProps) => {
             const externalApps: ExternalAppData[] = result.data
 
             console.log('external apps in fetchExternal apps', externalApps)
-    
+
             if (externalApps.length > 0) {
                 externalApps.forEach(appData => {
                     appData.applicationUri = appData.applicationUri.replace(".edgraph.",".txedexchange.");
                 });
             }
-    
+
             if (externalApps.length > 0) {
                 const appsAvailable = externalApps
                     .filter(app => app.isTenantSubscribed)
                     .sort((a, b) => a.applicationName.localeCompare(b.applicationName))
-    
+
                 // console.log('available apps', appsAvailable)
-                
+
                 return setExternalApps(appsAvailable)
             }
-    
+
             setExternalApps(externalApps)
         }
     }
 
     useEffect(() => {
-        if (auth.user && userProfile) {
-            console.log('use effect appList auth.user and userprofile received')
+        if (user && userProfile) {
+            console.log('use effect appList user and userprofile received')
             const accessPref = undefined
 
             console.log('access pref', accessPref)
-            
+
             if (accessPref)
-                fetchExternalApps(auth.user.access_token, accessPref)
+                fetchExternalApps(user.access_token, accessPref)
         }
     }, [ auth, userProfile ])
 
