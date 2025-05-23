@@ -39,7 +39,7 @@ const SideBarMenuAccordionItem = ({ item, isOpen, showText, selectedItemId, sele
   };
 
   return (
-    <Accordion.Root w='full'>
+    <Accordion.Root index={[isOpen? 0 : -1]} collapsible w='full'>
       <Accordion.Item>
         <Popover.Root
           placement='right'

@@ -30,13 +30,14 @@ const RightSlideInPanelHeader = ({ actionText, actionButtonVariant, cancelButton
             <Flex alignItems='flex-end'>
                 <Button
                     onClick={onClose}
-                    variant="solid" //{ cancelButtonVariant ?? 'secondaryBlue600'}
+                    variant="solid" 
+                    color={ cancelButtonVariant ?? 'secondaryBlue600'}
                     size={ buttonsSize ?? 'xs' }
                     padding='0 25px'>Cancel</Button>
                 <Button
                     onClick={onAction}
                     variant="solid"
-                    colorScheme={ actionButtonVariant ?? 'primaryBlue600' }
+                    color={ actionButtonVariant ?? 'primaryBlue600' }
                     loading={isSaving}
                     disabled={isSaving || isDisabled}
                     size={ buttonsSize ?? 'xs' }

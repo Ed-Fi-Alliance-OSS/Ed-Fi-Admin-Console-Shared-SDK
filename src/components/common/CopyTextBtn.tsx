@@ -45,7 +45,7 @@ const CopyTextBtn = ({ value, withoutBorder }: CopyTextBtnProps) => {
                     padding={withoutBorder? '0px' : '4px'}
                     border={withoutBorder? 'none' : '1px'}
                     variant='solid'
-                    /*{withoutBorder? 'simple' : 'secondaryBlue600'}*/
+                    //color={withoutBorder? 'simple' : 'secondaryBlue600'}
                     h='24px'
                     minW='24px'
                     maxW='24px'>

@@ -19,13 +19,15 @@ const SessionExpiredModal = ({ show, onSignIn, onClose }: SessionExpiredModalPro
                 <Button
                     aria-label="Return to launcher"
                     onClick={onClose}
-                    variant="solid"/*"primaryGray400"*/>
+                    variant="solid"
+                    color="primaryGray400">
                         Return to Launcher
                 </Button>
                 <Button
                     aria-label="Sign in"
                     onClick={onSignIn}
-                    variant="solid"/*'primaryBlue600'*/>
+                    variant="solid"
+                    color='primaryBlue600'>
                         Sign In
                 </Button>
             </>}/>

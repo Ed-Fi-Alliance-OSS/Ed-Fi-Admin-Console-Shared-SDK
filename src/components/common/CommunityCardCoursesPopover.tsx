@@ -96,6 +96,7 @@ const CommunityCardCoursesPopover = () => {
               <Button
                 aria-label="View All Courses"
                 variant="solid"
+                color='primaryBlue600'
                 colorPalette="blue"
                 paddingLeft='15px'
                 paddingRight='15px'>View All Courses</Button>

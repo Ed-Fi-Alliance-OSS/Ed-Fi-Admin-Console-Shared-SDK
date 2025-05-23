@@ -78,8 +78,8 @@ const SettingsModalContentWrapper = ({ children, onCancel, onSave }: SettingsMod
                         <Select.Root name="tenant-action">
                             <Select.Trigger />
                             <Select.Content>
-                            <Select.Item /*value="one"*/>
-                              <Select.ItemText>Option One</Select.ItemText>
+                            <Select.Item /*key="one"*/>
+                              <Select.ItemText>Tenant Action</Select.ItemText>
                             </Select.Item>
 
                             </Select.Content>

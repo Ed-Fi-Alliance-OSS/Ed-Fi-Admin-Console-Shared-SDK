@@ -68,7 +68,8 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     </Flex>
                     <Button
                         ml='10px'
-                        variant="solid" //'secondaryBlue600'
+                        variant="solid" 
+                        color='secondaryBlue600'
                         w='150px'>
                             Upload Image
                     </Button>

@@ -19,7 +19,7 @@ const NotificationItemPopover = ({ messageId, wasRead, onMarkAsRead, onRemove }:
         <Button
           aria-label='Open notification menu'
           color='blue.900'
-          variant='solid' //'simple'
+          variant='solid'
           minW='auto'
           _hover={{ bg: 'orange.100' }}
           padding='2px'>

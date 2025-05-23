@@ -30,6 +30,7 @@ const AuthorizationErrorPage = ({
               size="md"
               className="primary-button"
               variant="solid"
+              color="primaryBlue600"
               colorScheme="blue"
             >
               {primaryButtonLabel}

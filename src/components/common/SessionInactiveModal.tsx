@@ -24,6 +24,7 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     disabled={isClosingSession}
                     size='md'
                     variant="solid"
+                    color="primaryGray300"
                     colorPalette="primaryGray300">
                         Continue Session
                 </Button>
@@ -31,7 +32,8 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     aria-label="Log out"
                     onClick={onLogout}
                     loading={isClosingSession}
-                    variant="solid" //'primaryBlue600'
+                    variant="solid" 
+                    color='primaryBlue600'
                     size='md'
                     marginLeft='10px'>
                         Log out

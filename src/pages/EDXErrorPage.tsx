@@ -58,9 +58,9 @@ const EDXErrorPage = ({
 
   const { title, description, additionalDescription } =
     errorStatusMessages[errorStatus];
-   // {...styles}
+
   return (
-    <Flex   h={height} minH={minHeight} w={width} minW={minWidth}>
+    <Flex css={styles} h={height} minH={minHeight} w={width} minW={minWidth}>
       <Flex className="content-container">
         <Box className="error-code-container">
           <Text>ERROR {errorStatus}</Text>
@@ -87,6 +87,7 @@ const EDXErrorPage = ({
               ref={secondaryButtonBackUrl}
               size="md"
               className="secondary-button"
+              color={"secondaryBlue600"}
               variant="outline" // Updated to fit V3 styling
             >
               {secondaryButtonLabel}
@@ -98,6 +99,7 @@ const EDXErrorPage = ({
             ref={primaryButtonBackUrl}
             size="md"
             className="primary-button"
+            color={"primaryBlue600"}
             variant={"solid"} // Changed from primaryBlue600
           >
             {primaryButtonLabel}
