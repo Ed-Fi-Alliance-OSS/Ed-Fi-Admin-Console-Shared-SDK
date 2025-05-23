@@ -1,9 +1,9 @@
 import { InfoIcon } from "@chakra-ui/icons";
 import { Flex, Link, Text } from "@chakra-ui/react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TEEAuthDataContext, UserProfileContext } from "../../context";
 import useDecodeToken from "../../hooks/useDecodeToken";
-import  useAuthActions  from "../../hooks/useAuthActions";
+import useAuthActions from "../../hooks/useAuthActions";
 
 interface EdxUserInfo {
     email: string;
@@ -21,25 +21,39 @@ interface UserInformationDetailsProps {
 
 const UserInformationDetails = ({ userInfo, source }: UserInformationDetailsProps) => {
     const { userProfile } = useContext(UserProfileContext);
-    const { edxAppConfig } = useContext(TEEAuthDataContext); // Removed auth since we use getUser
     const { decodeTokenPayload } = useDecodeToken();
     const { getUser } = useAuthActions();
 
-    const showChangePasswordLink = (): boolean => {
-        if (!userProfile) return false;
+    const [showChangePassword, setShowChangePassword] = useState(false);
 
-         // Retrieve the user object from storage
-        const user = getUser(); // Retrieve the user object from storage
-        if (!user) return false;
+    // Handle the logic for showing the "Change Password" link
+    useEffect(() => {
+        const checkChangePasswordLink = async () => {
+            if (!userProfile) {
+                setShowChangePassword(false);
+                return;
+            }
 
-        const tokenPayload = decodeTokenPayload(user.access_token);
+            // Retrieve the user object from storage
+            const user = await getUser();
+            if (!user) {
+                setShowChangePassword(false);
+                return;
+            }
 
-        console.log("idp", tokenPayload.idp);
+            const tokenPayload = decodeTokenPayload(user.access_token);
 
-        if (tokenPayload.idp === "local") return true;
+            console.log("idp", tokenPayload.idp);
 
-        return false;
-    };
+            if (tokenPayload.idp === "local") {
+                setShowChangePassword(true);
+            } else {
+                setShowChangePassword(false);
+            }
+        };
+
+        checkChangePasswordLink();
+    }, [userProfile, getUser, decodeTokenPayload]);
 
     const generateChangePasswordUrl = () => {
         return ""; // Implement the logic to generate the change password URL
@@ -85,7 +99,7 @@ const UserInformationDetails = ({ userInfo, source }: UserInformationDetailsProp
                 {userInfo.organization}
             </Text>
             <Flex mt="12px">
-                {showChangePasswordLink() && (
+                {showChangePassword && (
                     <Link
                         color="blue.500"
                         fontSize="14px"

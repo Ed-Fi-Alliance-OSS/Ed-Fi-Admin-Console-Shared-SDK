@@ -6,18 +6,17 @@ import useAuthActions from "../hooks/useAuthActions" // Import getUser function
 
 const useCurrentUser = () => {
     const { userProfile } = useContext(UserProfileContext)
-    const { auth, edxAppConfig } = useContext(TEEAuthDataContext)
+    const { edxAppConfig } = useContext(TEEAuthDataContext)
     const [currentUser, setCurrentUser] = useState<TenantUser | null>(null)
     const { getUser } = useAuthActions() // Use getUser from useAuthActions
-    const  user  = getUser()
-
     const fetchCurrentUserByEmail = async () => {
+        const user = await getUser();
 
-      if (!user) return false;
-        if (!user || !userProfile || !edxAppConfig)
-            return
+        if (!user) return false;
+        if (!userProfile || !edxAppConfig)
+            return;
 
-        const token = user.access_token
+        const token = user.access_token;
             const apiUrl = edxAppConfig.api.edfiApiBaseUri as string
 
             const getUserResult = await getTenantUser(

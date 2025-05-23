@@ -1,5 +1,4 @@
-import { User } from "oidc-client-ts"
-import { AuthProviderProps } from "react-oidc-context"
+import { AuthProviderProps, User } from "../core/Authentication.types"
 import { EdxAppConfig } from "../core"
 
 const createEdxAppConfig = (config: EdxAppConfig) => {
