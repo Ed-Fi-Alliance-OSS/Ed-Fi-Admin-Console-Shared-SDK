@@ -18,21 +18,33 @@ export const useApiService = (_baseURL: string | undefined) => {
     const tenantId = sessionStorage.getItem("selectedTenant");
     return {
       ...headers,
-      Tenant: tenantId || "",
+      Tenant: tenantId || "tenant1", // Default tenant ID if not found
     };
   }
 
-  const createAxiosInstance = async (): Promise<AxiosInstance> => {
-    const user = await getUser(); // Retrieve the user object asynchronously
-    return axiosClass.create({
-      baseURL,
-      headers: addTenantHeader({
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${user?.access_token ?? ""}`, // Use the access token from the user object
-      }),
-    });
-  };
+  // Initialize axiosInstance with default headers
+  const axiosInstance: AxiosInstance = axiosClass.create({
+    baseURL,
+    headers: addTenantHeader({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    }),
+  });
+
+  // Add a request interceptor to dynamically set the Authorization header
+  axiosInstance.interceptors.request.use(async (config) => {
+    try {
+      const user = await getUser(); // Retrieve the user object asynchronously
+      const token = user?.access_token ?? "";
+
+      // Dynamically set the Authorization header
+      config.headers.Authorization = `Bearer ${token}`;
+    } catch (error) {
+      console.error("Failed to retrieve user token:", error);
+      // Optionally, you can throw an error or proceed without the Authorization header
+    }
+    return config;
+  });
 
   const createDefaultError = (method: HttpServiceMethod, actionName: string) => {
     const actionMessage = `Error for ${method}: ${actionName}`;
@@ -61,7 +73,9 @@ export const useApiService = (_baseURL: string | undefined) => {
     console.log(`Get request ${actionName} to ${url}`);
 
     try {
-      const axiosInstance = await createAxiosInstance(); // Lazily create the Axios instance
+      if (!axiosInstance) {
+        throw new Error("Axios instance is not initialized yet.");
+      }
       const res = await axiosInstance.get(url);
 
       const response: HttpServiceResponse<TResponse> = {
@@ -69,7 +83,7 @@ export const useApiService = (_baseURL: string | undefined) => {
         type: "Response",
       };
 
-      return response;
+      return response
     } catch (error) {
       const { requestError, actionMessage } = createDefaultError("Get", actionName);
 
@@ -87,7 +101,9 @@ export const useApiService = (_baseURL: string | undefined) => {
     console.log(`Post request ${actionName} to ${url}`);
 
     try {
-      const axiosInstance = await createAxiosInstance(); // Lazily create the Axios instance
+      if (!axiosInstance) {
+        throw new Error("Axios instance is not initialized yet.");
+      }
       const res = await axiosInstance.post(url, data);
 
       const response: HttpServiceResponse<TResponse> = {
@@ -113,7 +129,9 @@ export const useApiService = (_baseURL: string | undefined) => {
     console.log(`Put request ${actionName} to ${url}`);
 
     try {
-      const axiosInstance = await createAxiosInstance(); // Lazily create the Axios instance
+      if (!axiosInstance) {
+        throw new Error("Axios instance is not initialized yet.");
+      }
       const res = await axiosInstance.put(url, data);
 
       const response: HttpServiceResponse<TResponse> = {
@@ -136,6 +154,7 @@ export const useApiService = (_baseURL: string | undefined) => {
   }
 
   return {
+    api: axiosInstance,
     handleAxiosError,
     createDefaultError,
     get,
