@@ -13,7 +13,7 @@ interface CustomSwitchProps {
 const CustomSwitch = ({ id, isChecked, isDisabled, onCheck, label }: CustomSwitchProps) => {
     return (
         <Flex>
-            <Switch.Root id={id} isChecked={isChecked} isDisabled={isDisabled}>
+            <Switch.Root id={id} isChecked={isChecked} disabled={isDisabled}>
                 <Switch.HiddenInput onChange={onCheck} data-testid={id} />
                 <Switch.Control>
                     <Switch.Thumb />

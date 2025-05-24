@@ -22,7 +22,7 @@ const CustomNumberInput = ({ id, value, defaultValue, min, max, error, disabled,
                 defaultValue={defaultValue}
                 min={min}
                 max={max}
-                isDisabled={disabled}
+                disabled={disabled}
                 size="xs"
                 onValueChange={onChange}
             >

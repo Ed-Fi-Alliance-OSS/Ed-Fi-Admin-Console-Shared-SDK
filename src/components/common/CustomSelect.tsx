@@ -25,7 +25,7 @@ const CustomSelect = ({ id, value, error, disabled, options, height, placeholder
       <Select.Root
         id={id ? id : 'select'}
         value={value}
-        isDisabled={disabled}
+        disabled={disabled}
         size='xs'
         style={{ height: height ? height : 'auto' }}
       >
