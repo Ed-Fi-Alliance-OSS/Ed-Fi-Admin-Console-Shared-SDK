@@ -20,12 +20,35 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
             ? edxAppConfig.auth.keycloakTokenEndpoint
             : edxAppConfig.auth.customApiTokenEndpoint;
 
+            console.log("Token endpoint:", tokenEndpoint);
+
         try {
             if (!tokenEndpoint) {
                 throw new Error("Token endpoint is undefined.");
             }
 
-            const response = await axios.post(tokenEndpoint, {
+            let response;
+            if (edxAppConfig.auth.useKeycloak) {
+              // Prepare URLSearchParams
+              const data = new URLSearchParams();
+              data.append("client_id", edxAppConfig.auth.clientId ?? "");
+              data.append("client_secret", edxAppConfig.auth.clientSecret ?? "");
+              data.append("grant_type", "client_credentials");
+              // data.append("scope", "edfi_admin_api/full_access");
+
+              // POST request to Keycloak token endpoint
+              response = await axios.post(
+                tokenEndpoint,
+                data.toString(),
+                {
+                  headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                  }
+                }
+              );
+            }
+            else{
+            response = await axios.post(tokenEndpoint, {
                 client_id: edxAppConfig.auth.clientId,
                 client_secret: edxAppConfig.auth.clientSecret,
                 grant_type: "client_credentials",
@@ -38,6 +61,7 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
               },
             }
           );
+        }
 
             const newAccessToken = response.data.access_token;
 
