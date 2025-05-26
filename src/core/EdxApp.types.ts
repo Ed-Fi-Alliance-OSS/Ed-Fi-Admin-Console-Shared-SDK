@@ -32,12 +32,11 @@ interface Auth {
   automaticSilentRenew: boolean
   automaticSilentSignin: boolean
 
-  // New properties for authConfig
-  useKeycloak: boolean; // Determines whether to use Keycloak or custom API
-  keycloakTokenEndpoint?: string; // Keycloak token endpoint
-  customApiTokenEndpoint?: string; // Custom API token endpoint
-  clientSecret?: string; // Optional client secret
-  grantType?: string; // Grant type for token requests (e.g., "password")
+
+  keycloakTokenEndpoint?: string;
+  customApiTokenEndpoint?: string;
+  clientSecret?: string;
+  grantType?: string;
 }
 
 export interface EdxAppConfig {

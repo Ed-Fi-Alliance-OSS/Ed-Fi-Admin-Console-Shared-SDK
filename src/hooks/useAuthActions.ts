@@ -16,9 +16,9 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
             throw new Error("edxAppConfig is null or undefined.");
         }
 
-        const tokenEndpoint = edxAppConfig.auth.useKeycloak
-            ? edxAppConfig.auth.keycloakTokenEndpoint
-            : edxAppConfig.auth.customApiTokenEndpoint;
+        let tokenEndpoint = edxAppConfig.api.useAdminApiAuthentication
+            ? edxAppConfig.auth.customApiTokenEndpoint
+            : edxAppConfig.auth.keycloakTokenEndpoint
 
             console.log("Token endpoint:", tokenEndpoint);
 
@@ -28,7 +28,7 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
             }
 
             let response;
-            if (edxAppConfig.auth.useKeycloak) {
+            if (!edxAppConfig.api.useAdminApiAuthentication) {
               // Prepare URLSearchParams
               const data = new URLSearchParams();
               data.append("client_id", edxAppConfig.auth.clientId ?? "");
