@@ -21,21 +21,11 @@ interface App {
 }
 
 interface Auth {
-  authority: string
+  TokenEndpoint?: string
   clientId: string
-  redirectUri: string
-  silentRedirectUri: string
-  postLogoutRedirectUri: string
+  clientSecret?: string
   scope: string
-  responseType: string
   loadUserInfo: boolean
-  automaticSilentRenew: boolean
-  automaticSilentSignin: boolean
-
-
-  keycloakTokenEndpoint?: string;
-  customApiTokenEndpoint?: string;
-  clientSecret?: string;
   grantType?: string;
 }
 

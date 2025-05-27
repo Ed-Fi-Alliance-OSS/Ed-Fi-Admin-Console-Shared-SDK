@@ -24,14 +24,8 @@ export interface User {
 }
 
 export interface AuthProviderProps {
-  authority: string;
   client_id: string;
-  redirect_uri: string;
-  silent_redirect_uri?: string;
-  post_logout_redirect_uri?: string;
   scope: string;
-  response_type: string;
   loadUserInfo?: boolean;
-  automaticSilentRenew?: boolean;
   onSigninCallback?: (user: User | void) => void;
 }

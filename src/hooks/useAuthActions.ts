@@ -16,52 +16,35 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
             throw new Error("edxAppConfig is null or undefined.");
         }
 
-        let tokenEndpoint = edxAppConfig.api.useAdminApiAuthentication
-            ? edxAppConfig.auth.customApiTokenEndpoint
-            : edxAppConfig.auth.keycloakTokenEndpoint
-
-            console.log("Token endpoint:", tokenEndpoint);
+        let tokenEndpoint =edxAppConfig.auth.TokenEndpoint;
+        console.log("Token endpoint:", tokenEndpoint);
 
         try {
             if (!tokenEndpoint) {
                 throw new Error("Token endpoint is undefined.");
             }
+            // Prepare request data and headers
+            const data = new URLSearchParams();
+            data.append("client_id", edxAppConfig.auth.clientId ?? "");
+            data.append("client_secret", edxAppConfig.auth.clientSecret ?? "");
+            data.append("grant_type", "client_credentials");
+            data.append("scope", "edfi_admin_api/full_access");
 
-            let response;
-            if (!edxAppConfig.api.useAdminApiAuthentication) {
-              // Prepare URLSearchParams
-              const data = new URLSearchParams();
-              data.append("client_id", edxAppConfig.auth.clientId ?? "");
-              data.append("client_secret", edxAppConfig.auth.clientSecret ?? "");
-              data.append("grant_type", "client_credentials");
-              // data.append("scope", "edfi_admin_api/full_access");
+            // Common headers
+            const headers: Record<string, string> = {
+                "Content-Type": "application/x-www-form-urlencoded",
+            };
 
-              // POST request to Keycloak token endpoint
-              response = await axios.post(
+            // Add custom tenant header only if useAdminApiAuthentication is true
+            if (edxAppConfig.api.useAdminApiAuthentication) {
+                headers["tenant"] = "tenant1";
+            }
+
+            const response = await axios.post(
                 tokenEndpoint,
                 data.toString(),
-                {
-                  headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                  }
-                }
-              );
-            }
-            else{
-            response = await axios.post(tokenEndpoint, {
-                client_id: edxAppConfig.auth.clientId,
-                client_secret: edxAppConfig.auth.clientSecret,
-                grant_type: "client_credentials",
-                scope: "edfi_admin_api/full_access",
-            },
-            {
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                "tenant": "tenant1",
-              },
-            }
-          );
-        }
+                { headers }
+            );
 
             const newAccessToken = response.data.access_token;
 
@@ -75,8 +58,8 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
                     sub: "example-sub",
                     iss: "example-issuer",
                     aud: "example-audience",
-                    exp: Math.floor(Date.now() / 1000) + 3600, // Example expiration time
-                    iat: Math.floor(Date.now() / 1000), // Example issued-at time
+                    exp: Math.floor(Date.now() / 1000) + 3600,
+                    iat: Math.floor(Date.now() / 1000),
                 },
             };
 
@@ -94,7 +77,7 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
     // Function to store the user object
     const storeUser = (user: User): void => {
         try {
-            localStorage.setItem("authUser", JSON.stringify(user)); // Store the user object in localStorage
+            localStorage.setItem("authUser", JSON.stringify(user));
         } catch (error) {
             console.error("Failed to store user:", error);
         }
@@ -108,30 +91,15 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
           if (!user) {
               console.log("the config", edxAppConfig);
               console.log("No user found in localStorage. Fetching a new access token...");
-              const newAccessToken = await fetchAccessToken(); // Fetch a new access token
 
-              // Create a new user object
-              const newUser: User = {
-                  access_token: newAccessToken,
-                  expires_at: Math.floor(Date.now() / 1000) + 3600, // Example expiration time
-                  token_type: "Bearer",
-                  scopes: ["edfi_admin_api/full_access"], // Example scope
-                  profile: {
-                      sub: "example-sub",
-                      iss: "example-issuer",
-                      aud: "example-audience",
-                      exp: Math.floor(Date.now() / 1000) + 3600, // Example expiration time
-                      iat: Math.floor(Date.now() / 1000), // Example issued-at time
-                  },
-              };
+              // If no user is found, call fetchAccessToken to get a new token and store the user
+              await fetchAccessToken();
 
-              // Store the new user object in localStorage
-              storeUser(newUser);
-
-              return newUser;
+              const newUser = localStorage.getItem("authUser");
+              return newUser ? (JSON.parse(newUser) as User) : null;
           }
 
-          return JSON.parse(user) as User; // Return the parsed user object
+          return JSON.parse(user) as User;
       } catch (error) {
           console.error("Failed to retrieve or create user:", error);
           return null;
@@ -144,8 +112,8 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
     if (!user) {
         return false;
     }
-    return !isTokenExpired(user); // Return true if the token is not expired
-};
+    return !isTokenExpired(user);
+  };
 
     // Function to check if the token is expired
     const isTokenExpired = (user: User): boolean => {
@@ -157,25 +125,21 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
     const refreshTokenIfNeeded = async (): Promise<void> => {
         const user = await getUser();
         if (user && isTokenExpired(user)) {
-            await fetchAccessToken(); // Refresh the token
+            await fetchAccessToken();
         }
     };
 
     // Function to handle logout
     const handleLogOut = async (): Promise<void> => {
         try {
-            // Clear the user from localStorage
-            localStorage.removeItem("authUser");
+        // Clear the user from localStorage
+        localStorage.removeItem("authUser");
 
-            // Redirect to the logout URL if defined in the configuration
-            if (edxAppConfig?.auth?.postLogoutRedirectUri) {
-                window.location.href = edxAppConfig.auth.postLogoutRedirectUri;
-            } else {
-                console.log("Logout URL not defined. User session cleared.");
-            }
-        } catch (error) {
-            console.error("Failed to log out:", error);
-        }
+        // Always redirect to the application's home page
+        window.location.href = window.location.origin;
+      } catch (error) {
+          console.error("Failed to log out:", error);
+      }
     };
 
     // Function to handle login
@@ -198,11 +162,11 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
         handleLogIn,
         handleLogOut,
         handleChangeTenantId,
-        fetchAccessToken, // Expose the token-fetching function
-        getUser, // Expose the function to retrieve the user
-        storeUser, // Expose the function to store the user
-        refreshTokenIfNeeded, // Expose the function to refresh the token if needed
-        isAuthenticated, // Expose the function to check if the user is authenticated
+        fetchAccessToken,
+        getUser,
+        storeUser,
+        refreshTokenIfNeeded,
+        isAuthenticated,
     };
 };
 
