@@ -37,7 +37,8 @@ const useAuthActions = (params?: UseTeeAuthDataProps) => {
 
             // Add custom tenant header only if useAdminApiAuthentication is true
             if (edxAppConfig.api.useAdminApiAuthentication) {
-                headers["tenant"] = "tenant1";
+                const tenantId = sessionStorage.getItem("selectedTenant");
+                headers["tenant"] = tenantId || "tenant1"; // Default tenant ID if not found
             }
 
             const response = await axios.post(
