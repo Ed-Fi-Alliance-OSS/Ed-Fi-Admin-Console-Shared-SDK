@@ -19,7 +19,7 @@ const TenantSelectPopoverSearchList = ({ filteredList, tenantIdToUpdate, isChang
             {filteredList.map(tenant =>
                 <Button
                     aria-label={`Select ${tenant.document.name} tenant`}
-                    d="flex"
+                    display="flex"
                     color="gray.800"
                     justifyContent="space-between"
                     disabled={isChangingTenant}
@@ -28,8 +28,9 @@ const TenantSelectPopoverSearchList = ({ filteredList, tenantIdToUpdate, isChang
                     w="full"
                     _hover={{ bg: "gray.100" }}
                     key={tenant.tenantId}
+                    title={`Tenant ID: ${tenant.tenantId}, Org ID: ${tenant.document.name}`}
                     onClick={() => handleChangeTenantId(tenant)}>
-                        <Text color="gray.800" truncate maxW="200px" title={`Tenant ID: ${tenant.tenantId}, Org ID: ${tenant.document.name}`}>
+                      <Text color="gray.800" maxW="200px">
                             {tenant.document.name}
                         </Text>
                         { tenant.tenantId === tenantIdToUpdate && <Spinner size='sm' /> }

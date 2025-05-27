@@ -120,35 +120,6 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
           </Flex>
 
           <Flex bg={lineColor} margin='10px 0' h='1px' w='full' />
-          <CommonModal
-            show={open}
-            canClose={!isClosingSession}
-            header='Log Out'
-            content='Are you sure you want to log out?'
-            footer={<>
-              <Button
-                aria-label="Cancel"
-                onClick={onModalClose}
-                disabled={isClosingSession}
-                variant="solid"
-                colorPalette="gray"
-                size='md'>
-                Cancel
-              </Button>
-              <Button
-                aria-label="Log out"
-                onClick={onLogOut}
-                disabled={isClosingSession}
-                loading={isClosingSession}
-                variant="solid"
-                colorPalette="blue"
-                _hover={{ background: 'blue.800' }}
-                marginLeft='15px'
-                size='md'>
-                Log Out
-              </Button>
-            </>}
-            onClose={onModalClose} />
           {profileData ?
             <Button
               aria-label="Log out"
@@ -181,6 +152,36 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
             </Button>}
         </Box>
       )}
+
+      <CommonModal
+        show={open}
+        canClose={!isClosingSession}
+        header='Log Out'
+        content='Are you sure you want to log out?'
+        footer={<>
+          <Button
+            aria-label="Cancel"
+            onClick={onModalClose}
+            disabled={isClosingSession}
+            variant="solid"
+            colorPalette="gray"
+            size='md'>
+            Cancel
+          </Button>
+          <Button
+            aria-label="Log out"
+            onClick={onLogOut}
+            disabled={isClosingSession}
+            loading={isClosingSession}
+            variant="solid"
+            colorPalette="blue"
+            _hover={{ background: 'blue.800' }}
+            marginLeft='15px'
+            size='md'>
+            Log Out
+          </Button>
+        </>}
+        onClose={onModalClose} />
     </Box>
   )
 }

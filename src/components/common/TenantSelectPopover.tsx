@@ -95,22 +95,11 @@ const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantS
                                     w='full'
                                     _hover={{ backgroundColor: textBg }}
                                     key={tenant.tenantId}
-                                    onClick={() => handleChangeTenantId(tenant)}>
-                                    <Tooltip.Root>
-                                        <Tooltip.Trigger>
-                                            <span>
-                                                <Text color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor }>
-                                                    {tenant.document.name || tenant.tenantId}
-                                                </Text>
-                                            </span>
-                                        </Tooltip.Trigger>
-                                        <Tooltip.Content>
-                                            <Box bg='black' fontSize='12px' color="white" p={2} borderRadius='md'>
-                                                <Text color='white' fontFamily='Poppins'>Tenant ID: {tenant.tenantId}</Text>
-                                                <Text color='white' fontFamily='Poppins'>Org ID: {tenant.document.name || tenant.tenantId}</Text>
-                                            </Box>
-                                        </Tooltip.Content>
-                                    </Tooltip.Root>
+                                    onClick={() => handleChangeTenantId(tenant)}
+                                    title={`Tenant ID: ${tenant.tenantId}, Org ID: ${tenant.document.name || tenant.tenantId}`}>
+                                    <Text color={isSelectedTenantId(tenant, getSelectedTenant())? selectedColor : textColor }>
+                                        {tenant.document.name || tenant.tenantId}
+                                    </Text>
                                     { isSelectedTenantId(tenant, getSelectedTenant()) &&
                                         <FaCheckCircle
                                             color={selectedColor}
