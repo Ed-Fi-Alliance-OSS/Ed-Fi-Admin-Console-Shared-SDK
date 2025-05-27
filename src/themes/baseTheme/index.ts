@@ -2,6 +2,7 @@ import { createSystem, defaultConfig } from "@chakra-ui/react";
 import themeModeConfig from "./config";
 import colors from "./colors";
 import fonts from "./fonts";
+import globalStyles from "./styles";
 import buttonStylesConf from "./components/buttonStylesConf";
 import textStylesConf from "./components/textStylesConf";
 import headingStylesConf from "./components/headingStylesConf";
@@ -19,6 +20,7 @@ import { EDXErrorPageTheme } from "../../pages/EDXErrorPage.theme";
 const mergedConfig = { ...defaultConfig, ...themeModeConfig };
 
 const baseTheme = createSystem(mergedConfig, {
+  globalCss: globalStyles,
   theme: {
     tokens: {
       colors: colors,
@@ -27,12 +29,10 @@ const baseTheme = createSystem(mergedConfig, {
     semanticTokens: {
       colors: {
         "chakra-body-text": {
-          default: { value: "{colors.black.value}" },
-          _dark: { value: "{colors.white.value}" }
+          default: { value: "{colors.black}" }
         },
         "chakra-body-bg": {
-          default: { value: "{colors.gray.50.value}" },
-          _dark: { value: "{colors.blue.800.value}" }
+          default: { value: "{colors.gray.50}" }
         },
         // For colorPalette functionality, define blue palette semantic tokens
         blue: {

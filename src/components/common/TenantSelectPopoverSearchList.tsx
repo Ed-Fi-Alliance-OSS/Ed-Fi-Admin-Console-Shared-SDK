@@ -29,16 +29,9 @@ const TenantSelectPopoverSearchList = ({ filteredList, tenantIdToUpdate, isChang
                     _hover={{ bg: "gray.100" }}
                     key={tenant.tenantId}
                     onClick={() => handleChangeTenantId(tenant)}>
-                        <Tooltip label={
-                            <Flex flexDir="column" w="full">
-                                <Text color="white" fontFamily="Poppins">Tenant ID: {tenant.tenantId}</Text>
-                                <Text color="white" fontFamily="Poppins">Org ID: {tenant.document.name}</Text>
-                            </Flex>
-                        } bg="black" fontSize="12px" color="white" hasArrow shouldWrapChildren>
-                            <Text color="gray.800" truncate maxW="200px">
-                                {tenant.document.name}
-                            </Text>
-                        </Tooltip>
+                        <Text color="gray.800" truncate maxW="200px" title={`Tenant ID: ${tenant.tenantId}, Org ID: ${tenant.document.name}`}>
+                            {tenant.document.name}
+                        </Text>
                         { tenant.tenantId === tenantIdToUpdate && <Spinner size='sm' /> }
                 </Button>
             )}

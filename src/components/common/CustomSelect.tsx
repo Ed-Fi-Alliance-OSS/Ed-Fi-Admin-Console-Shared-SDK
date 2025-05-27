@@ -1,4 +1,4 @@
-import { Select } from "@chakra-ui/react"
+import { NativeSelect } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
 import CustomErrorField from "./CustomErrorField"
 
@@ -22,25 +22,26 @@ const CustomSelect = ({ id, value, error, disabled, options, height, placeholder
   return (
     <>
       {error && <CustomErrorField errorMessage={error} />}
-      <Select.Root
+      <NativeSelect.Root
         id={id ? id : 'select'}
-        value={value}
         disabled={disabled}
         size='xs'
         style={{ height: height ? height : 'auto' }}
+        aria-label={placeholder ? placeholder : "Select an option"}
       >
-        <Select.Trigger>
-          {placeholder && !value && <span>{placeholder}</span>}
-        </Select.Trigger>
-        <Select.Content>
+        <NativeSelect.Field
+          value={value || ""}
+          onChange={onChange}
+        >
+          {placeholder && <option value="" disabled={!value}>{placeholder}</option>}
           {options.map((option, index) => (
-            <Select.Item /*item={option} key={index}*/>
+            <option key={index} value={option.value}>
               {option.text}
-              <Select.ItemIndicator />
-            </Select.Item>
+            </option>
           ))}
-        </Select.Content>
-      </Select.Root>
+        </NativeSelect.Field>
+        <NativeSelect.Indicator />
+      </NativeSelect.Root>
     </>
   )
 }

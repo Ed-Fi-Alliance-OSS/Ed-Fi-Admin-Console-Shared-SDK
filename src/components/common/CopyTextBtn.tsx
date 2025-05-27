@@ -26,32 +26,22 @@ const CopyTextBtn = ({ value, withoutBorder }: CopyTextBtnProps) => {
     }
 
     return (
-        <Tooltip
-            display='flex'
-            justifyContent='center'
+        <Button
+            aria-label="Copy value"
+            onClick={onCopyValue}
             borderRadius='4px'
-            label={tooltipMessage}
-            hasArrow
-            bg={tooltipMessage === copyMessage? 'blue.600' : 'green.700'}
-            placement='top'
-            closeOnClick={false}
-            onClose={onClose}
-            w='120px'>
-                <Button
-                    aria-label="Copy value"
-                    onClick={onCopyValue}
-                    borderRadius='4px'
-                    color='blue.600'
-                    padding={withoutBorder? '0px' : '4px'}
-                    border={withoutBorder? 'none' : '1px'}
-                    variant='solid'
-                    //color={withoutBorder? 'simple' : 'secondaryBlue600'}
-                    h='24px'
-                    minW='24px'
-                    maxW='24px'>
-                        <CopyIcon fontSize={withoutBorder? '20px' : 'auto'} aria-hidden="true" focusable="false" />
-                </Button>
-        </Tooltip>
+            color='blue.600'
+            padding={withoutBorder? '0px' : '4px'}
+            border={withoutBorder? 'none' : '1px'}
+            variant='solid'
+            h='24px'
+            minW='24px'
+            maxW='24px'
+            title={tooltipMessage}
+            data-tooltip-message={tooltipMessage === copyMessage ? 'copy' : 'copied'}
+            onMouseLeave={onClose}>
+            <CopyIcon fontSize={withoutBorder? '20px' : 'auto'} aria-hidden="true" focusable="false" />
+        </Button>
     )
 }
 
