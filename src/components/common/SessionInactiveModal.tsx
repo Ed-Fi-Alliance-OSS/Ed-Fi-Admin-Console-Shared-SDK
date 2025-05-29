@@ -32,8 +32,9 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     aria-label="Log out"
                     onClick={onLogout}
                     loading={isClosingSession}
-                    variant="solid" 
+                    variant="solid"
                     color='primaryBlue600'
+                    bg='white'
                     size='md'
                     marginLeft='10px'>
                         Log out

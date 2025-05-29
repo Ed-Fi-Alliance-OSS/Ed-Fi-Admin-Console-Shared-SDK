@@ -170,6 +170,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
           </Button>
           <Button
             aria-label="Log out"
+            bg='white'
             onClick={onLogOut}
             disabled={isClosingSession}
             loading={isClosingSession}
