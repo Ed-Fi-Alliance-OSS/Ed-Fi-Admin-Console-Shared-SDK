@@ -24,7 +24,7 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     disabled={isClosingSession}
                     size='md'
                     variant="solid"
-                    color="primaryGray300"
+                    bg="primaryGray300"
                     colorPalette="primaryGray300">
                         Continue Session
                 </Button>
@@ -33,8 +33,8 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     onClick={onLogout}
                     loading={isClosingSession}
                     variant="solid"
-                    color='primaryBlue600'
-                    bg='white'
+                    color='white'
+                    bg='primaryBlue600'
                     size='md'
                     marginLeft='10px'>
                         Log out

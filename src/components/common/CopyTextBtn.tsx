@@ -31,6 +31,7 @@ const CopyTextBtn = ({ value, withoutBorder }: CopyTextBtnProps) => {
             onClick={onCopyValue}
             borderRadius='4px'
             color='blue.600'
+            bg='white'
             padding={withoutBorder? '0px' : '4px'}
             border={withoutBorder? 'none' : '1px'}
             variant='solid'

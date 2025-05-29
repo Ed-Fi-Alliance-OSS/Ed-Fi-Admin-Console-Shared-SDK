@@ -56,55 +56,55 @@ const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantS
       return null
     }
 
-    return (
-        <Popover.Root>
+    return (        <Popover.Root placement="bottom-start">
             <Popover.Trigger>
-                <Button
-                    aria-label={tenantBtnLabel}
-                    bg={triggerBg}
-                    borderWidth="1px"
-                    borderColor={triggerBorderColor}
-                    borderRadius="md"
-                    color='gray.600'
-                    ml='10px'
-                    size='sm'
-                    _hover={{
-                        bg: triggerHoverBg,
-                        borderColor: selectedColor,
-                        transform: 'translateY(-1px)',
-                        shadow: 'sm'
-                    }}
-                    transition="all 0.2s ease-in-out">
-                        <Text
-                            fontWeight='600'
-                            color='gray.700'>
-                                Tenant Instance:
-                        </Text>
-                        <Flex
-                            alignItems='center'
-                            border='1px'
-                            borderColor={triggerBorderColor}
-                            borderRadius='6px'
-                            py='6px'
-                            px='12px'
-                            ml='10px'
-                            bg={triggerBg}
-                            minW="150px">                            <Text
-                                fontSize='sm'
-                                color={tenantTextColor}
-                                fontFamily='Poppins'
-                                fontWeight='500'
-                                truncate
-                                maxW="120px">
-                                    {findCurrentTenant()}
-                            </Text>
-                            <FaChevronDown
-                                fontSize='12px'
-                                style={{ marginLeft: 'auto', transition: 'transform 0.2s ease-in-out' }}
-                                aria-hidden="true"
-                                focusable="false" />
-                        </Flex>
-                </Button>
+                <Flex alignItems="center" gap={2}>
+                    <Text
+                        fontWeight='600'
+                        color='gray.700'>
+                        Tenant Instance:
+                    </Text>
+                    <Button
+                        aria-label={tenantBtnLabel}
+                        bg={triggerBg}
+                        borderWidth="1px"
+                        borderColor={triggerBorderColor}
+                        borderRadius="md"
+                        color='gray.600'
+                        size='sm'
+                        _hover={{
+                            bg: triggerHoverBg,
+                            borderColor: selectedColor,
+                            transform: 'translateY(-1px)',
+                            shadow: 'sm'
+                        }}
+                        transition="all 0.2s ease-in-out">
+                            <Flex
+                                alignItems='center'
+                                border='1px'
+                                borderColor={triggerBorderColor}
+                                borderRadius='6px'
+                                py='6px'
+                                px='12px'
+                                bg={triggerBg}
+                                minW="150px">
+                                <Text
+                                    fontSize='sm'
+                                    color={tenantTextColor}
+                                    fontFamily='Poppins'
+                                    fontWeight='500'
+                                    truncate
+                                    maxW="120px">
+                                        {findCurrentTenant()}
+                                </Text>
+                                <FaChevronDown
+                                    fontSize='12px'
+                                    style={{ marginLeft: 'auto', transition: 'transform 0.2s ease-in-out' }}
+                                    aria-hidden="true"
+                                    focusable="false" />
+                            </Flex>
+                    </Button>
+                </Flex>
             </Popover.Trigger>
             <Popover.Content>
                 <Box
