@@ -1,4 +1,5 @@
-import { Box, Button, Flex, Text, useStyleConfig } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
+import { useStyleConfig } from "@chakra-ui/system";
 
 interface AuthorizationErrorPageProps {
   backUrl: string;
@@ -11,7 +12,7 @@ const AuthorizationErrorPage = ({
 }: AuthorizationErrorPageProps) => {
   const styles = useStyleConfig("EDXErrorPageTheme");
   return (
-    <Flex className="authorization-error-container" __css={styles}>
+    <Flex className="authorization-error-container" style={styles as React.CSSProperties}>
       <Flex className="content-container">
         <Box className="error-code-container">
           <Text fontWeight="700">
@@ -24,15 +25,17 @@ const AuthorizationErrorPage = ({
           </Text>
         </Box>
         <Flex className="buttons-container">
-          <Button
-            as="a"
-            href={backUrl}
-            size="md"
-            className="primary-button"
-            variant="primaryBlue600"
-          >
-            {primaryButtonLabel}
-          </Button>
+          <Link href={backUrl} _hover={{ textDecoration: 'none' }}>
+            <Button
+              size="md"
+              className="primary-button"
+              variant="solid"
+              color="primaryBlue600"
+              colorScheme="blue"
+            >
+              {primaryButtonLabel}
+            </Button>
+          </Link>
         </Flex>
       </Flex>
     </Flex>

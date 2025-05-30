@@ -10,9 +10,9 @@ interface NotificationsModalContentProps {
     unseenCount: number
     unreadInfiniteScroll: boolean
     readInfiniteScroll: boolean
-    isLoading: boolean 
+    isLoading: boolean
     isFetching: boolean
-    scrollHasNextPage?: boolean 
+    scrollHasNextPage?: boolean
     onScrollFetch: () => void
     onActivateUnreadInfiniteScroll: () => void
     onActivateReadInfiniteScroll: () => void
@@ -31,8 +31,8 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                     <Text
                         fontFamily='Poppins'
                         fontWeight='700'
-                        size='lg'>Unread</Text>
-                    <Flex 
+                        fontSize='lg'>Unread</Text>
+                    <Flex
                         alignItems='center'
                         justifyContent='center'
                         borderRadius='4px'
@@ -43,7 +43,7 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                             <Text
                                 fontFamily='Poppins'
                                 fontWeight='400'
-                                size='xs'>
+                                fontSize='xs'>
                                     {unseenCount}
                             </Text>
                     </Flex>
@@ -70,18 +70,18 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                                 infiniteScroll={unreadInfiniteScroll}
                                 notificationsList={unReadNotifications}
                                 onMarkNotificationAsRead={onMarkNotificationAsRead}
-                                onRemoveNotification={onRemoveNotification} /> 
+                                onRemoveNotification={onRemoveNotification} />
                     </InfiniteScroll> }
-                { !unreadInfiniteScroll && unReadNotifications && unReadNotifications.length > 0 && 
+                { !unreadInfiniteScroll && unReadNotifications && unReadNotifications.length > 0 &&
                     <NotificationItemList
                         mode="unread"
                         infiniteScroll={unreadInfiniteScroll}
                         notificationsList={unReadNotifications}
                         onMarkNotificationAsRead={onMarkNotificationAsRead}
-                        onRemoveNotification={onRemoveNotification} /> } 
-                { !unreadInfiniteScroll && unReadNotifications && unReadNotifications.length === 0 &&  
+                        onRemoveNotification={onRemoveNotification} /> }
+                { !unreadInfiniteScroll && unReadNotifications && unReadNotifications.length === 0 &&
                     <NotificationsEmptyMessage notificationsType="unread" /> }
-                { unReadNotifications && unReadNotifications.length >= 4 && !unreadInfiniteScroll && 
+                { unReadNotifications && unReadNotifications.length >= 4 && !unreadInfiniteScroll &&
                     <Flex mt='16px'>
                         <Button
                             onClick={onActivateUnreadInfiniteScroll}
@@ -98,19 +98,19 @@ const NotificationsModalContent = ({ readNotifications, unReadNotifications, uns
                 <Text
                     fontFamily='Poppins'
                     fontWeight='700'
-                    size='lg'>Read</Text>
+                    fontSize='lg'>Read</Text>
             </Flex>
             <Flex id="infinite-scroll-read-notifications-section" flexDirection='column' mt='16px' height='540px' overflowY={readInfiniteScroll ? "scroll" : "unset"}>
-                { readNotifications && readNotifications.length > 0 && 
+                { readNotifications && readNotifications.length > 0 &&
                     <NotificationItemList
-                        infiniteScroll={readInfiniteScroll} 
+                        infiniteScroll={readInfiniteScroll}
                         mode="read"
                         notificationsList={readNotifications}
                         onMarkNotificationAsRead={onMarkNotificationAsRead}
                         onRemoveNotification={onRemoveNotification} /> }
                 { !readInfiniteScroll && readNotifications  && readNotifications.length === 0 &&
                     <NotificationsEmptyMessage notificationsType="read" />}
-                { readNotifications && readNotifications.length >= 4 && !readInfiniteScroll && 
+                { readNotifications && readNotifications.length >= 4 && !readInfiniteScroll &&
                     <Flex mt='16px' mb='16px'>
                         <Button
                             onClick={onActivateReadInfiniteScroll}

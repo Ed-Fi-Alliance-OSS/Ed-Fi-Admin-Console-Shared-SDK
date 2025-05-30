@@ -3,10 +3,10 @@ import { ChangeEvent, KeyboardEvent } from 'react'
 import CustomErrorField from './CustomErrorField'
 
 interface CustomInputProps {
-    id: string 
+    id: string
     value: any
     error?: string
-    placeholder?: string 
+    placeholder?: string
     disabled?: boolean
     readOnly?: boolean
     type?: 'email' | 'text' | 'password'
@@ -19,18 +19,18 @@ const CustomInput = ({ id, type, value, placeholder, error, disabled, onChange, 
         if (e.key === "Enter" && onEnterKey)
             return onEnterKey(e)
     }
-   
+
     return (
         <>
             {error && <CustomErrorField errorMessage={error} />}
-            <Input 
+            <Input
                 onChange={onChange}
                 onKeyDown={checkKeyDown}
-                isReadOnly={readOnly}
-                id={id} 
-                value={value} 
+                readOnly={readOnly}
+                id={id}
+                value={value}
                 placeholder={placeholder}
-                isDisabled={disabled}
+                disabled={disabled}
                 type={type? type : 'text'}
                 size='xs' />
         </>

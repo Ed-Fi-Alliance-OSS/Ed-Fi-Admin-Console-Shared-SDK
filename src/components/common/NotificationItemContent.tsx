@@ -7,12 +7,12 @@ interface NotificationItemContentProps {
 
 const NotificationItemContent = ({ content }: NotificationItemContentProps) => {
     return (
-        <Text 
+        <Text
             fontFamily='Poppins'
             fontWeight='400'
-            size='md'
+            fontSize='md'
             _first={{ '& > a': { color: 'blue.500', fontWeight: '700' } }}>
-                <Interweave 
+                <Interweave
                     noWrap
                     content={content} />
         </Text>

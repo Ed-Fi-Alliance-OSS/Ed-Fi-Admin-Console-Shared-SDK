@@ -1,4 +1,5 @@
-import { Card, Flex, Image, Link, useColorMode, useColorModeValue } from "@chakra-ui/react"
+import { Card, Flex, Image, Link } from "@chakra-ui/react"
+import { useColorMode, useColorModeValue } from "@chakra-ui/system"
 import modeColors from "../../themes/baseTheme/modeColors"
 import AppItemCardOptionsPopover from "./AppItemCardOptionsPopover"
 import CommunityCardGroupPopover from "./CommunityCardGroupPopover"
@@ -8,7 +9,7 @@ import React from "react"
 interface CommunityCardProps {
     appId: string
     imageUrl: string | null
-    lightBackgroundUrl?: string 
+    lightBackgroundUrl?: string
     darkImageUrl?: string
     darkBackgroundUrl?: string
     overlayColor: string
@@ -24,18 +25,27 @@ const CommunityCard = ({ appId, actionLink, bookmarked, description, imageUrl, o
     const { colorMode } = useColorMode()
 
     return (
-        <Card 
-            display='flex' 
-            direction='row' 
-            borderRadius='8px' 
-            marginTop='15px' 
+        <Card.Root
+            display='flex'
+            flexDirection='row'
+            borderRadius='8px'
+            marginTop='15px'
             marginRight='15px'
-            shadow='lg'
+            boxShadow='lg'
             bg={bg}
-            h='102px' 
-            w='330px'>
+            h='102px'
+            w='330px'
+            position='relative'
+            cursor='pointer'
+            onClick={() => window.location.href = actionLink}>
+        <Card.Body
+            display='flex'
+            flexDirection='row'
+            padding='0'
+            h='full'
+            w='full'>
                 <Flex h='full' w='102px'>
-                    {imageUrl? 
+                    {imageUrl?
                         <Flex
                             backgroundImage={colorMode === 'light'? lightBackgroundUrl : darkBackgroundUrl}
                             backgroundPosition='center'
@@ -46,23 +56,28 @@ const CommunityCard = ({ appId, actionLink, bookmarked, description, imageUrl, o
                             alignItems='center'
                             justifyContent='center'
                             transition='all 1s ease-in-out'
-                            _hover={{ 
+                            _hover={{
                                 backgroundSize: '200%',
-                                "#innerOverlay": {
-                                    opacity: 0.3
-                                }
+                            }}
+                            onMouseEnter={() => {
+                                const overlay = document.getElementById('innerOverlay');
+                                if (overlay) overlay.style.opacity = '0.3';
+                            }}
+                            onMouseLeave={() => {
+                                const overlay = document.getElementById('innerOverlay');
+                                if (overlay) overlay.style.opacity = '0.8';
                             }}
                             h='full'
                             w='full'
                             zIndex='2'>
                                 <>
-                                    <Flex 
+                                    <Flex
                                         borderRadius='8px 0 0 8px'
-                                        alignItems='center' 
+                                        alignItems='center'
                                         justifyContent='center'
-                                        h='full' 
+                                        h='full'
                                         w='full'>
-                                            <Flex 
+                                            <Flex
                                                 borderRadius='8px 0 0 8px'
                                                 backgroundColor={overlayColor}
                                                 opacity='0.8'
@@ -70,49 +85,49 @@ const CommunityCard = ({ appId, actionLink, bookmarked, description, imageUrl, o
                                                 h='full'
                                                 w='full'>
                                             </Flex>
-                                            <Image 
+                                            <Image
                                                 position='absolute'
-                                                h='50%' 
+                                                h='50%'
                                                 src={colorMode === 'light'? imageUrl : darkImageUrl}
                                                 alt='app image' />
                                     </Flex>
                                 </>
-                            </Flex> : 
-                        <Flex 
-                            bg='blue.500' 
+                            </Flex> :
+                        <Flex
+                            bg='blue.500'
                             borderRadius='10px 0 0 10px'
                             h='full'
                             w='full' />}
                 </Flex>
-                <Flex 
+                <Flex
                     fontSize='sm'
                     justifyContent='center'
-                    alignItems='center' 
+                    alignItems='center'
                     padding='5px 0px 0px 10px'
                     h='full'
                     w='220px'>
-                        <Flex 
+                        <Flex
                             flexDir='column'
                             justifyContent='center'
                             alignItems='flex-end'
                             h='full'
                             w='full'>
-                                <Flex 
+                                <Flex
                                     justifyContent='flex-end'
                                     paddingLeft='5px'
                                     h='full'
                                     w='full'>
-                                    <Link 
+                                    <Card.Title
+                                        as='span'
                                         fontWeight='bold'
                                         fontSize='md'
                                         display='flex'
                                         alignItems='center'
-                                        href={actionLink}
-                                        w='full'> 
+                                        w='full'>
                                             {description}
-                                    </Link>
+                                    </Card.Title>
                                 </Flex>
-                                <Flex   
+                                <Flex
                                     marginTop='auto'
                                     alignItems='flex-end'
                                     w='full'>
@@ -122,14 +137,22 @@ const CommunityCard = ({ appId, actionLink, bookmarked, description, imageUrl, o
                                         </Flex>
                                 </Flex>
                         </Flex>
-                        <AppItemCardOptionsPopover 
-                            appId={appId}
-                            description={description}
-                            actionLink={actionLink}
-                            bookmarked={bookmarked}
-                            onBookmark={onBookmark} />
+                        <Flex
+                            position='absolute'
+                            top='5px'
+                            right='5px'
+                            zIndex='2'
+                            onClick={(e) => e.stopPropagation()}>
+                            <AppItemCardOptionsPopover
+                                appId={appId}
+                                description={description}
+                                actionLink={actionLink}
+                                bookmarked={bookmarked}
+                                onBookmark={onBookmark} />
+                        </Flex>
                 </Flex>
-        </Card>
+            </Card.Body>
+        </Card.Root>
     )
 }
 

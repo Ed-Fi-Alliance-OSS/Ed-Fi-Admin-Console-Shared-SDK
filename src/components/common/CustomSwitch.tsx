@@ -1,4 +1,5 @@
-import { Flex, Switch } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
+import { Switch } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
 
 interface CustomSwitchProps {
@@ -6,21 +7,19 @@ interface CustomSwitchProps {
     isChecked: boolean
     isDisabled?: boolean
     onCheck?: (e: ChangeEvent<HTMLInputElement>) => void
+    label?: string
 }
 
-const CustomSwitch = ({ id, isChecked, isDisabled, onCheck }: CustomSwitchProps) => {
+const CustomSwitch = ({ id, isChecked, isDisabled, onCheck, label }: CustomSwitchProps) => {
     return (
         <Flex>
-            <Switch 
-                aria-label={id}
-                aria-hidden={false}
-                onChange={onCheck}
-                id={id}
-                isChecked={isChecked}
-                isDisabled={isDisabled}
-                data-testid={id}
-                _checked={{ '& > span': { bg: 'blue.600' }}}
-                size='sm' />
+            <Switch.Root id={id} isChecked={isChecked} disabled={isDisabled}>
+                <Switch.HiddenInput onChange={onCheck} data-testid={id} />
+                <Switch.Control>
+                    <Switch.Thumb />
+                </Switch.Control>
+                {label && <Switch.Label>{label}</Switch.Label>}
+            </Switch.Root>
         </Flex>
     )
 }

@@ -1,22 +1,22 @@
-import { defineStyleConfig } from "@chakra-ui/react"
+import { defineStyleConfig } from "@chakra-ui/styled-system"
 import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools'
 
 const headingStylesConf = defineStyleConfig({
   baseStyle: (props: StyleFunctionProps) => ({
     color: mode('black', 'white')(props),
-  }), 
+  }),
   sizes: {
     '2xl': {
       fontSize: "32px",
       fontWeight: '700',
       fontFamily: 'Poppins',
-      lineHeight: '42px', 
+      lineHeight: '42px',
     },
     xl: {
       fontSize: "28px",
       fontWeight: '700',
       fontFamily: 'Poppins',
-      lineHeight: '32px', 
+      lineHeight: '32px',
     },
     lg: {
       fontSize: "24px",

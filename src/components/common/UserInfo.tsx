@@ -3,9 +3,9 @@ import { Flex, Text } from "@chakra-ui/react"
 type Size = 'lg' | 'md' | 'sm' | 'xs'
 
 interface UserInfoProps {
-    userFirstName: string 
-    userLastName: string 
-    userEmail: string 
+    userFirstName: string
+    userLastName: string
+    userEmail: string
     size: Size
     showName?: boolean
     showAvatar?: boolean
@@ -62,7 +62,7 @@ const UserInfo = ({ userEmail, userFirstName, userLastName, size, showName, show
                 borderRadius='full'
                 h={getCircleHeightSize(size)}
                 w={getCircleWidthSize(size)}>
-                    <Text 
+                    <Text
                         color='white'
                         fontFamily='Poppins'
                         fontWeight='600'
@@ -75,7 +75,7 @@ const UserInfo = ({ userEmail, userFirstName, userLastName, size, showName, show
                     fontFamily='Poppins'
                     fontWeight='700'
                     fontSize={getNameSize(size)}>
-                        {`${userFirstName} ${userLastName}`} asdasds
+                        {`${userFirstName} ${userLastName}`}
                 </Text>}
                 {showEmail !== false && <Text
                     color='#455763'

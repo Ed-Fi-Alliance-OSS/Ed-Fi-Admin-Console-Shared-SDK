@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Link, Select, Text } from "@chakra-ui/react"
+import { Button, Flex, Heading, Input, Link, Select, Text, Field } from "@chakra-ui/react"
 import { NotificationBar } from "../common"
 
 interface SettingsModalContentWrapperProps {
@@ -9,33 +9,33 @@ interface SettingsModalContentWrapperProps {
 
 const SettingsModalContentWrapper = ({ children, onCancel, onSave }: SettingsModalContentWrapperProps) => {
     return (
-        <Flex 
+        <Flex
             flexDir='column'
             bg='white'
             padding='16px'>
                 <Flex alignItems='center' justifyContent='space-between' w='full'>
-                    <Heading 
+                    <Heading
                         fontFamily='Poppins'
                         fontWeight='bold'
-                        size='xl'>
+                        fontSize='xl'>
                             Settings
                     </Heading>
                     <Flex>
-                        <Button 
+                        <Button
                             aria-label="Cancel"
                             onClick={onCancel}
                             size='xs'
                             borderRadius='4px'
-                            variant='secondaryBlue600'
+                            variant='solid'
                             minW='72px'>
                                 Cancel
                         </Button>
-                        <Button 
+                        <Button
                             aria-label="Save changes"
                             onClick={onSave}
                             size='xs'
                             borderRadius='4px'
-                            variant='primaryBlue600'
+                            variant='solid'
                             ml='10px'
                             minW='68px'>
                                 Save
@@ -61,20 +61,30 @@ const SettingsModalContentWrapper = ({ children, onCancel, onSave }: SettingsMod
                         mt='20px'>
                             Optional Subheader
                    </Text>
-                   <FormControl>
-                        <FormLabel fontFamily='Poppins' fontWeight='bold' mt='15px'>
-                            Settings Text Field
-                        </FormLabel>
+                   <Field.Root>
+                        <Field.Label>
+                          <span className="settingsTextField">
+                          Settings Text Field
+                          </span>
+                        </Field.Label>
                         <Input size='xs' placeholder="Placeholder" />
-                   </FormControl>
-                   <FormControl>
-                        <FormLabel fontFamily='Poppins' fontWeight='bold' mt='15px'>
+                   </Field.Root>
+                   <Field.Root>
+                        <Field.Label>
+                          <span className="settingsTextField">
                             Settings Dropdown
-                        </FormLabel>
-                        <Select size='xs'>
-                            <option value="one">Tenant Action</option>
-                        </Select>
-                   </FormControl>
+                          </span>
+                        </Field.Label>
+                        <Select.Root name="tenant-action">
+                            <Select.Trigger />
+                            <Select.Content>
+                            <Select.Item /*key="one"*/>
+                              <Select.ItemText>Tenant Action</Select.ItemText>
+                            </Select.Item>
+
+                            </Select.Content>
+                        </Select.Root>
+                   </Field.Root>
                    <Flex bg='gray.300' my='15px' h='1.5px' w='full'></Flex>
                    <Text
                         fontFamily='Poppins'
@@ -89,7 +99,7 @@ const SettingsModalContentWrapper = ({ children, onCancel, onSave }: SettingsMod
                             Settings Link Out to In-App Settings
                    </Text>
                    <Link
-                        color='blue.600' 
+                        color='blue.600'
                         fontSize='14px'>
                             Settings Link Out to In-App Settings
                    </Link>

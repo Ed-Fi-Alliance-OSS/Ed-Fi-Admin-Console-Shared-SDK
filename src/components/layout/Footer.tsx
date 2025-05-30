@@ -1,4 +1,5 @@
-import { Flex, Link, Text, useColorMode, useColorModeValue } from "@chakra-ui/react"
+import { Flex, Link, Text } from "@chakra-ui/react"
+import { useColorMode, useColorModeValue } from "@chakra-ui/system"
 import { useContext } from "react"
 import { TEEAuthDataContext } from "../../context"
 import useHelpLink from "../../hooks/useHelpLink"
@@ -37,7 +38,7 @@ const Footer = () => {
               color={textColor}
               fontFamily='Poppins'
               fontWeight='600'
-              size='sm'>
+              fontSize='sm'>
               Terms and Data Privacy
             </Text>
           </Link>}
@@ -50,7 +51,7 @@ const Footer = () => {
                 color={textColor}
                 fontFamily='Poppins'
                 fontWeight='600'
-                size='sm'>
+                fontSize='sm'>
                 Need Help?
               </Text>
             </Link>}

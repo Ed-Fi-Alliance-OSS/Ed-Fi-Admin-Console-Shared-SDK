@@ -1,20 +1,26 @@
-import { FormLabel } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 
 interface CustomFormLabelProps {
-    htmlFor: string 
-    text: string 
-}   
+    htmlFor: string
+    id?: string
+    text: string
+}
 
-const CustomFormLabel = ({ htmlFor, text }: CustomFormLabelProps) => {
+const labelStyles = {
+    fontFamily: 'Poppins',
+    fontWeight: 700,
+    fontSize: '14px',
+    lineHeight: '20px',
+}
+
+const CustomFormLabel = ({ htmlFor, text, id }: CustomFormLabelProps) => {
     return (
-        <FormLabel 
-            fontFamily='Poppins'
-            fontWeight='700'
-            fontSize='14px'
-            lineHeight='20px'
-            htmlFor={htmlFor}>
-                {text}
-        </FormLabel>
+        <label id={id} htmlFor={htmlFor}>
+          <Box style={labelStyles}>
+            {text}
+          </Box>
+        </label>
+
     )
 }
 

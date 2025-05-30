@@ -1,4 +1,4 @@
-import { ColorMode } from "@chakra-ui/react"
+import { ColorMode } from "@chakra-ui/system"
 import { ExternalAppData } from "../../core"
 import AppsMenuItemExtendedIcon from "./AppsMenuItemExtendedIcon"
 import AppsMenuItemSimpleIcon from "./AppsMenuItemSimpleIcon"
@@ -12,8 +12,8 @@ const AppsMenuItemIcon = ({ colorMode, data }: AppsMenuItemIconProps) => {
     return (
         <>
             {data.darkBackgroundTileUrl === data.lightBackgroundTileUrl && data.darkIconUrl === data.lightIconUrl?
-                <AppsMenuItemSimpleIcon data={data} /> 
-                : 
+                <AppsMenuItemSimpleIcon data={data} />
+                :
                 <AppsMenuItemExtendedIcon colorMode={colorMode} data={data} />}
         </>
     )

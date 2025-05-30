@@ -1,17 +1,17 @@
 import { Button, Flex, Heading } from "@chakra-ui/react"
 
 interface RightSlideInPanelHeaderProps {
-    headerText: string 
+    headerText: string
     actionText: string
-    isSaving: boolean 
-    headerTextColor?: string 
-    headerTextFontSize?: string 
-    headerTextFontWeight?: string 
+    isSaving: boolean
+    headerTextColor?: string
+    headerTextFontSize?: string
+    headerTextFontWeight?: string
     headerTextFontFamily?: string
-    actionButtonVariant?: string  
-    cancelButtonVariant?: string 
+    actionButtonVariant?: string
+    cancelButtonVariant?: string
     buttonsSize?: "lg" | "md" | "sm" | "xs"
-    alignItems?: string 
+    alignItems?: string
     isDisabled?: boolean
     headerWidth?: string
     onAction: () => void
@@ -30,14 +30,16 @@ const RightSlideInPanelHeader = ({ actionText, actionButtonVariant, cancelButton
             <Flex alignItems='flex-end'>
                 <Button
                     onClick={onClose}
-                    variant={ cancelButtonVariant ?? 'secondaryBlue600'}
+                    variant="solid" 
+                    color={ cancelButtonVariant ?? 'secondaryBlue600'}
                     size={ buttonsSize ?? 'xs' }
                     padding='0 25px'>Cancel</Button>
                 <Button
                     onClick={onAction}
-                    variant={ actionButtonVariant ?? 'primaryBlue600' }
-                    isLoading={isSaving}
-                    isDisabled={isSaving || isDisabled}
+                    variant="solid"
+                    color={ actionButtonVariant ?? 'primaryBlue600' }
+                    loading={isSaving}
+                    disabled={isSaving || isDisabled}
                     size={ buttonsSize ?? 'xs' }
                     padding='0 25px'
                     ml='10px'>{ actionText }</Button>

@@ -1,37 +1,37 @@
-import { defineStyleConfig } from "@chakra-ui/react"
-import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools'
+import { defineStyleConfig } from "@chakra-ui/styled-system"
+import { mode, StyleFunctionProps } from "@chakra-ui/theme-tools"
 
-const textStylesConf = defineStyleConfig({
-  baseStyle: (props: StyleFunctionProps) => ({
-    color: mode('black', 'white')(props),
-  }),
-  sizes: {
-    lg: {
-      fontSize: "18px",
-      fontFamily: 'Poppins',
-      lineHeight: '26px',
-    },
-    md: {
-      fontSize: "16px",
-      fontFamily: 'Poppins',
-      lineHeight: '22px',
-    },
-    sm: {
-      fontSize: "14px",
-      fontFamily: 'Poppins',
-      lineHeight: '20px',
-    },
-    xs: {
-      fontSize: "12px",
-      fontFamily: 'Poppins',
-      lineHeight: '16px',
-    }
+const textRecipe = {
+  base: {
+    color: { value: '{colors.black.value}', _dark: { value: '{colors.white.value}' } },
   },
   variants: {
-    "blue.900-white": (props: StyleFunctionProps) => ({
-      color: mode("blue.900", "white")(props)
-    })
-  }
-}) as any
+    'blue.900-white': {
+      color: { value: '{colors.blue.900.value}', _dark: { value: '{colors.white.value}' } },
+    },
+  },
+  sizes: {
+    lg: {
+      fontSize: { value: '18px' },
+      fontFamily: { value: 'Poppins' },
+      lineHeight: { value: '26px' },
+    },
+    md: {
+      fontSize: { value: '16px' },
+      fontFamily: { value: 'Poppins' },
+      lineHeight: { value: '22px' },
+    },
+    sm: {
+      fontSize: { value: '14px' },
+      fontFamily: { value: 'Poppins' },
+      lineHeight: { value: '20px' },
+    },
+    xs: {
+      fontSize: { value: '12px' },
+      fontFamily: { value: 'Poppins' },
+      lineHeight: { value: '16px' },
+    },
+  },
+};
 
-export default textStylesConf
+export default textRecipe;

@@ -1,32 +1,26 @@
-import { Radio } from "@chakra-ui/react"
+import { Box, Flex, HStack, RadioGroup, Text } from "@chakra-ui/react"
 
 interface CustomRadioProps {
     value: any
-    text: string 
+    text: string
     isChecked?: boolean
+    name?: string
+    onChange?: (value: any) => void
 }
 
-const CustomRadio = ({ isChecked, text, value }: CustomRadioProps) => {
+const CustomRadio = ({ isChecked, text, value, name, onChange }: CustomRadioProps) => {
     return (
-        <Radio 
-            isChecked={isChecked}
-            _checked={{
-                _before: {
-                    bg: "currentColor",
-                    borderRadius: "50%",
-                    content: "\"\"",
-                    display: 'inline-block',
-                    h: '50%',
-                    pos: 'relative',
-                    w: '50%'
-                },
-                bg: 'blue.600',
-                borderColor: 'blue.600',
-                color: 'white'
-            }}
-            value={value}>
-                {text}
-        </Radio>
+        <RadioGroup.Root value={isChecked ? value : undefined} name={name} onValueChange={onChange}>
+        <HStack>
+          <RadioGroup.Item>
+            <RadioGroup.ItemControl>
+              <RadioGroup.ItemIndicator />
+            </RadioGroup.ItemControl>
+            <RadioGroup.ItemHiddenInput>{value}</RadioGroup.ItemHiddenInput>
+            <RadioGroup.ItemText>{text}</RadioGroup.ItemText>
+          </RadioGroup.Item>
+        </HStack>
+      </RadioGroup.Root>
     )
 }
 

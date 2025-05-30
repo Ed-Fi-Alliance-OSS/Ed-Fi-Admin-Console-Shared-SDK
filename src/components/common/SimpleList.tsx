@@ -1,32 +1,32 @@
-import { CheckIcon } from "@chakra-ui/icons"
-import { Flex, List, ListItem, Text } from "@chakra-ui/react"
+import { FaCheck } from "react-icons/fa"
+import { Flex, List, Text } from "@chakra-ui/react"
 import { SimpleListItem } from "./SimpleList.types"
 
 interface SimpleListProps {
     items: SimpleListItem[]
     width?: string
-    minWidth?: string 
+    minWidth?: string
     maxWidth?: string
     onSelectItem: (item: SimpleListItem) => void
 }
 
 const SimpleList = ({ items, width, minWidth, maxWidth, onSelectItem }: SimpleListProps) => {
     return (
-        <List 
-            w={width? width : 'auto'} 
-            minWidth={minWidth} 
+        <List.Root
+            w={width ? width : 'auto'}
+            minW={minWidth}
             maxW={maxWidth}>
-                {items.map((item, index) => 
-                    <ListItem
+                {items.map((item, index) =>
+                    <List.Item
                         key={`${item.name}-${index}`}
                         display='flex'
                         alignItems='center'
                         borderBottom='1px'
                         borderBottomColor='gray.300'
                         padding='10px'>
-                            <Flex  
+                            <Flex
                                 cursor='pointer'
-                                bg={item.selected? 'blue.500' : 'white'}
+                                bg={item.selected ? 'blue.500' : 'white'}
                                 color='white'
                                 onClick={() => onSelectItem(item)}
                                 border='1px solid'
@@ -35,16 +35,16 @@ const SimpleList = ({ items, width, minWidth, maxWidth, onSelectItem }: SimpleLi
                                 justifyContent='center'
                                 h='15px'
                                 w='15px'>
-                                    {item.selected && <CheckIcon fontSize='10px' />}
+                                    {item.selected && <FaCheck fontSize='10px' />}
                             </Flex>
                             <Text
                                 fontFamily='Poppins'
                                 fontWeight='700'
-                                size='md'
+                                fontSize='md'
                                 ml='10px'>{item.name}</Text>
-                    </ListItem>    
+                    </List.Item>
                 )}
-        </List>
+        </List.Root>
     )
 }
 

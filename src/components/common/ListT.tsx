@@ -1,5 +1,5 @@
-import { CheckIcon } from "@chakra-ui/icons"
-import { Flex, Heading, List, ListItem, Text } from "@chakra-ui/react"
+import { FaCheck } from "react-icons/fa"
+import { Flex, Heading, List, Text } from "@chakra-ui/react"
 import { ListTItem } from "./ListT.types"
 
 interface ListTProps {
@@ -12,9 +12,9 @@ interface ListTProps {
 
 const ListT = ({ items, width, minWidth, maxWidth, onSelectItem }: ListTProps) => {
     return (
-        <List w={width} minW={minWidth} maxW={maxWidth}>
-            {items.map(item => 
-                <ListItem 
+        <List.Root w={width} minW={minWidth} maxW={maxWidth}>
+            {items.map(item =>
+                <List.Item
                     key={item.title}
                     display='flex'
                     alignItems='center'
@@ -22,34 +22,34 @@ const ListT = ({ items, width, minWidth, maxWidth, onSelectItem }: ListTProps) =
                     borderBottomColor='gray.300'
                     padding='10px'>
                         <Flex>
-                            <Flex 
-                                bg='blue.500' 
+                            <Flex
+                                bg='blue.500'
                                 alignItems='center'
                                 justifyContent='center'
                                 borderRadius='full'
                                 padding='5px'
-                                h='48px' 
+                                h='48px'
                                 w='48px'>
                                     <Text color='white'>TEE</Text>
                             </Flex>
                         </Flex>
-                        <Flex 
-                            flexDir='column' 
+                        <Flex
+                            flexDir='column'
                             justifyContent='center'
                             marginLeft='10px'>
                                 <Heading
                                     fontFamily='Poppins'
                                     fontWeight='700'
-                                    size='xs'>{item.title}</Heading>
+                                    fontSize='xs'>{item.title}</Heading>
                                 <Text
                                     fontWeight='400'
                                     fontFamily='Poppins'
-                                    size='xs'>
+                                    fontSize='xs'>
                                         {item.description}
                                 </Text>
                         </Flex>
                         <Flex ml='auto' w='auto'>
-                            <Flex  
+                            <Flex
                                 cursor='pointer'
                                 bg={item.selected? 'blue.500' : 'white'}
                                 color='white'
@@ -60,12 +60,12 @@ const ListT = ({ items, width, minWidth, maxWidth, onSelectItem }: ListTProps) =
                                 justifyContent='center'
                                 h='15px'
                                 w='15px'>
-                                    {item.selected && <CheckIcon fontSize='10px' />}
+                                    {item.selected && <FaCheck fontSize='10px' />}
                             </Flex>
                         </Flex>
-                </ListItem>
+                </List.Item>
             )}
-        </List>
+        </List.Root>
     )
 }
 

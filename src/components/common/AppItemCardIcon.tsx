@@ -1,14 +1,15 @@
-import { ColorMode } from "@chakra-ui/react"
+import { Flex, Image } from "@chakra-ui/react"
+import { ColorMode } from "@chakra-ui/system"
 import AppItemCardExtendedIcon from "./AppItemCardExtendedIcon"
 import AppItemCardSimpleIcon from "./AppItemCardSimpleIcon"
 
 interface AppsMenuItemIconProps {
     colorMode: ColorMode
-    darkBackgroundTileUrl: string 
+    darkBackgroundTileUrl: string
     lightBackgroundTileUrl: string
-    darkIconUrl: string 
+    darkIconUrl: string
     lightIconUrl: string
-    size?: 'sm' | 'xl' 
+    size?: 'sm' | 'xl'
 }
 
 const AppItemCardIcon = ({ colorMode, darkBackgroundTileUrl, lightBackgroundTileUrl, lightIconUrl, darkIconUrl, size }: AppsMenuItemIconProps) => {
@@ -16,8 +17,8 @@ const AppItemCardIcon = ({ colorMode, darkBackgroundTileUrl, lightBackgroundTile
         <>
             {darkBackgroundTileUrl === lightBackgroundTileUrl && darkIconUrl === lightIconUrl?
                 <AppItemCardSimpleIcon lightIconUrl={lightIconUrl} />
-                : 
-                <AppItemCardExtendedIcon 
+                :
+                <AppItemCardExtendedIcon
                     colorMode={colorMode}
                     lightIconUrl={lightIconUrl}
                     lightBackgroundTileUrl={lightBackgroundTileUrl}

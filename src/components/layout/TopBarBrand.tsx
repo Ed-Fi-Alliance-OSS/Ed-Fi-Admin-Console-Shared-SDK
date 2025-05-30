@@ -1,4 +1,5 @@
-import { Flex, useColorModeValue } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
+import { useColorModeValue } from "@chakra-ui/system"
 import modeColors from "../../themes/baseTheme/modeColors"
 import TopBarBrandDescriptor from "./TopBarBrandDescriptor"
 

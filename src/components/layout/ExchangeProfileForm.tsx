@@ -1,4 +1,5 @@
-import { Button, Flex, FormControl, Img, Tag, TagCloseButton, TagLabel, Text } from "@chakra-ui/react"
+import { Button, Flex, Image, Text, Field } from "@chakra-ui/react"
+import { Tag } from "@chakra-ui/react"
 import { ChangeEvent } from "react"
 import { FormErrors } from "../../core/Forms.types"
 import { TagsData } from "../../hooks/useUserProfileExtensions"
@@ -9,25 +10,25 @@ import CustomInput from "../common/CustomInput"
 import CustomTextArea from "../common/CustomTextArea"
 
 interface EdxUserInfo {
-    email: string 
-    firstName: string 
-    lastName: string 
-    organization: string 
-    jobDepartment: string 
+    email: string
+    firstName: string
+    lastName: string
+    organization: string
+    jobDepartment: string
     jobTitle: string
 }
 
 interface EdxProfile {
     imageUrl: string
-    additionalTitle: string 
-    bio: string 
+    additionalTitle: string
+    bio: string
     tags: TagsData
 }
 
 interface ExchangeProfileFormProps {
     userInfo: EdxUserInfo
     exchangeProfile: EdxProfile
-    isSavingExtensions: boolean 
+    isSavingExtensions: boolean
     errors: FormErrors
     isValidData: () => boolean
     onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -46,7 +47,7 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                 fontSize='20px'>Exchange Profile</Text>
             { errors && Object.keys(errors).length > 0 && <CompleteFormErrorMessage /> }
             {false && <Flex flexDir='column' mt='16px' w='full'>
-                <Text 
+                <Text
                     fontFamily='Poppins'
                     fontWeight='700'>
                         Profile Image
@@ -61,13 +62,14 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                         fontWeight='700'
                         alignItems='center'
                         borderRadius='full' h='50px' w='50px'>
-                            {exchangeProfile.imageUrl? 
-                                <Img src={exchangeProfile.imageUrl} alt="user profile image" /> : 
+                            {exchangeProfile.imageUrl?
+                                <Image src={exchangeProfile.imageUrl} alt="user profile image" /> :
                                 `${userInfo.firstName[0]}${userInfo.lastName[0]}`}
                     </Flex>
                     <Button
                         ml='10px'
-                        variant='secondaryBlue600'
+                        variant="solid" 
+                        color='secondaryBlue600'
                         w='150px'>
                             Upload Image
                     </Button>
@@ -77,15 +79,15 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
-                    size='xs'>
+                    fontSize='xs'>
                         Your initials will be used as your profile image if you choose to not upload one here.
                 </Text>
             </Flex>}
-            <FormControl mt='16px'>
-                <CustomFormLabel 
+            <Field.Root mt='16px'>
+                <CustomFormLabel
                     htmlFor="additionalTitle"
                     text='Additional Title, like "Basketball Coach"' />
-                <CustomInput 
+                <CustomInput
                     id="additionalTitle"
                     error={errors && errors["additionalTitle"] && errors["additionalTitle"].message}
                     value={exchangeProfile.additionalTitle}
@@ -96,12 +98,12 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
-                    size='xs'>
+                    fontSize='xs'>
                         Maximum 100 characters
                 </Text>
-            </FormControl>
-            <FormControl mt='16px'>
-                <CustomFormLabel 
+            </Field.Root>
+            <Field.Root mt='16px'>
+                <CustomFormLabel
                     htmlFor="bio"
                     text='Brief Intro Bio' />
                 <CustomTextArea
@@ -115,15 +117,15 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
-                    size='xs'>
+                    fontSize='xs'>
                         Maximum 320 characters
                 </Text>
-            </FormControl>
-            <FormControl mt='16px'>
-                <CustomFormLabel 
+            </Field.Root>
+            <Field.Root mt='16px'>
+                <CustomFormLabel
                     htmlFor="tags"
                     text='Tags for Skills and Areas of Interest' />
-                 <CustomInput 
+                 <CustomInput
                     id="tags"
                     value={exchangeProfile.tags.value}
                     error={errors && errors["tags"] && errors["tags"].message}
@@ -131,13 +133,13 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     onEnterKey={() => onAddTag()}
                     placeholder="additional tag" />
                 <Flex mt={exchangeProfile.tags.tagsList.length > 0? "10px" : "0px"}>
-                    {exchangeProfile.tags.tagsList.filter(tag => tag !== '').map((tag, index) => 
-                        <Tag bg="gray.200" key={index} _notFirst={{ ml: '3px' }}>
-                            <TagLabel>{tag}</TagLabel>
-                            <TagCloseButton 
+                    {exchangeProfile.tags.tagsList.filter(tag => tag !== '').map((tag, index) =>
+                        <Tag.Root bg="gray.200" key={index} _notFirst={{ ml: '3px' }}>
+                            <Tag.Label>{tag}</Tag.Label>
+                            <Tag.CloseTrigger
                                 aria-label={`Remove ${tag} tag`}
                                 onClick={() => onRemoveTag(tag)} />
-                        </Tag>
+                        </Tag.Root>
                     )}
                     {errors && errors["tagsList"] && <CustomErrorField errorMessage={errors['tagsList'].message} />}
                 </Flex>
@@ -146,10 +148,10 @@ const ExchangeProfileForm = ({ userInfo, exchangeProfile, errors, onInputChange,
                     fontFamily='Poppins'
                     fontStyle='italic'
                     mt='10px'
-                    size='xs'>
+                    fontSize='xs'>
                         Select up to 5 tags
                 </Text>
-            </FormControl>
+            </Field.Root>
         </Flex>
     )
 }

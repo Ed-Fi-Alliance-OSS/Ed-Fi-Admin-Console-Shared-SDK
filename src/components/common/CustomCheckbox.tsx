@@ -1,26 +1,30 @@
-import { Checkbox } from '@chakra-ui/react'
-import { ChangeEvent } from 'react'
+import { Checkbox } from '@chakra-ui/react';
 
 interface CustomCheckboxProps {
-    id: string 
-    value: string 
-    isChecked: boolean
-    onCheck: (e: ChangeEvent<HTMLInputElement>) => void
+  id: string;
+  value: string;
+  isChecked: boolean;
+  onCheck: (e: { target: { id: string; value: string; checked: boolean } }) => void;
+  label?: string;
 }
 
-const CustomCheckbox = ({ id, value, isChecked, onCheck }: CustomCheckboxProps) => {
-    return (
-        <Checkbox 
-            id={id}
-            isChecked={isChecked}
-            onChange={onCheck}
-            value={value}
-            _checked={{ "& > span": { 
-                    background: 'blue.600',
-                    borderColor: 'blue.600'
-                } 
-            }} />
-    )
-}
+const CustomCheckbox = ({ id, value, isChecked, onCheck, label }: CustomCheckboxProps) => {
+  return (
+    <Checkbox.Root
+      id={id}
+      checked={isChecked}
+      onCheckedChange={(checked: boolean) => onCheck({
+        target: { id, value, checked }
+      })}
+      value={value}
+    >
+      <Checkbox.HiddenInput />
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
+      {label && <Checkbox.Label>{label}</Checkbox.Label>}
+    </Checkbox.Root>
+  );
+};
 
-export default CustomCheckbox
+export default CustomCheckbox;

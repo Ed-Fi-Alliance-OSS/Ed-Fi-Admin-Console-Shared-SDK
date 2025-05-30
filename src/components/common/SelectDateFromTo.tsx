@@ -11,12 +11,12 @@ interface SelectDateFromToProps {
 
 const SelectDateFromTo = ({ startDate, endDate, onUpdateEndDate, onUpdateStartDate }: SelectDateFromToProps) => {
     return (
-        <Flex alignItems='center' w='full' css={{ '& > .react-datepicker-wrapper': { width: '100%' } }}>
-            <Flex mr='5px'>
+        <Flex alignItems='center' width='full' css={{ '& > .react-datepicker-wrapper': { width: '100%' } }}>
+            <Flex marginRight='5px'>
                 <DatePicker id="start-date-picker" date={startDate} onUpdateDate={onUpdateStartDate} />
             </Flex>
             -
-            <Flex ml='5px'>
+            <Flex marginLeft='5px'>
                 <DatePicker id="end-date-picker" date={endDate} onUpdateDate={onUpdateEndDate} />
             </Flex>
         </Flex>

@@ -1,7 +1,7 @@
 import { Button, Flex, Heading } from "@chakra-ui/react"
 
 interface EdxModalContentWrapperProps {
-    heading: string 
+    heading: string
     hideControls?: boolean
     children: JSX.Element | JSX.Element[]
     isSavingChanges?: boolean
@@ -11,34 +11,34 @@ interface EdxModalContentWrapperProps {
 
 const EdxModalContentWrapper = ({ heading, hideControls, isSavingChanges, children, onSave, onCancel }: EdxModalContentWrapperProps) => {
     return (
-        <Flex 
+        <Flex
             flexDir='column'
             bg='white'
             padding='24px 16px'>
                 <Flex alignItems='center' justifyContent='space-between' w='full'>
-                    <Heading 
+                    <Heading
                         fontFamily='Poppins'
                         fontWeight='700'
-                        size='2xl'>
+                        fontSize='2xl'>
                             {heading}
                     </Heading>
                     {!hideControls &&  <Flex>
-                        <Button 
+                        <Button
                             aria-label="Cancel"
                             onClick={onCancel}
                             size='xs'
                             borderRadius='4px'
-                            variant='secondaryBlue600'
+                            variant='solid'
                             minW='72px'>
                                 Cancel
                         </Button>
-                        <Button 
+                        <Button
                             aria-label="Save changes"
                             onClick={onSave}
-                            isLoading={isSavingChanges}
+                            loading={isSavingChanges}
                             size='xs'
                             borderRadius='4px'
-                            variant='primaryBlue600'
+                            variant='solid'
                             ml='10px'
                             minW='68px'>
                                 Save

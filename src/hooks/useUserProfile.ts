@@ -37,13 +37,13 @@ const useUserProfile = ({  }: UseUserProfileProps) => {
                     const payloadTenantId = tokenPayload.tenantid
 
                     // console.log('tenantid pref', tenantPref?.value)
-                    console.log('tenantid token', tokenPayload)
+
 
                     // if (tenantPref && payloadTenantId != tenantPref.value) {
                     //     console.log('Signin redirect', payloadTenantId)
                     //     return await auth.signinRedirect()
                     // }
-    
+
                     setUserProfile({
                       firstName: tokenPayload?.given_name ?? '',
                       lastName: tokenPayload?.family_name ?? '',

@@ -1,8 +1,11 @@
-import { ThemeConfig } from '@chakra-ui/react'
+import { ThemingConfig } from '@chakra-ui/react'
 
-const config: ThemeConfig = {
-    initialColorMode: 'light',
-    useSystemColorMode: false
+// In Chakra UI v3, colorMode config is different
+const config = {
+    colorMode: {
+        initialColorMode: 'light',
+        useSystemColorMode: false
+    }
 }
 
 export default config

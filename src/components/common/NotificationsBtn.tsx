@@ -1,5 +1,6 @@
-import { BellIcon } from "@chakra-ui/icons";
-import { Button, Flex, useColorModeValue } from "@chakra-ui/react";
+import { FaBell } from "react-icons/fa";
+import { Button, Flex } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/system";
 
 import { NovuProvider, useNovuContext } from "@novu/notification-center";
 import { useMemo, useState } from "react";
@@ -105,7 +106,8 @@ const NotificationsBtn = ({
             position="relative"
             padding="0"
             border="none"
-            variant="icon"
+            variant="solid" 
+            color="icon"
           >
             {hasNotifications && (
               <Flex
@@ -118,10 +120,10 @@ const NotificationsBtn = ({
                 w="8px"
               />
             )}
-            <BellIcon
+            <FaBell
               color={iconColor}
-              h="18px"
-              w="full"
+              height="18px"
+              width="100%"
               aria-hidden="true"
               focusable="false"
               aria-description="Notifications Icon"

@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react"
 
 interface CustomFormHeaderProps {
-    text: string 
+    text: string
 }
 
 const CustomFormHeader = ({ text }: CustomFormHeaderProps) => {
@@ -9,11 +9,10 @@ const CustomFormHeader = ({ text }: CustomFormHeaderProps) => {
         <Text
             borderRadius='4px'
             bg='gray.100'
-            fontFamily='Poppins'
-            fontWeight='700'
+            fontFamily={{ base: 'Poppins' }}
+            fontWeight={{ base: '700' }}
             padding='8px 16px'
-            size='lg'
-            w='full'>
+            width='full'>
                 {text}
         </Text>
     )

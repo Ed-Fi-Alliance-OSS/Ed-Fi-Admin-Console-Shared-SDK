@@ -9,24 +9,26 @@ interface SessionExpiredModalProps {
 
 const SessionExpiredModal = ({ show, onSignIn, onClose }: SessionExpiredModalProps) => {
     return (
-        <CommonModal 
-            show={show}      
-            canClose={false} 
+        <CommonModal
+            show={show}
+            canClose={false}
             onClose={onClose}
             header='Session Expired'
-            content='Your session has expired due to inactivity.' 
+            content='Your session has expired due to inactivity.'
             footer={<>
-                <Button 
+                <Button
                     aria-label="Return to launcher"
                     onClick={onClose}
-                    variant="primaryGray400">
+                    variant="solid"
+                    color="primaryGray400">
                         Return to Launcher
                 </Button>
-                <Button 
+                <Button
                     aria-label="Sign in"
                     onClick={onSignIn}
-                    variant='primaryBlue600'>
-                        Sign In 
+                    variant="solid"
+                    color='primaryBlue600'>
+                        Sign In
                 </Button>
             </>}/>
     )

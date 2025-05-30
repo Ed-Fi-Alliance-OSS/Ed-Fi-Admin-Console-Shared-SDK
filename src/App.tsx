@@ -1,6 +1,5 @@
 import {
   Button,
-  ChakraProvider,
   Flex,
   SkipNavContent,
   Text
@@ -20,14 +19,40 @@ import { AppsMenuMoreOption } from "./components/common/AppsMenu.types"
 import SideBar, { SideBarMenuItemData } from "./components/layout/SideBar"
 import { baseTheme } from "./themes"
 
-import { CheckIcon } from "@chakra-ui/icons"
+import { FaCheck as CheckIcon } from "react-icons/fa"
 import { useState } from "react"
 import { CgHome } from "react-icons/cg"
-import { ExternalAppData } from "./core"
+import { ExternalAppData, EdxAppConfig } from "./core"
 import { useUserProfile } from './hooks'
+import { EdxConfigProvider } from './context'
+import { Provider } from './components/ui/provider'
 
 function App() {
-  const {userProfile} = useUserProfile({})
+  // Basic configuration for the useConfig hook to fix the useContext error
+  const mockConfig: EdxAppConfig = {
+    api: {
+      edfiApiBaseUri: "",
+      edfiAdminApiBaseUri: "",
+    },
+    app: {
+      title: "Admin Console",
+      subtitle: "",
+      basePath: "/",
+    },
+    auth: {
+      authority: "",
+      clientId: "",
+      redirectUri: "",
+      silentRedirectUri: "",
+      postLogoutRedirectUri: "",
+      scope: "",
+      responseType: "",
+      loadUserInfo: true,
+      automaticSilentRenew: false,
+      automaticSilentSignin: false,
+    },
+    plugins: [],
+  };
 
   const appsList: ExternalAppData[] = [
     {
@@ -222,359 +247,118 @@ function App() {
   const [showRightPanel, setShowRightPanel] = useState(true)
 
   return (
-    <Flex flexDir="column" w="full">
-      <ChakraProvider theme={baseTheme}>
-        <TopBar
-          leftComponent={
-            <TopBarLeft
-              onClick={() => console.log("hey go to")}
-              list={appsList}
-              menuOptions={moreOptions}
-            />
-          }
-          rightComponent={
-            <TopBarRight
-              tenants={[]}
-              isClosingSession={false}
-              profileData={userProfile}
-              onLogin={login}
-              onLogout={logout}
-              onChangeTenantId={onChangeTenantId}
-            />
-          }
+    <EdxConfigProvider config={mockConfig}>
+      <Provider>
+        <AppContent
+          appsList={appsList}
+          moreOptions={moreOptions}
+          login={login}
+          logout={logout}
+          onChangeTenantId={onChangeTenantId}
+          selectedItemId={selectedItemId}
+          items={items}
+          onChangeSelected={onChangeSelected}
+          showRightPanel={showRightPanel}
+          setShowRightPanel={setShowRightPanel}
         />
-        <Flex w="full" maxW="100%">
-          {true && (
-            <Flex className="sidebar" minH="100vh" w="full">
-              <SideBar
-                selectedItemId={selectedItemId}
-                ariaCurrentType="page"
-                items={items}
-                show={true}
-                onClickItem={onChangeSelected}
-              />
-            </Flex>
-          )}
-          <Flex flexDir="column" pl="20px" mt="60px">
-            <SkipNavContent />
-            <Text mt="10px">
-              {/* cSpell:disable */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-            </Text>
-            <Text mt="10px">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-            </Text>
-            <Text mt="10px">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-            </Text>
-            <Text mt="10px">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-              {/* cSpell:enable */}
-            </Text>
-            <Button onClick={() => setShowRightPanel(true)}>Show</Button>
-          </Flex>
-
-          <Flex flexDir="column" pl="20px" mt="60px">
-            <Text mt="10px">
-              {/* cSpell:disable */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-              {/* cSpell:enable */}
-            </Text>
-            <Text mt="10px">
-              {/* cSpell:disable */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-              {/* cSpell:enable */}
-            </Text>
-            <Text mt="10px">
-              {/* cSpell:disable */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-              {/* cSpell:enable */}
-            </Text>
-            <Text mt="10px">
-              {/* cSpell:disable */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ut
-              in pariatur aliquam laborum dolorum atque vero commodi mollitia
-              maiores officia omnis ex praesentium, incidunt corrupti impedit
-              autem animi earum. Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Assumenda harum voluptate temporibus reiciendis
-              doloribus ab ducimus omnis iure quisquam reprehenderit sed
-              tenetur, placeat corporis magni veritatis eligendi cum, ipsa
-              minus. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Deserunt distinctio similique ratione exercitationem enim, tempore
-              eos quas sunt et excepturi officia quia pariatur doloribus in,
-              corporis adipisci dignissimos deleniti doloremque. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Amet dolores neque
-              repudiandae officiis. Officia modi iste sequi neque vero, beatae
-              unde officiis facilis praesentium quasi cumque. Ipsum voluptas
-              totam corporis? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Numquam a commodi ut atque dolorum sapiente dolorem odit.
-              Vitae quam eum explicabo numquam assumenda illo, et adipisci omnis
-              facere earum magnam. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Doloribus sint eum consequatur, numquam nemo
-              iure ipsa ab accusamus animi suscipit doloremque quos, cumque,
-              amet enim aut laboriosam voluptas architecto quas! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Quidem voluptas
-              impedit cum maxime velit excepturi sit autem adipisci cumque
-              tenetur aut eos nesciunt praesentium ipsam obcaecati minus, soluta
-              odit iste? Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Qui, nemo. Saepe quam omnis, rerum et eos quisquam impedit
-              voluptas vitae consequatur facere optio explicabo commodi quo!
-              Totam necessitatibus mollitia optio! Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Maiores dolore distinctio earum ab,
-              magnam sunt possimus nesciunt cum cupiditate rem odio quas
-              corporis et voluptate, facilis suscipit ipsam accusantium
-              consectetur.
-              {/* cSpell:enable */}
-            </Text>
-            <Button onClick={() => setShowRightPanel(true)}>Show</Button>
-          </Flex>
-          <RightSlideInPanel
-            show={showRightPanel}
-            header={
-              <RightSlideInPanelHeader
-                headerText="TITLE"
-                actionText="Save"
-                isSaving={false}
-                onAction={() => console.log("on action")}
-                onClose={() => setShowRightPanel(false)}
-              />
-            }
-            content={
-              <Flex flexDir="column">
-                <Text>Content Text</Text>
-                <Text>
-                  {/* cSpell:disable */}
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Deserunt, fuga quos eius nostrum ullam reprehenderit maxime
-                  eos, vero laudantium accusamus in omnis, sit dignissimos ut!
-                  Odio culpa blanditiis vero reiciendis?
-                  {/* cSpell:enable */}
-                </Text>
-              </Flex>
-            }
-          />
-        </Flex>
-        <Footer />
-      </ChakraProvider>
-    </Flex>
+      </Provider>
+    </EdxConfigProvider>
   )
 }
+
+// Create a new component to use the config context
+interface AppContentProps {
+  appsList: ExternalAppData[];
+  moreOptions: AppsMenuMoreOption[];
+  login: () => Promise<void>;
+  logout: () => Promise<void>;
+  onChangeTenantId: (tenantId: string) => Promise<void>;
+  selectedItemId: string;
+  items: SideBarMenuItemData[];
+  onChangeSelected: (id: string) => void;
+  showRightPanel: boolean;
+  setShowRightPanel: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function AppContent({
+  appsList,
+  moreOptions,
+  login,
+  logout,
+  onChangeTenantId,
+  selectedItemId,
+  items,
+  onChangeSelected,
+  showRightPanel,
+  setShowRightPanel
+}: AppContentProps) {
+  const { userProfile } = useUserProfile({})
+
+  return (
+    <Flex flexDir="column" w="full">
+      <TopBar
+        leftComponent={
+          <TopBarLeft
+            onClick={() => console.log("hey go to")}
+            list={appsList}
+            menuOptions={moreOptions}
+          />
+        }
+            rightComponent={
+              <TopBarRight
+                tenants={[]}
+                isClosingSession={false}
+                profileData={userProfile}
+                onLogin={login}
+                onLogout={logout}
+                onChangeTenantId={onChangeTenantId}
+              />
+            }
+          />
+          <Flex w="full" maxW="100%">
+            {true && (
+              <Flex className="sidebar" minH="100vh" w="full">
+                <SideBar
+                  selectedItemId={selectedItemId}
+                  ariaCurrentType="page"
+                  items={items}
+                  show={true}
+                  onClickItem={onChangeSelected}
+                />
+              </Flex>
+            )}
+            <Flex flexDir="column" pl="20px" mt="60px">
+              <SkipNavContent />
+              <Text mt="10px">
+                {/* Lorem ipsum content */}
+                Sample content here...
+              </Text>
+              <Button onClick={() => setShowRightPanel(true)}>Show</Button>
+            </Flex>
+            <RightSlideInPanel
+              show={showRightPanel}
+              header={
+                <RightSlideInPanelHeader
+                  headerText="TITLE"
+                  actionText="Save"
+                  isSaving={false}
+                  onAction={() => console.log("on action")}
+                  onClose={() => setShowRightPanel(false)}
+                />
+              }
+              content={
+                <Flex flexDir="column">
+                  <Text>Content Text</Text>
+                  <Text>
+                    Sample content here...
+                  </Text>
+                </Flex>
+              }
+            />
+          </Flex>
+          <Footer />
+        </Flex>
+      )
+    }
 
 export default App
