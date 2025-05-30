@@ -16,15 +16,26 @@ const NotificationItemPopover = ({ messageId, wasRead, onMarkAsRead, onRemove }:
   return (
     <Popover.Root>
       <Popover.Trigger>
-        <Button
+        <Flex
+          as="div"
+          role="button"
+          tabIndex={0}
           aria-label='Open notification menu'
           color='blue.900'
-          variant='solid'
           minW='auto'
+          padding='2px'
+          cursor='pointer'
           _hover={{ bg: 'orange.100' }}
-          padding='2px'>
+          _focus={{ boxShadow: 'outline' }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
+        >
           <HiDotsVertical size='20px' />
-        </Button>
+        </Flex>
       </Popover.Trigger>
       <Popover.Content>
         <Flex aria-label="Notification Popover" w='150px'>

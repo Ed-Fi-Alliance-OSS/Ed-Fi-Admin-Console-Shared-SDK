@@ -36,14 +36,33 @@ const AppItemCardOptionsPopover = ({
   return (
     <Popover.Root isLazy>
       <Popover.Trigger>
-        <IconButton
+        <Flex
+          as="div"
+          role="button"
+          tabIndex={0}
           aria-label="application card menu"
-          variant="ghost"
-          size="sm"
+          //variant="ghost"
+          fontSize="sm"
+          cursor="pointer"
+          display="inline-flex"
+          alignItems="center"
+          justifyContent="center"
+          w="auto"
+          h="auto"
+          minW="auto"
+          p="8px"
+          _hover={{ bg: 'gray.100' }}
+          _focus={{ boxShadow: 'outline' }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
         >
           <BsThreeDotsVertical fontSize="20px" />
-        </IconButton>
-      </Popover.Trigger>Z
+        </Flex>
+      </Popover.Trigger>
 
       <Popover.Content>
         <Flex aria-label="App Menu" bg={bg} p={0} maxW="290px">
@@ -53,20 +72,15 @@ const AppItemCardOptionsPopover = ({
                 <Heading fontFamily="Poppins" fontWeight="700" size="sm">
                   {description}
                 </Heading>
-                <Button
+                <IconButton
                   aria-label="toggle application bookmark"
                   onClick={() => onBookmark(appId)}
                   color={bookmarked ? bookmarkColor : notBookmarkColor}
-                  fontFamily="Poppins"
-                  fontWeight="thin"
-                  justifyContent="center"
-                  alignItems="center"
-                  minW="20px"
-                  w="20px"
                   variant="ghost"
+                  size="sm"
                 >
                   <HiBookmark fontSize="20px" />
-                </Button>
+                </IconButton>
               </Flex>
 
               <Text color="gray.600" fontFamily="Poppins" fontSize="sm">
@@ -88,31 +102,18 @@ const AppItemCardOptionsPopover = ({
                     Website
                   </Text>
                 </Link>
-                <Button
-                  aria-label="Help"
-                  color="black"
-                  variant="ghost"
-                  minW="auto"
-                  maxW="auto"
-                >
+                <Flex cursor="pointer" display="flex" alignItems="center" onClick={() => console.log('Help clicked')}>
                   <FiHelpCircle fontSize="15px" />
                   <Text fontFamily="Poppins" ml="5px">
                     Help
                   </Text>
-                </Button>
-                <Button
-                  aria-label="Report a bug"
-                  color="black"
-                  variant="ghost"
-                  p={0}
-                  minW="auto"
-                  maxW="auto"
-                >
+                </Flex>
+                <Flex cursor="pointer" display="flex" alignItems="center" onClick={() => console.log('Report bug clicked')}>
                   <MdBugReport fontSize={20} />
                   <Text fontFamily="Poppins" ml="5px">
                     Report a Bug
                   </Text>
-                </Button>
+                </Flex>
               </Flex>
             </Flex>
 

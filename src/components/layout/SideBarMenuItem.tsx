@@ -32,10 +32,12 @@ const SideBarMenuItem = ({ item, selectedItemId, currentType, showText, backgrou
             trigger='hover'
             isOpen={ (!showText && popoversEnabled) ? undefined : false }
             onOpen={onPopoverOpen}
-            onClose={onPopoverClose}
-        >
+            onClose={onPopoverClose}        >
             <Popover.Trigger>
-                <Button
+                <Flex
+                    as="div"
+                    role="button"
+                    tabIndex={0}
                     aria-label={ `${item.text}` }
                     onClick={ () => onClickItem(item.id) }
                     color={ textColor ?? 'white' }
@@ -48,7 +50,15 @@ const SideBarMenuItem = ({ item, selectedItemId, currentType, showText, backgrou
                     minW='auto'
                     minH='auto'
                     w='full'
+                    cursor='pointer'
                     _hover={{ backgroundColor: hoverColor ?? '#4964bb' }}
+                    _focus={{ boxShadow: 'outline' }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onClickItem(item.id);
+                        }
+                    }}
                 >
                     <Flex aria-hidden fontSize='20px' w='20px'>
                         { item.icon }
@@ -71,9 +81,8 @@ const SideBarMenuItem = ({ item, selectedItemId, currentType, showText, backgrou
                             >
                                 { item.text }
                             </Text>
-                        </Collapsible.Content>
-                    </Collapsible.Root>
-                </Button>
+                        </Collapsible.Content>                    </Collapsible.Root>
+                </Flex>
             </Popover.Trigger>
             <Popover.Content>
                 <Box aria-label={item.text}>

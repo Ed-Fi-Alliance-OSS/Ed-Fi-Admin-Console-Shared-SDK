@@ -14,8 +14,11 @@ const CommunityCardGroupPopover = () => {
 
   return (
     <Popover.Root>
-      <Popover.Trigger>
-        <Button
+      <Popover.Trigger >
+        <Flex
+          as="div"
+          role="button"
+          tabIndex={0}
           aria-label="Show Group"
           display='flex'
           fontWeight='light'
@@ -24,9 +27,18 @@ const CommunityCardGroupPopover = () => {
           alignItems='flex-end'
           padding='0px'
           borderColor='none'
-          size='sm'
           minW='auto'
-          w='auto'>
+          w='auto'
+          cursor='pointer'
+          _hover={{ opacity: 0.8 }}
+          _focus={{ boxShadow: 'outline' }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
+        >
           <Flex
             borderRadius='5px 5px 0px 0px'
             alignItems='center'
@@ -39,7 +51,7 @@ const CommunityCardGroupPopover = () => {
               Group
             </Text>
           </Flex>
-        </Button>
+        </Flex>
       </Popover.Trigger>
       <Popover.Content>
         <Flex aria-label="Community Card Popover" bg={bg} top='0px' left='50px'>

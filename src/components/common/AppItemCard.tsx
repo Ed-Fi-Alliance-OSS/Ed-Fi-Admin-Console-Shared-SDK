@@ -53,25 +53,33 @@ const AppItemCard = ({ appId, imageUrl, description, actionLink, lightBackground
                     alignItems='center'
                     p='5px 10px'
                     h='full'
-                    w='201px'>
-                        <Link
+                    w='201px'
+                    position='relative'
+                    cursor='pointer'
+                    onClick={() => window.location.href = actionLink}>
+                        <Flex
                             fontFamily='Poppins'
                             display='flex'
                             alignItems='center'
-                            href={actionLink}
                             p='5px'
                             h='full'
                             w='full'>
                                 <Heading
                                     fontWeight='600'
                                     size='xs'>{description}</Heading>
-                        </Link>
-                        <AppItemCardOptionsPopover
-                            appId={appId}
-                            description={description}
-                            actionLink={actionLink}
-                            bookmarked={bookmarked}
-                            onBookmark={onBookmark} />
+                        </Flex>
+                        <Flex
+                            position='absolute'
+                            top='5px'
+                            right='5px'
+                            onClick={(e) => e.stopPropagation()}>
+                            <AppItemCardOptionsPopover
+                                appId={appId}
+                                description={description}
+                                actionLink={actionLink}
+                                bookmarked={bookmarked}
+                                onBookmark={onBookmark} />
+                        </Flex>
                 </Flex>
         </Card>
     )

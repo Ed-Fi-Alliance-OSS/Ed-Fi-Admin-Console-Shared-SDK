@@ -24,7 +24,17 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     disabled={isClosingSession}
                     size='md'
                     variant="solid"
-                    bg="primaryGray300"
+                    bg='gray.300'
+                    border='1px'
+                    borderColor='gray.300'
+                    boxShadow='0 0 0 1px rgba(124, 125, 128, 0.93)'
+                    color='white'
+                    padding='10px'
+                    fontFamily='Poppins'
+                    fontSize='14px'
+                    fontWeight='600'
+                    lineHeight='1.2'
+                    _hover={{ bg: 'gray.400', borderColor: 'gray.400', boxShadow: '0 0 0 3px rgba(147, 147, 148, 0.86)' }}
                     colorPalette="primaryGray300">
                         Continue Session
                 </Button>
@@ -33,8 +43,17 @@ const SessionInactiveModal = ({ show, isClosingSession, onLogout, onClose }: Ses
                     onClick={onLogout}
                     loading={isClosingSession}
                     variant="solid"
+                    bg='blue.600'
+                    border='1px'
+                    borderColor='blue.600'
+                    boxShadow='0 0 0 1px rgba(59, 130, 246, 0.3)'
                     color='white'
-                    bg='primaryBlue600'
+                    padding='10px'
+                    fontFamily='Poppins'
+                    fontSize='14px'
+                    fontWeight='600'
+                    lineHeight='1.2'
+                    _hover={{ bg: 'blue.700', borderColor: 'blue.700', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.5)' }}
                     size='md'
                     marginLeft='10px'>
                         Log out

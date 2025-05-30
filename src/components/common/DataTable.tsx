@@ -56,10 +56,8 @@ function DataTable<T>({ data, columns }: DataTableProps<T>) {
         <Table.Header
           bg={colorMode === 'light' ? 'bg.subtle' : 'bg.muted'}
           borderBottomWidth="2px"
-          borderBottomColor={colorMode === 'light' ? 'border.subtle' : 'border.muted'}>
-          {getHeaderGroups().map((headerGroup) => (
-            <Table.Row key={headerGroup.id} h="52px">
-              {headerGroup.headers.map((header) => (
+          borderBottomColor={colorMode === 'light' ? 'border.subtle' : 'border.muted'}>          {getHeaderGroups().map((headerGroup) => (
+            <Table.Row key={headerGroup.id} h="52px">{headerGroup.headers.map((header) => (
                 <Table.ColumnHeader
                   id={header.id}
                   key={header.id}
@@ -70,6 +68,7 @@ function DataTable<T>({ data, columns }: DataTableProps<T>) {
                   letterSpacing="0"
                   borderRightWidth="2px"
                   borderRightColor={colorMode === 'light' ? 'border.subtle' : 'border.muted'}
+                  cursor={header.column.getCanSort() ? 'pointer' : 'default'}
                   onClick={header.column.getToggleSortingHandler()}
                   textTransform="none"
                   _last={{ borderRight: 'none' }}
@@ -81,42 +80,39 @@ function DataTable<T>({ data, columns }: DataTableProps<T>) {
                     )}
                     <Flex fontSize="xs" color="fg.muted" ml="2px" w="5px">
                       <Flex flexDir="column" justify="center" w="20px">
-                        <Button
+                        <Flex
                           aria-label="Sort Asc"
-                          onClick={header.column.getToggleSortingHandler()}
-                          colorScheme={header.column.getIsSorted() === 'asc' ? 'gray' : 'gray'}
-                          variant="ghost"
-                          size="xs"
+                          cursor="pointer"
                           h="3px"
                           minW="5px"
                           p={0}
+                          alignItems="center"
+                          justifyContent="center"
                         >
                           <TriangleUpIcon
                             fontSize="10px"
                             color={header.column.getIsSorted() === 'asc' ? '#2D3748' : '#A0AEC0'}
                           />
-                        </Button>
-                        <Button
+                        </Flex>
+                        <Flex
                           aria-label="Sort Desc"
-                          onClick={header.column.getToggleSortingHandler()}
-                          colorScheme={header.column.getIsSorted() === 'desc' ? 'gray' : 'gray'}
-                          variant="ghost"
-                          size="xs"
+                          cursor="pointer"
                           h="3px"
                           minW="5px"
                           mt="5px"
                           p={0}
+                          alignItems="center"
+                          justifyContent="center"
                         >
                           <TriangleDownIcon
                             fontSize="10px"
                             color={header.column.getIsSorted() === 'desc' ? '#2D3748' : '#A0AEC0'}
                           />
-                        </Button>
+                        </Flex>
                       </Flex>
                     </Flex>
                   </Flex>
-                </Table.ColumnHeader>
-              ))}
+                </Table.ColumnHeader>))}
             </Table.Row>
           ))}
         </Table.Header>
@@ -126,8 +122,7 @@ function DataTable<T>({ data, columns }: DataTableProps<T>) {
               bg={colorMode === 'light' ? 'bg.canvas' : 'bg.subtle'}
               key={index}
               h="25px"
-            >
-              {row.getVisibleCells().map((cell, cellIndex) => (
+            >{row.getVisibleCells().map((cell, cellIndex) => (
                 <Table.Cell
                   key={cellIndex}
                   color={colorMode === 'light' ? 'fg.default' : 'fg.inverted'}

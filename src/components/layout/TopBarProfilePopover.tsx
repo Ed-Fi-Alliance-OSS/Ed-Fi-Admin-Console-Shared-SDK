@@ -46,17 +46,28 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
   }
 
   return (
-    <>
-      <Popover.Root>
+    <>      <Popover.Root>
         <Popover.Trigger>
-          <Button
+          <Flex
+            as="div"
+            role="button"
+            tabIndex={0}
             aria-label="Open profile menu"
             border='none'
             color={profileIconColor}
             padding='0'
-            variant='ghost'>
+            cursor='pointer'
+            _hover={{ opacity: 0.8 }}
+            _focus={{ boxShadow: 'outline' }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.currentTarget.click();
+              }
+            }}
+          >
             <BsPersonCircle fontSize='20px' aria-hidden="true" focusable="false" />
-          </Button>
+          </Flex>
         </Popover.Trigger>
 
         <Popover.Content>
@@ -124,6 +135,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                 fontSize='xs'
                 h='auto'
                 color={logoutColor}
+                bg='none'
                 _hover={{ background: 'none', textDecor: 'underline' }}>
                 {'Log out'}
               </Button>
@@ -156,6 +168,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
         footer={<>
           <Button
             aria-label="Cancel"
+            bg='gray.600'
             onClick={onModalClose}
             disabled={isClosingSession}
             variant="solid"
@@ -165,7 +178,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
           </Button>
           <Button
             aria-label="Log out"
-            bg='white'
+            bg='blue.600'
             onClick={onLogOut}
             disabled={isClosingSession}
             loading={isClosingSession}

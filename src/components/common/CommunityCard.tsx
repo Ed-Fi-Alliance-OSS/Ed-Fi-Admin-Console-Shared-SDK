@@ -25,23 +25,25 @@ const CommunityCard = ({ appId, actionLink, bookmarked, description, imageUrl, o
     const { colorMode } = useColorMode()
 
     return (
-        <Link href={actionLink} style={{ textDecoration: 'none' }}>
-            <Card.Root
-                display='flex'
-                flexDirection='row'
-                borderRadius='8px'
-                marginTop='15px'
-                marginRight='15px'
-                boxShadow='lg'
-                bg={bg}
-                h='102px'
-                w='330px'>
-            <Card.Body
-                display='flex'
-                flexDirection='row'
-                padding='0'
-                h='full'
-                w='full'>
+        <Card.Root
+            display='flex'
+            flexDirection='row'
+            borderRadius='8px'
+            marginTop='15px'
+            marginRight='15px'
+            boxShadow='lg'
+            bg={bg}
+            h='102px'
+            w='330px'
+            position='relative'
+            cursor='pointer'
+            onClick={() => window.location.href = actionLink}>
+        <Card.Body
+            display='flex'
+            flexDirection='row'
+            padding='0'
+            h='full'
+            w='full'>
                 <Flex h='full' w='102px'>
                     {imageUrl?
                         <Flex
@@ -135,16 +137,22 @@ const CommunityCard = ({ appId, actionLink, bookmarked, description, imageUrl, o
                                         </Flex>
                                 </Flex>
                         </Flex>
-                        <AppItemCardOptionsPopover
-                            appId={appId}
-                            description={description}
-                            actionLink={actionLink}
-                            bookmarked={bookmarked}
-                            onBookmark={onBookmark} />
+                        <Flex
+                            position='absolute'
+                            top='5px'
+                            right='5px'
+                            zIndex='2'
+                            onClick={(e) => e.stopPropagation()}>
+                            <AppItemCardOptionsPopover
+                                appId={appId}
+                                description={description}
+                                actionLink={actionLink}
+                                bookmarked={bookmarked}
+                                onBookmark={onBookmark} />
+                        </Flex>
                 </Flex>
             </Card.Body>
         </Card.Root>
-        </Link>
     )
 }
 

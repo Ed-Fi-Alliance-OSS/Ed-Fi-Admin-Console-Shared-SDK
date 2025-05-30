@@ -64,30 +64,38 @@ const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantS
                         color='gray.700'>
                         Tenant Instance:
                     </Text>
-                    <Button
+                    <Flex
+                        as="div"
+                        role="button"
+                        tabIndex={0}
                         aria-label={tenantBtnLabel}
                         bg={triggerBg}
                         borderWidth="1px"
                         borderColor={triggerBorderColor}
                         borderRadius="md"
                         color='gray.600'
-                        size='sm'
+                        py='6px'
+                        px='12px'
+                        minW="150px"
+                        cursor="pointer"
                         _hover={{
                             bg: triggerHoverBg,
                             borderColor: selectedColor,
                             transform: 'translateY(-1px)',
                             shadow: 'sm'
                         }}
-                        transition="all 0.2s ease-in-out">
+                        _focus={{ boxShadow: 'outline' }}
+                        transition="all 0.2s ease-in-out"
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                e.currentTarget.click();
+                            }
+                        }}
+                    >
                             <Flex
                                 alignItems='center'
-                                border='1px'
-                                borderColor={triggerBorderColor}
-                                borderRadius='6px'
-                                py='6px'
-                                px='12px'
-                                bg={triggerBg}
-                                minW="150px">
+                                width="100%">
                                 <Text
                                     fontSize='sm'
                                     color={tenantTextColor}
@@ -103,7 +111,7 @@ const TenantSelectPopover = ({ tenants, userProfile, onChangeTenantId }: TenantS
                                     aria-hidden="true"
                                     focusable="false" />
                             </Flex>
-                    </Button>
+                    </Flex>
                 </Flex>
             </Popover.Trigger>
             <Popover.Content>

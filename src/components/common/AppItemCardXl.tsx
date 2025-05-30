@@ -24,57 +24,63 @@ const AppItemCardXl = ({ appId, imageUrl, description, text, actionLink, lightBa
   const { colorMode } = useColorMode()
 
   return (
-    <Link
-      href={actionLink}
-      style={{ textDecoration: 'none' }}>
-      <Card.Root
+    <Card.Root
+      display='flex'
+      flexDirection='row'
+      borderRadius='8px'
+      marginTop='15px'
+      marginRight='15px'
+      boxShadow='lg'
+      bg={bg}
+      h='200px'
+      w='643px'
+      position='relative'
+      cursor='pointer'
+      onClick={() => window.location.href = actionLink}>
+      <Card.Body
         display='flex'
         flexDirection='row'
-        borderRadius='8px'
-        marginTop='15px'
-        marginRight='15px'
-        boxShadow='lg'
-        bg={bg}
-        h='200px'
-        w='643px'>
-        <Card.Body
-          display='flex'
-          flexDirection='row'
-          padding='0'
+        padding='0'
+        h='full'
+        w='full'>
+        <Flex h='full' w='200px' align='center' justify='center'>
+          {imageUrl ?
+            <AppItemCardIcon
+              colorMode={colorMode}
+              lightBackgroundTileUrl={lightBackgroundUrl ?? ""}
+              darkBackgroundTileUrl={darkBackgroundUrl ?? ""}
+              darkIconUrl={darkImageUrl ?? ""}
+              lightIconUrl={imageUrl ?? ""}
+              size="xl" /> :
+            <Flex
+              bg='blue.500'
+              borderRadius='10px 0 0 10px'
+              h='full'
+              w='full' />}
+        </Flex>
+        <Flex
+          fontSize='sm'
+          justifyContent='center'
+          alignItems='center'
+          padding='38px 38px'
           h='full'
-          w='full'>
-          <Flex h='full' w='200px' align='center' justify='center'>
-            {imageUrl ?
-              <AppItemCardIcon
-                colorMode={colorMode}
-                lightBackgroundTileUrl={lightBackgroundUrl ?? ""}
-                darkBackgroundTileUrl={darkBackgroundUrl ?? ""}
-                darkIconUrl={darkImageUrl ?? ""}
-                lightIconUrl={imageUrl ?? ""}
-                size="xl" /> :
-              <Flex
-                bg='blue.500'
-                borderRadius='10px 0 0 10px'
-                h='full'
-                w='full' />}
-          </Flex>
+          w='443px'
+          flexDir='column'>
+          <Card.Title as={Heading}
+            fontWeight='600'
+            fontSize='sm'>{description}</Card.Title>
+          <Text
+            color='gray.600'
+            fontFamily='Poppins'
+            fontWeight='400'
+            mt='5px'
+            fontSize='sm'>{text}</Text>
           <Flex
-            fontSize='sm'
-            justifyContent='center'
-            alignItems='center'
-            padding='38px 38px'
-            h='full'
-            w='443px'
-            flexDir='column'>
-            <Card.Title as={Heading}
-              fontWeight='600'
-              fontSize='sm'>{description}</Card.Title>
-            <Text
-              color='gray.600'
-              fontFamily='Poppins'
-              fontWeight='400'
-              mt='5px'
-              fontSize='sm'>{text}</Text>
+            position='absolute'
+            top='8px'
+            right='8px'
+            zIndex='2'
+            onClick={(e) => e.stopPropagation()}>
             <AppItemCardOptionsPopover
               appId={appId}
               description={description}
@@ -82,9 +88,9 @@ const AppItemCardXl = ({ appId, imageUrl, description, text, actionLink, lightBa
               bookmarked={bookmarked}
               onBookmark={onBookmark} />
           </Flex>
-        </Card.Body>
-      </Card.Root>
-    </Link>
+        </Flex>
+      </Card.Body>
+    </Card.Root>
     )
 }
 

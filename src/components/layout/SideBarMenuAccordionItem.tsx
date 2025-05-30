@@ -45,21 +45,31 @@ const SideBarMenuAccordionItem = ({ item, isOpen, showText, selectedItemId, sele
           placement='right'
           open={(!showText && popoversEnabled) ? undefined : false}
           onOpenChange={(open: boolean) => open ? onPopoverOpen() : onPopoverClose()}
-        >
-          <Popover.Trigger>
+        >          <Popover.Trigger>
             <Accordion.ItemTrigger>
-              <Button
-          width='100%'
-          display='flex'
-          bg={showAsSelectedAccordion() ? (hoverColor ?? '#6077c3') : 'transparent'}
-          padding='0px 6px'
-          borderRadius='4px'
-          color={textColor ?? 'white'}
-          minW='auto'
-          minH='24px'
-          aria-label={item.text}
-          _hover={{ backgroundColor: activeColor ?? '#4964bb' }}
-          onClick={() => onToggleAccordion(item.id)}
+              <Flex
+                as="div"
+                role="button"
+                tabIndex={0}
+                width='100%'
+                display='flex'
+                bg={showAsSelectedAccordion() ? (hoverColor ?? '#6077c3') : 'transparent'}
+                padding='0px 6px'
+                borderRadius='4px'
+                color={textColor ?? 'white'}
+                minW='auto'
+                minH='24px'
+                aria-label={item.text}
+                cursor='pointer'
+                _hover={{ backgroundColor: activeColor ?? '#4964bb' }}
+                _focus={{ boxShadow: 'outline' }}
+                onClick={() => onToggleAccordion(item.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onToggleAccordion(item.id);
+                  }
+                }}
               >
           <Flex
             aria-hidden
@@ -102,10 +112,9 @@ const SideBarMenuAccordionItem = ({ item, isOpen, showText, selectedItemId, sele
                 fillRule="evenodd"
                 d="M5.23 7.21a.75.75 0 011.06.02L10 10.584l3.71-3.354a.75.75 0 111.02 1.1l-4.25 3.846a.75.75 0 01-1.02 0l-4.25-3.846a.75.75 0 01.02-1.06z"
                 clipRule="evenodd"
-              />
-            </svg>
+              />            </svg>
           </Box>
-              </Button>
+              </Flex>
             </Accordion.ItemTrigger>
           </Popover.Trigger>
           <Popover.Content>

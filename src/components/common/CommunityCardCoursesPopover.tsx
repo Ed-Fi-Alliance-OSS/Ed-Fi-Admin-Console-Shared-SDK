@@ -14,16 +14,28 @@ const CommunityCardCoursesPopover = () => {
   return (
     <Popover.Root>
       <Popover.Trigger>
-        <Button
+        <Flex
+          as="div"
+          role="button"
+          tabIndex={0}
           aria-label="Show Courses"
           display='flex'
           alignItems='center'
           fontWeight='light'
           fontFamily='Poppins'
           padding='5px 5px 0px 5px'
-          size='sm'
+          cursor='pointer'
+          borderRadius='md'
           minW='auto'
-          w='auto'>
+          w='auto'
+          _hover={{ backgroundColor: 'gray.100' }}
+          _focus={{ boxShadow: 'outline' }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}>
           <IoMdBookmarks fontSize='20px' />
           <Text
             fontFamily='Poppins'
@@ -31,7 +43,7 @@ const CommunityCardCoursesPopover = () => {
             marginLeft='3px'>
             Courses
           </Text>
-        </Button>
+        </Flex>
       </Popover.Trigger>
       <Popover.Content>
         <Flex aria-label="Community Card Popover" bg={bg} top='0px' right='-35px'>
