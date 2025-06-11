@@ -1,11 +1,14 @@
-import { AuthContextProps, useAuth } from 'react-oidc-context'
-import { User } from 'oidc-client-ts'
+import { useContext } from "react";
+import { TEEAuthDataContext } from "../../context/TEEAuthDataContext";
+import { AuthContextProps, User } from "../../core/Authentication.types";
 
 export type {
     AuthContextProps,
-    User
-}
+    User,
+};
 
-export {
-    useAuth
-}
+// Define and export the useAuth method
+export const useAuth = () => {
+    const { auth } = useContext(TEEAuthDataContext);
+    return auth;
+};

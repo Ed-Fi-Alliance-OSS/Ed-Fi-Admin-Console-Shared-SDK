@@ -1,34 +1,20 @@
-import { useContext, useEffect } from "react"
-import { hasAuthParams } from "react-oidc-context"
-import { TEEAuthDataContext } from "../context"
+import { useEffect } from "react";
+import useAuthActions from "./useAuthActions";
 
-interface UseAuthAutoRefreshProps {
-
-}
-
-const useAuthAutoRefresh = (params?: UseAuthAutoRefreshProps) => {
-  const { auth } = useContext(TEEAuthDataContext) as any
+const useAuthAutoRefresh = () => {
+  const { fetchAccessToken } = useAuthActions();
 
   useEffect(() => {
-    const handleAuth = async () => {
-      if (auth && !hasAuthParams() && !auth.isAuthenticated && !auth.activeNavigator && !auth.isLoading) {
-        auth.signinRedirect()
+    const interval = setInterval(async () => {
+      try {
+        await fetchAccessToken(); // Use fetchAccessToken for token renewal
+      } catch (error) {
+        console.error("Auto-refresh failed:", error);
       }
-      if(auth && auth.error) {
-        console.log("useAuthAutoRefresh error", auth.error)
-        await auth.clearStaleState()
-        await auth.revokeTokens()
-        auth.signinRedirect()
-      }
-    }
-    handleAuth()
-  }, [
-    auth,
-    auth.isAuthenticated,
-    auth.activeNavigator,
-    auth.isLoading,
-    auth.signinRedirect
-  ])
-}
+    }, 15 * 60 * 1000); // Example: Refresh every 15 minutes
 
-export default useAuthAutoRefresh
+    return () => clearInterval(interval);
+  }, [fetchAccessToken]);
+};
+
+export default useAuthAutoRefresh;

@@ -1,9 +1,10 @@
-import { createContext, useEffect } from "react"
-import { AuthContextProps, useAuth } from "react-oidc-context"
-import { EdxAppConfig } from "../core/EdxApp.types"
-import { useUserAppList, useUserProfile } from "../hooks"
-import { ExternalAppsContext } from "./ExternalAppsContext"
-import { UserProfileContext } from "./UserProfileContext"
+import { createContext } from "react";
+import { AuthContextProps } from "../core/Authentication.types";
+import { EdxAppConfig } from "../core/EdxApp.types";
+import { useUserAppList, useUserProfile } from "../hooks";
+import { ExternalAppsContext } from "./ExternalAppsContext";
+import { UserProfileContext } from "./UserProfileContext";
+import useAuthActions from "../hooks/useAuthActions"; // Import useAuthActions
 
 interface ITEEAuthDataContext {
   edxAppConfig: EdxAppConfig | null;
@@ -24,7 +25,7 @@ export const TEEAuthDataContextProvider = ({
   children,
   edxAppConfig,
 }: TEEAuthContextProviderProps) => {
-  const auth = useAuth();
+  const { fetchAccessToken, getUser, isAuthenticated } = useAuthActions(); // Use fetchAccessToken and getUser from useAuthActions
   const { userProfile, setUserProfile, loadingProfile } = useUserProfile({
     apiUrl: edxAppConfig.api.edfiApiBaseUri ?? "",
   });
@@ -37,14 +38,21 @@ export const TEEAuthDataContextProvider = ({
 
   console.log("UI Package version", "2.2.5");
 
-  useEffect(() => {
-    auth.events.addSilentRenewError(async () => {
-      await auth.signinRedirect();
-    });
-  }, []);
-
   return (
-    <TEEAuthDataContext.Provider value={{ auth, edxAppConfig }}>
+    <TEEAuthDataContext.Provider
+      value={{
+        auth: {
+          user: getUser(),
+          isAuthenticated: isAuthenticated(),
+          isLoading: false,
+          access_token: "",
+          login: async () => {}, // Placeholder for login logic
+          logout: async () => {}, // Placeholder for logout logic
+          fetchAccessToken,
+        },
+        edxAppConfig,
+      }}
+    >
       <UserProfileContext.Provider
         value={{
           userProfile,

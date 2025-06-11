@@ -1,4 +1,4 @@
-import { User } from 'oidc-client-ts'
+import { User } from './Authentication.types'
 import { Route } from './AppRoutes.types'
 import { ExternalAppData } from './Apps.types'
 import { LoadingState } from './AppStates.types'

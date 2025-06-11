@@ -85,12 +85,14 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
         <PopoverFooter borderTop='none' color='black' padding='0'>
           <Flex bg={lineColor} marginBottom='10px' h='1px' w='full' />
           <Flex flexDir='column' w='full'>
-            {/* <UserProfileModal 
+            {/* <UserProfileModal
                             userProfileData={profileData}
                             mode="simple"
                             show={showEdxModal}
                             onClose={hideEdxModal} /> */}
-            <Button
+
+            {/* Following lines will be uncommented when the respective components are implemented (user profile modal)
+             <Button
               as='a'
               href={`${config.auth.authority}account?redirect_uri=${window.location.origin}${config.app.basePath}`}
               target='_blank'
@@ -105,8 +107,8 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
               minW='auto'
               w='auto'>
               Account Info
-            </Button>
-            {/* <Link 
+            </Button> */}
+            {/* <Link
                             href={getCommunityLink(externalApps)}
                             display='flex'
                             justifyContent='flex-start'
@@ -120,7 +122,7 @@ const TopBarProfilePopover = ({ profileData, isClosingSession, onLogOut, onLogIn
                             w='auto'>
                                 Community
                         </Link> */}
-            {/* <Link 
+            {/* <Link
                             href={getHelpLink()}
                             display='flex'
                             justifyContent='flex-start'

@@ -1,53 +1,23 @@
-import { useState, useEffect, useContext } from 'react'
-import { useIdleTimer } from 'react-idle-timer'
-import { TEEAuthDataContext } from '../context'
+import { useEffect } from "react";
+import useAuthActions from "./useAuthActions";
 
-interface UseIdleSessionProps {
-    timeout: number
-}
+const useIdleSession = () => {
+  const { fetchAccessToken, handleLogOut } = useAuthActions();
 
-const useIdleSession = ({ timeout }: UseIdleSessionProps) => {
-    const { auth } = useContext(TEEAuthDataContext)
+  useEffect(() => {
+    const handleIdle = async () => {
+      try {
+        await fetchAccessToken(); // Use fetchAccessToken to renew the session
+      } catch (error) {
+        console.error("Session renewal failed:", error);
+        await handleLogOut(); // Log out if token renewal fails
+      }
+    };
 
-    const [ showInactiveModal, setShowInactiveModal ] = useState(false)
-    const [ isSessionInactive, setIsSessionInactive ] = useState(false)
+    const idleTimeout = setTimeout(handleIdle, 30 * 60 * 1000); // Example: Idle timeout of 30 minutes
 
-    const onCloseInactiveModal = async () => {
-        if (auth) {     
-            try {
-                console.log("Auth: signin silent...")
-                await auth.signinSilent()
-            }
-            catch (ex) 
-            {
-                console.log("Auth: signin silent failed...", ex)
-                console.log("Auth: signin redirect...")
-                await auth.signinRedirect()
-            }
-        }
-        
-        setShowInactiveModal(false)
-        setIsSessionInactive(false)
-    }
+    return () => clearTimeout(idleTimeout);
+  }, [fetchAccessToken, handleLogOut]);
+};
 
-    const handleIdle = () => setIsSessionInactive(true)
-
-    const idleTimer = useIdleTimer({
-        timeout,
-        onIdle: handleIdle
-    })
-
-    useEffect(() => {
-        if (isSessionInactive) {
-            idleTimer.reset()
-            setShowInactiveModal(true)
-        }
-    }, [ isSessionInactive ])
-
-    return {
-        showInactiveModal,
-        onCloseInactiveModal
-    }
-}
-
-export default useIdleSession
+export default useIdleSession;
